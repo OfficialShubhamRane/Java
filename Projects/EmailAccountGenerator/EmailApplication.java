@@ -1,13 +1,23 @@
 import java.util.Scanner;
 public class EmailApplication {
+    
+    private String firstName, lastName, department="";
+    private String passwordSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%";
+    private int defaultPWDsize = 10;
+    private  char[] password = new char[defaultPWDsize];
+    private int mailboxCapacity = 500;
+    private String altEmailAddress;
 
     public static void main(String[] args) {
+        
         EmailApplication obj = new EmailApplication();
-        obj.generateEmail();
+        System.out.println("New Email address is: " + obj.generateEmail());
+        System.out.println("Your default password is " + obj.generatePassword());
+
     }
 
-    void generateEmail(){
-        String firstName, lastName, department=""; 
+    String generateEmail(){
+
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter First Name: ");
         firstName = sc.next();
@@ -30,9 +40,32 @@ public class EmailApplication {
                 department = "";
                 break;
         }
-        
-        System.out.println("New Email address is: ");
-        System.out.println(firstName.toLowerCase() +"."+ lastName.toLowerCase() +"@"+ department +"."+ "HibuscusCorp.com");
-        
+    
+        return firstName.toLowerCase() +"."+ lastName.toLowerCase() +"@"+ department +"."+ "HibuscusCorp.com";
+
     }
+
+    String generatePassword(){
+       
+        int rand;
+
+        for(int i=0; i < defaultPWDsize; i++){
+            rand = (int) (Math.random() * passwordSet.length());
+            password[i] = passwordSet.charAt(rand);
+        }
+        return new String(password);
+    }
+
+    void setMailboxCapacity(int capacity){
+        this.mailboxCapacity = capacity;
+    }
+
+    void setAltEmailAddress(String altEmail){
+        this.altEmailAddress = altEmail;
+    }
+
+    void changePassword(String password){
+        this.password = password.toCharArray();
+    }
+    
 }
