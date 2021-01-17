@@ -19,17 +19,11 @@ public class Account {
 
         //get transactions in arrayList
         this.transaction = new ArrayList<Transaction>();
-
-        //add account to holder and bank list
-        holder.addAccount(this);
-        theBank.addAccount(this);
-
-
         
     }
 
     public String getUUID(){
         return this.uuid;
-    } 
+    }   
 
 }
