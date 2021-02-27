@@ -1,13 +1,13 @@
-#General Rules#
-1. All test fields should have character count visible/invisible and restrictions.
-2. All files must have size restriction respective to their nature.
-3. All passwaords must be hashed
-4. Contact numbers must be are of ideal length
-5. All dates format must be identical, if possible  auto-calculated and validated
-6. Consider *required fields
+/############################################ General Rules ###############################################/
+1. All test fields should have character count visible/invisible and iwith restrictions/limitations.
+2. All media files must have size limitations respective to their nature/type.
+3. All passwaords must be hashed for security
+4. Contact numbers must be of ideal length (eg. 10)
+5. All date formats must be identical, if possible  auto-calculated and validated
+6. Consider "*required" fields wherever needed
 7. User permission and consent where needed and Terms&Conditions (eg. location, media, etc)
 8. Add own signature at the end to showcase (about development team)
-9. Loading bar to show upload/ download features specially for media files
+9. Loading/processing bar for upload/download features, specially for media files
 
 
 /**************************** Feature List - Application Managment Portal ********************************/
@@ -46,7 +46,7 @@
 		17.6 Grade aquired - out of
 	last. Convert Everything in read only format when someone else visits User's profile
 
-2) Dashboard (/**May turn into Excel sheet, if un-avoidable find better way or make a Excel sheet**/)
+2) Company Data Entry (/**May turn into Excel sheet, if un-avoidable find better way or make a Excel sheet**/)
 	1. Date	(/**Can be auto imported using system clock using time is optional**/)
 	2. Company Name
 	3. Job Title
@@ -54,13 +54,28 @@
 	5. Source
 	6. Status
 	7. Notes
-	8. Filter
-		8.1 <noOfDays> before
-		..
-		..
-	9.Color Coding
+	8.Color Coding
 
-3) Database
+3) Dashboard 
+	1. Filter
+		1.1 <noOfDays> before
+		..
+		..
+	2. Date
+	3. Company Name
+	4. Job Title
+	5. Location
+	6. Source
+	7. Status
+	8. Notes
+	9. Color Coding
+	
+	10. Data Analysis
+		10.1 Revert Back Ratio
+		10.2 Success ratio
+		10.3 Datewise Application Display (eg. github commits)
+
+4) Database
 	1. /**Find sauitable databse storage techniqe eg. local(.csv), AWS(free tier), Azure (mind scalablity, future web hosting)**/
 	2. /**Find suitable software to implement it**/s
 	3. /**Generate a schema for tables**/
@@ -68,7 +83,7 @@
 	5. /**Meta data eg. No. of successfull applications,....**/
 	6. /**consider field of data analytics with metadata (future scope)**/
 
-4) API	
+5) API	
 	1. Consider use of all APIs
 	2. If found check feasiblity, if heavy with un necesaary features find a way to build it on own keeping light weight
 	3. Potential Areas
@@ -76,6 +91,6 @@
 		3.2 AWS for Database
 		3.3 location for Metadata(dont know the use, just came in my mind)
 
-5) Graphics
+6) Graphics
 	1. Make visually appealing
 		
