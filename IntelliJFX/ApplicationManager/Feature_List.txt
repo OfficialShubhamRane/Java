@@ -54,7 +54,6 @@
 	5. Source
 	6. Status
 	7. Notes
-	8.Color Coding
 
 3) Dashboard 
 	1. Filter
@@ -69,7 +68,6 @@
 	7. Status
 	8. Notes
 	9. Color Coding
-	
 	10. Data Analysis
 		10.1 Revert Back Ratio
 		10.2 Success ratio
