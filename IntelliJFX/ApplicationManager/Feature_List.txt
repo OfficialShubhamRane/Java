@@ -8,6 +8,7 @@
 7. User permission and consent where needed and Terms&Conditions (eg. location, media, etc)
 8. Add own signature at the end to showcase (about development team)
 9. Loading/processing bar for upload/download features, specially for media files
+10.Cookie Policy and T&C
 
 
 /**************************** Feature List - Application Managment Portal ********************************/
@@ -16,8 +17,8 @@
 	1. UserName(Not a real Name)
 	2. Set Password			(/**Password character checker, size checker, Hash Generator**/)
 		2.1 Edit Password
-			2.1.1 Confrim old password
-	3. Primary Email Address
+			2.1.1 Confirm old password
+	3. Primary Email Address (Regex)
 	4. Contact Number (/** with Contry Code if possible **/)
 	5. Account Name
 		4.1 Initials, First, Middle, Last
@@ -74,7 +75,7 @@
 		10.3 Datewise Application Display (eg. github commits)
 
 4) Database
-	1. /**Find sauitable databse storage techniqe eg. local(.csv), AWS(free tier), Azure (mind scalablity, future web hosting)**/
+	1. /**Find sauitable databse storage techniqe eg. local(.csv), AWS(free tier), Azure (mind scalablity, in future web hosting)**/
 	2. /**Find suitable software to implement it**/s
 	3. /**Generate a schema for tables**/
 	4. /**Hashing sensitive info before saving eg. passowrds etc**/

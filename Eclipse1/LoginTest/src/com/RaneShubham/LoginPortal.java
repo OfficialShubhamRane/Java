@@ -20,22 +20,22 @@ public class LoginPortal extends HttpServlet {
 		System.out.println("Entered in LoginPortal");
 
 		
-		String userName = request.getParameter("uName");
-		String passWord = request.getParameter("pWord");
-		String action = request.getParameter("action");	
-		
-		
+		String userName = request.getParameter("userName");
+		String passWord = request.getParameter("passWord");
+		String action = request.getParameter("action");
+			
+
 		request.setAttribute("userName", userName);
 		request.setAttribute("passWord", passWord);
 		request.setAttribute("action", action);
-		
-		
+			
+			
 		RequestDispatcher rd = request.getRequestDispatcher("AuthenticateUser");
 		rd.forward(request, response);
 		
 		PrintWriter out = response.getWriter();
 		out.print("Hello");
-		
+			
 		
 		
 		

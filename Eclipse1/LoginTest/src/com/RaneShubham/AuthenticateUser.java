@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,37 +20,42 @@ public class AuthenticateUser extends HttpServlet {
 		
 		System.out.println("Entered in Authenticate user");
 		
-		String uName = request.getParameter("userName");
-		String pWord = request.getParameter("passWord");
+		String userName = request.getParameter("userName");
+		String passWord = request.getParameter("passWord");
 		String action = request.getParameter("action");
+		
 		
 		Map<String,String> HashDB = new HashMap<String, String>();
 		HashDB.put("Shubham", "1234");
+
 		
-		
+		PrintWriter out = response.getWriter();
 		// Login
 		if(action.equals("login")) {
 			
-			if(HashDB.containsKey(uName) && HashDB.get(uName).equals(pWord)) {
+			if(HashDB.containsKey(userName) && HashDB.get(userName).equals(passWord)) {
 				System.out.println("Access Granted");
+				out.println("Access Granted");
 				
 			}
 			else {
 				System.out.println("Access Denied");
-				response.sendRedirect("LoginPortal");
+				out.println("Access Denied");
+
 			}
 			
 		// Sign up
 		}else if(action.equals("signup")){
 			System.out.print("Trying sign up, add in db");
 			//check if uName exists in DB
-			if(HashDB.containsKey(uName)) {			
+			if(HashDB.containsKey(userName)) {			
 				System.out.println("UserName exists, choose something else");
-				response.sendRedirect("LoginPortal");
+				out.println("UserName exists, choose something else");
 				
 			}else {
-				HashDB.put(uName, pWord);
-				response.sendRedirect("LoginPortal");
+				HashDB.put(userName, passWord);
+				System.out.println("Enter uname and pssword in db");
+				out.println("Enter uname and pssword in db");
 			}
 		}
 		
