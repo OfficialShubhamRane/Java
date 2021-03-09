@@ -27,7 +27,6 @@ public class AuthenticateUser extends HttpServlet {
 		
 		Map<String,String> HashDB = new HashMap<String, String>();
 		HashDB.put("Shubham", "1234");
-
 		
 		PrintWriter out = response.getWriter();
 		// Login
@@ -54,8 +53,8 @@ public class AuthenticateUser extends HttpServlet {
 				
 			}else {
 				HashDB.put(userName, passWord);
-				System.out.println("Enter uname and pssword in db");
-				out.println("Enter uname and pssword in db");
+				System.out.println("Enter uname and password in db");
+				out.println("Enter uname and password in db");
 			}
 		}
 		
