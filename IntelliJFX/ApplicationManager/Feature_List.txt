@@ -8,6 +8,7 @@
 7. User permission and consent where needed and Terms&Conditions (eg. location, media, etc)
 8. Add own signature at the end to showcase (about development team)
 9. Loading/processing bar for upload/download features, specially for media files
+10.Textfields extra white spaces must br trimmed.
 10.Cookie Policy and T&C
 
 
