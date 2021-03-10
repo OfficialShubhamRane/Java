@@ -41,7 +41,7 @@ public class SignUp extends HttpServlet {
 			write.println("lnameLength exceeds length");
 			lnameLen = false;
 		}
-		// password and confroom password should be equal to each other
+		// password and confirm password should be equal to each other
 		if(!psw.equals(psw_repeat)) {
 			 
 			 write.println("Provided password do not match its confirmation");

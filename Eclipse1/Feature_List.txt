@@ -1,0 +1,96 @@
+/############################################ General Rules ###############################################/
+1. All test fields should have character count visible/invisible and iwith restrictions/limitations.
+2. All media files must have size limitations respective to their nature/type.
+3. All passwaords must be hashed for security
+4. Contact numbers must be of ideal length (eg. 10)
+5. All date formats must be identical, if possible  auto-calculated and validated
+6. Consider "*required" fields wherever needed
+7. User permission and consent where needed and Terms&Conditions (eg. location, media, etc)
+8. Add own signature at the end to showcase (about development team)
+9. Loading/processing bar for upload/download features, specially for media files
+10.Textfields extra white spaces must br trimmed.
+10.Cookie Policy and T&C
+
+
+/**************************** Feature List - Application Managment Portal ********************************/
+
+1) User Profile
+	1. UserName(Not a real Name)
+	2. Set Password			(/**Password character checker, size checker, Hash Generator**/)
+		2.1 Edit Password
+			2.1.1 Confirm old password
+	3. Primary Email Address (Regex)
+	4. Contact Number (/** with Contry Code if possible **/)
+	5. Account Name
+		4.1 Initials, First, Middle, Last
+	6. Social Media Links	(/**Links should start with https:// and not with www.**/)
+		5.1 GitHUB
+		5.2 LinkedIn
+		5.3 Behance
+		5.4 Portfolio Link / Personal hosted Websited 
+		5.5 /** Add if not specified **/
+	7. Profile Image (/**Specify supporting imag formats eg. .jpeg, .png etc**/)
+	8. Resume 	(/** File size limit: ### **/)
+	9. CV 		(/** File size limit: ### **/)		
+	10. Cover Letter (/** File size limit: ### **/)
+	11. Transcripts  (/** File size limit: ### **/)
+	12. Date when the profile is created (/**Meta Data**/)
+	13. Biography
+	14. Certifications (/** File size limit: ### **/)
+	15. Skills	(/**Can be prespecied list of drop down items**/)
+	16. Set days limit for application reminders (/** Should be an int/Integer **/)
+	17. Education (By default provide one class of Education type)
+		17.1 Name of School
+		17.2 Duration to-from (Can provide choosing date from calender/date class)
+		17.3 Major
+		17.4 Specilization
+		17.5 Minor
+		17.6 Grade aquired - out of
+	last. Convert Everything in read only format when someone else visits User's profile
+
+2) Company Data Entry (/**May turn into Excel sheet, if un-avoidable find better way or make a Excel sheet**/)
+	1. Date	(/**Can be auto imported using system clock using time is optional**/)
+	2. Company Name
+	3. Job Title
+	4. Location
+	5. Source
+	6. Status
+	7. Notes
+
+3) Dashboard 
+	1. Filter
+		1.1 <noOfDays> before
+		..
+		..
+	2. Date
+	3. Company Name
+	4. Job Title
+	5. Location
+	6. Source
+	7. Status
+	8. Notes
+	9. Color Coding
+	10. Data Analysis
+		10.1 Revert Back Ratio
+		10.2 Success ratio
+		10.3 Datewise Application Display (eg. github commits)
+
+4) Database
+	1. /**Find sauitable databse storage techniqe eg. local(.csv), AWS(free tier), Azure (mind scalablity, in future web hosting)**/
+	2. /**Find suitable software to implement it**/s
+	3. /**Generate a schema for tables**/
+	4. /**Hashing sensitive info before saving eg. passowrds etc**/
+	5. /**Meta data eg. No. of successfull applications,....**/
+	6. /**consider field of data analytics with metadata (future scope)**/
+
+5) API	
+	1. Consider use of all APIs
+	2. If found check feasiblity, if heavy with un necesaary features find a way to build it on own keeping light weight
+	3. Potential Areas
+		3.1 Social Login
+		3.2 AWS for Database
+		3.3 location for Metadata(dont know the use, just came in my mind)
+
+6) Graphics
+	1. Make visually appealing
+		
