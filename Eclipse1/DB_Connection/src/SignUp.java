@@ -26,8 +26,10 @@ public class SignUp extends HttpServlet {
 		String psw = request.getParameter("psw");
 		String psw_repeat = request.getParameter("psw_repeat");
 		String signup = request.getParameter("signup");
+		
 		boolean passMatched=true, fnameLen=true, lnameLen=true, passLen=true;
 		PrintWriter write = response.getWriter();
+		
 		/*
 		 * Do input valiadation here
 		 * */
