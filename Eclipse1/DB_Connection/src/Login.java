@@ -1,6 +1,9 @@
 
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +21,19 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		System.out.println("Entered in login");
+		
+		String fname = request.getParameter("fname");
+		String psw = request.getParameter("psw");
+
+		
+		request.setAttribute("fname", fname);
+		request.setAttribute("psw", psw);
+		
+		ServletContext context_act = getServletContext();  
+		context_act.setAttribute("act","login");
+
+		RequestDispatcher reqDis_DB = request.getRequestDispatcher("DB_Interaction");
+		reqDis_DB.forward(request, response);
 	}
-
-
 
 }

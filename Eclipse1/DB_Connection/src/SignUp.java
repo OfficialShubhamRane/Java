@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +26,9 @@ public class SignUp extends HttpServlet {
 		String email = request.getParameter("email");
 		String psw = request.getParameter("psw");
 		String psw_repeat = request.getParameter("psw_repeat");
-		String signup = request.getParameter("signup");
+		
+		
+
 		
 		boolean passMatched=true, fnameLen=true, lnameLen=true, passLen=true;
 		PrintWriter write = response.getWriter();
@@ -55,13 +58,15 @@ public class SignUp extends HttpServlet {
 		}
 		
 		
-		
 		if (passMatched && fnameLen && lnameLen && passLen) {
-			request.setAttribute("signup",signup);
+
 			request.setAttribute("fname",fname);
 			request.setAttribute("lname",lname);
 			request.setAttribute("email",email);
 			request.setAttribute("psw",psw);
+
+			ServletContext context_act = getServletContext();
+			context_act.setAttribute("act", "signup");
 			
 			RequestDispatcher reqDis_DB = request.getRequestDispatcher("DB_Interaction");
 			reqDis_DB.forward(request, response);
