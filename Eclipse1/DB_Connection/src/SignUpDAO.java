@@ -5,10 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class SignUpDAO {
+public class SignUpDAO extends HttpServlet {
 	
 	/** Declaring constants*/
 	private static final long serialVersionUID = 1L;
@@ -24,6 +25,8 @@ public class SignUpDAO {
 			Connection conObj = DriverManager.getConnection(URL, USERNAME, PASS);
 			Statement stmtObj = conObj.createStatement();
 			
+			PrintWriter pw = response.getWriter();
+			
 			boolean alreadtExists = false;
 					
 			// Statement to check whether entered fname exists in DB
@@ -38,6 +41,9 @@ public class SignUpDAO {
 			
 					
 			if(rs.getString("count").equals("0")){
+				
+				response.sendRedirect("LoginPage.html");
+				
 				query = "INSERT INTO application_portal.user (fname, lname, email, password) VALUES (?,?,?,?)";
 				PreparedStatement prepStmt_entry = conObj.prepareStatement(query);  
 				prepStmt_entry.setString(1,fname);
@@ -49,9 +55,11 @@ public class SignUpDAO {
 				
 				prepStmt_entry.executeUpdate();
 				
+				System.out.println("***Sign up done successfully***");
+				
 			}else if(rs.getString("count").equals("1")) {
-				PrintWriter write = response.getWriter();
-				write.println("fname already exists");
+				response.sendRedirect("SignUpPage.html");
+				System.out.println("***Fname already exists***");
 			}
 			
 			stmtObj.close();
@@ -62,5 +70,9 @@ public class SignUpDAO {
 		}
 		
 	}
+	
+	
+	
+	
 	
 }

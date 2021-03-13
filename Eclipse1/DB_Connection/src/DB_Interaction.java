@@ -35,6 +35,7 @@ public class DB_Interaction extends HttpServlet {
 			String psw = request.getParameter("psw").toString().trim();
 			
 			SignUpDAO.signUp(fname, lname, email, psw, act, request, response);
+			
 		}else
 		
 		// Calling login from loginDAO method
