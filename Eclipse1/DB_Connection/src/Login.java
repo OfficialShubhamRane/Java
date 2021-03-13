@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Login
  */
+
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -20,7 +21,7 @@ public class Login extends HttpServlet {
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		System.out.println("Entered in login");
+		System.out.println("***Entered in login***"); //debugging
 		
 		String fname = request.getParameter("fname");
 		String psw = request.getParameter("psw");

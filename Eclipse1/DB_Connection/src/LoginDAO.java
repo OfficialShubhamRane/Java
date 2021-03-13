@@ -23,13 +23,14 @@ public class LoginDAO {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conObj = DriverManager.getConnection(URL, USERNAME, PASS);
 			Statement stmtObj = conObj.createStatement();
-			PrintWriter writer =response.getWriter();
+			PrintWriter writer = response.getWriter();
 			
 			String retrivalQuery = "Select COUNT(email) AS count FROM application_portal.user WHERE fname = ? AND  password = ?;";
 			PreparedStatement prepStmt_retrival = conObj.prepareStatement(retrivalQuery);
 			prepStmt_retrival.setString(1, fname);
+			psw = MD5.getMd5(psw);
 			prepStmt_retrival.setString(2, psw);
-			
+
 			ResultSet rs = prepStmt_retrival.executeQuery();
 			rs.next();
 			if(rs.getString("count").equals("1")) {

@@ -22,13 +22,10 @@ public class DB_Interaction extends HttpServlet {
 	//First Method
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System .out.println("Entered in DB_Interaction");
+		System .out.println("***Entered in DB_Interaction***"); //for debugging 
 		
 		ServletContext context_act = getServletContext();  
 		String act = (String)context_act.getAttribute("act");  
-		
-		System.out.println("Value of act from DB_Interaction: " + act); // for debugging
-		
 		
 		// Calling Signup from SignUpDAO method
 		if(act.equals("signup")) {
@@ -44,12 +41,10 @@ public class DB_Interaction extends HttpServlet {
 		if(act.equals("login")) {
 			String fname = request.getParameter("fname").toString().trim();
 			String psw = request.getParameter("psw").toString().trim();
-			
-			System.out.println("Travelling to loginDAO with " + fname + " " + psw);
+		
 			LoginDAO.login(fname, psw, request, response);
 		}
 		
 	}
-	
 	
 }

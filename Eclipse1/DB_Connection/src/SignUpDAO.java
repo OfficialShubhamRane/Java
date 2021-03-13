@@ -12,6 +12,7 @@ public class SignUpDAO {
 	
 	/** Declaring constants*/
 	private static final long serialVersionUID = 1L;
+	
 	private final static String URL = "jdbc:mysql://127.0.0.1:3306/application_portal";
 	private final static String USERNAME = "root";
 	private final static String PASS = "1234";
@@ -34,15 +35,16 @@ public class SignUpDAO {
 			//calling query on DB
 			ResultSet rs = prepStmt_retrival.executeQuery();
 			rs.next();
-			System.out.println(rs.getString("count"));
-					
+			
 					
 			if(rs.getString("count").equals("0")){
 				query = "INSERT INTO application_portal.user (fname, lname, email, password) VALUES (?,?,?,?)";
 				PreparedStatement prepStmt_entry = conObj.prepareStatement(query);  
 				prepStmt_entry.setString(1,fname);
 				prepStmt_entry.setString(2,lname);  
-				prepStmt_entry.setString(3,email);  
+				prepStmt_entry.setString(3,email);
+				
+				psw = MD5.getMd5(psw);
 				prepStmt_entry.setString(4,psw);  
 				
 				prepStmt_entry.executeUpdate();
@@ -50,7 +52,6 @@ public class SignUpDAO {
 			}else if(rs.getString("count").equals("1")) {
 				PrintWriter write = response.getWriter();
 				write.println("fname already exists");
-				System.out.println("fname already exists");
 			}
 			
 			stmtObj.close();
