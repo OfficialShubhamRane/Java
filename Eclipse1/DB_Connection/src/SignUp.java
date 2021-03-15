@@ -37,7 +37,7 @@ public class SignUp extends HttpServlet {
 		/*
 		 * Do input valiadation here
 		 * */
-		
+	
 		//if first name exceeds length
 		if(fname.length() > 14) {
 			write.println("fnameLength exceeds length");
