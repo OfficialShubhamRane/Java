@@ -28,6 +28,8 @@ public class LoginDAO {
 			String retrivalQuery = "Select COUNT(email) AS count FROM application_portal.user WHERE fname = ? AND  password = ?;";
 			PreparedStatement prepStmt_retrival = conObj.prepareStatement(retrivalQuery);
 			prepStmt_retrival.setString(1, fname);
+			
+			//Password Hashing
 			psw = MD5.getMd5(psw);
 			prepStmt_retrival.setString(2, psw);
 

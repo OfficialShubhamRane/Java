@@ -36,6 +36,7 @@ public class SignUp extends HttpServlet {
 		
 		/*
 		 * Do input valiadation here
+		 * 
 		 * */
 	
 		//if first name exceeds length
