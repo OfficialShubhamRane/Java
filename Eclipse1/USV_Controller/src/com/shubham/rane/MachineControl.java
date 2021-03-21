@@ -1,10 +1,23 @@
 package com.shubham.rane;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
-public class MachineControl {
+public class MachineControl extends KeyAdapter {
 
-	public void controls() {
-		// TODO Auto-generated method stub
+	public MachineControl() {
+		
+		System.out.println("User arrow keys to give directions. ");
+		System.out.println("   ^");
+		System.out.println("   |");
+		System.out.println("<-- -->");
+		System.out.println("   |");
+		System.out.println("   v");
+		
+		
 		
 	}
+	
+	
+
 
 }

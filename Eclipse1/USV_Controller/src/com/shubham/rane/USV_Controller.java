@@ -10,21 +10,34 @@ public class USV_Controller {
 		Login loginObject = new Login();
 		User userObject = new User();
 		Machine machineObject = new Machine();
-		MachineControl machineControlObject = new MachineControl();
+		
 		
 		Scanner sc = new Scanner(System.in);
 		
 		String role = loginObject.verifyUser();
 				
-		String choice = "#";
+		String choice ="#";
+		System.out.println("Press 1 to create user");
+		System.out.println("Press 2 to create machine");
+		System.out.println("Press 3 to deploy machine");
+		System.out.println("Press 0 to exit the program");
+		choice = sc.nextLine();
 		
-		while(!choice.equals("0")) {
+		if(choice.equals("3")) {
+			System.out.println("I am a operator");
+			MachineControl machineControlObject = new MachineControl();
 			
+			
+		}else if (choice.equals("0")) {
+			USV_Controller.exit();
+		}
+		
+		while( choice.equals("1") || choice.equals("2")) {
+			
+			choice = sc.nextLine();
 			System.out.println("Press 1 to create user");
 			System.out.println("Press 2 to create machine");
-			System.out.println("Press 3 to deploy machine");
 			System.out.println("Press 0 to exit the program");
-			choice = sc.nextLine();
 			
 			if (choice.equals("1") && (role.equals("master") || role.equals("admin")) ) {
 				System.out.println("Create uName for new User");
@@ -45,13 +58,13 @@ public class USV_Controller {
 				System.out.println("New Machine Created with following details: ");
 				System.out.println(machineObject.toString());
 
-			} else if(choice.equals("3") && (role.equals("operator") || role.equals("master")) ) {
-				System.out.println("I am a operator");
-				machineControlObject.controls();
-			}
+			} 
 			
-		}
+		} //while
 		
+	} //main
+	
+	public static void exit() {
 		System.err.println("Exited from the program");
 		
 	}
