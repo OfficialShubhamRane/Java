@@ -10,6 +10,6 @@ public class StudentDAO {
     Configuration con = new Configuration();
     SessionFactory sf = con.buildSessionFactory();
     Session s = sf.openSession();
-//    s.save(NewStudent);
+    s.save();
 
 }
