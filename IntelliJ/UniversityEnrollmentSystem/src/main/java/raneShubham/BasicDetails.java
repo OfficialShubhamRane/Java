@@ -1,6 +1,5 @@
 package raneShubham;
 
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,24 +42,38 @@ public class BasicDetails{
     private TextField emailAddress;
 
 
+
     /** Fetches data from all data fields */
     @FXML
     void btnSubmitClicked(ActionEvent event) throws IOException {
-//        System.out.println(fname.getText() + " " + mname.getText() + " " + lname.getText());
-//        System.out.println("birthDate: " +  ((TextField)birthDate.getEditor()).getText()  );
-//        System.out.println("male: " + gender_male.isSelected() );
-//        System.out.println("female: " + gender_female.isSelected() );
-//        System.out.println("email: " + emailAddress.getText());
 
+        /**
+         * Fetching and setting values of from Basic Details scene
+         * */
+
+        NewStudent.setFname(fname.getText());
+        NewStudent.setMname(mname.getText());
+        NewStudent.setLname(lname.getText());
+        if(gender_male.isSelected()){
+            NewStudent.setGender("male");
+        }else if(gender_female.isSelected()){
+            NewStudent.setGender("female");
+        }
+        NewStudent.setEmailAddress(emailAddress.getText());
+        NewStudent.setBirthDate(birthDate.getEditor().getText());
+
+        /**
+         * Travelling to EnrollmentDetail scene
+         * */
         Parent EnrollmentDetails = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("EnrollmentDetails.fxml")));
         Scene EnrollmentDetailsScene = new Scene(EnrollmentDetails);
         Stage EnrollmentDetailsStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-
         EnrollmentDetailsStage.setScene(EnrollmentDetailsScene);
 
+        System.out.println(NewStudent.inString());
     }
 
-    /** Resets all the fields */
+    /** Resets all the in Basic info Scene fields */
     @FXML
     void btnResetAll(ActionEvent event){
         fname.setText("");

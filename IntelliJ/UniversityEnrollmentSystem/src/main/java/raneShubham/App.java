@@ -2,14 +2,10 @@ package raneShubham;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.net.URL;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 public class App extends Application {
 
@@ -27,8 +23,6 @@ public class App extends Application {
         Scene BasicInfoScene = new Scene(BasicInfo);
         primaryStage.setScene(BasicInfoScene);
         primaryStage.show();
-
-
 
     }
 

@@ -11,15 +11,15 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="raneShubham.BasicDetails">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="raneShubham.BasicDetails">
    <children>
-      <Pane prefHeight="454.0" prefWidth="115.0" style="-fx-background-color: #1d99cf;" />
+      <Pane prefHeight="450.0" prefWidth="115.0" style="-fx-background-color: #1d99cf;" />
       <Label layoutX="180.0" layoutY="24.0" prefHeight="27.0" prefWidth="150.0" text="Basic Details">
          <font>
             <Font name="Calibri Light" size="18.0" />
          </font>
       </Label>
-      <Separator layoutX="131.0" layoutY="59.0" prefHeight="9.0" prefWidth="462.0" />
+      <Separator layoutX="131.0" layoutY="43.0" prefHeight="13.0" prefWidth="462.0" />
       <TextField fx:id="fname" layoutX="180.0" layoutY="64.0" prefHeight="43.0" prefWidth="354.0" promptText="First Name" />
       <TextField fx:id="mname" layoutX="180.0" layoutY="121.0" prefHeight="43.0" prefWidth="354.0" promptText="Middle Name" />
       <TextField fx:id="lname" layoutX="180.0" layoutY="176.0" prefHeight="43.0" prefWidth="354.0" promptText="Last Name" />
