@@ -45,9 +45,20 @@ public class EnrollmentDetails {
     private Button enrollment_basic;
 
     @FXML
+    private ChoiceBox<String> courseSelectionChoiceBox;
+
+
+    @FXML
     private void initialize(){
         termMonthChoiceBox.getItems().addAll("Spring","Summer","Fall");
         termYearChoiceBox.getItems().addAll("2021","2022","2023");
+        courseSelectionChoiceBox.getItems().addAll("Computer Science","Computer Engineering","Information Technology","Graphic Designing","Data Science");
+
+        termMonthChoiceBox.setValue("Fall");
+        termYearChoiceBox.setValue("2021");
+        courseSelectionChoiceBox.setValue("Data Science");
+
+        rdAdmissionYear.selectToggle(freshman);
     }
 
     @FXML
@@ -56,13 +67,13 @@ public class EnrollmentDetails {
 
 
         if (freshman.isSelected()){
-            NewStudent.setAdmittingIn("freshman");
+            NewStudent.setAdmittingIn("Freshman");
         }else if(sophmore.isSelected()){
-            NewStudent.setAdmittingIn("sophmore");
+            NewStudent.setAdmittingIn("Sophmore");
         }else if(junior.isSelected()){
-            NewStudent.setAdmittingIn("junior");
+            NewStudent.setAdmittingIn("Junior");
         }else if(senior.isSelected()){
-            NewStudent.setAdmittingIn("senior");
+            NewStudent.setAdmittingIn("Senior");
         }
 
         NewStudent.setAcademicTerm(termMonthChoiceBox.getValue().concat(" " + termYearChoiceBox.getValue()));
@@ -84,6 +95,7 @@ public class EnrollmentDetails {
         Stage BasicDetailsStage = (Stage)((Node)event.getSource()).getScene().getWindow();
         BasicDetailsStage.setScene(BasicDetailsScene);
     }
+
 }
 
 

@@ -41,7 +41,10 @@ public class BasicDetails{
     @FXML
     private TextField emailAddress;
 
-
+    @FXML
+    public void initialize(){
+        gendrer.selectToggle(gender_male);
+    }
 
     /** Fetches data from all data fields */
     @FXML
