@@ -43,6 +43,14 @@
             <version>15.0.1</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-graphics -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>15.0.1</version>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
@@ -55,6 +63,20 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>5.4.28.Final</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.bytedeco.javacpp-presets/opencv -->
+        <dependency>
+            <groupId>org.bytedeco.javacpp-presets</groupId>
+            <artifactId>opencv</artifactId>
+            <version>4.0.1-1.4.4</version>
+        </dependency>
+
+        <!-- Sarxos library to capture video from webcam and process image-->
+        <dependency>
+            <groupId>com.github.sarxos</groupId>
+            <artifactId>webcam-capture</artifactId>
+            <version>0.3.12</version>
         </dependency>
 
 

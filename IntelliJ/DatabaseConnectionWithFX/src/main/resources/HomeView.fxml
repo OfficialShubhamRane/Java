@@ -8,8 +8,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
 
-<AnchorPane prefHeight="488.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HomeViewController">
+<AnchorPane prefHeight="492.0" prefWidth="965.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HomeViewController">
    <children>
       <HBox layoutX="32.0" layoutY="22.0" prefHeight="54.0" prefWidth="206.0">
          <children>
@@ -37,13 +40,27 @@
       <Separator layoutX="14.0" layoutY="75.0" prefHeight="2.0" prefWidth="246.0" style="-fx-background-color: #eb4034;" />
       <Separator layoutX="14.0" layoutY="336.0" prefHeight="3.0" prefWidth="246.0" style="-fx-background-color: #eb4034;" />
       <Separator layoutX="263.0" layoutY="14.0" orientation="VERTICAL" prefHeight="477.0" prefWidth="1.0" style="-fx-background-color: #eb4034;" />
-      <AnchorPane layoutX="281.0" layoutY="22.0" prefHeight="3.0" prefWidth="0.0">
+      <AnchorPane layoutX="379.0" layoutY="392.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="91.0" prefWidth="168.0">
          <children>
-            <Button fx:id="rightKey_ID" layoutX="139.0" layoutY="58.0" mnemonicParsing="false" onKeyPressed="#arrowKeyStrokesHandler" onKeyReleased="#arrowKeyReleaseHandler" text="Right" AnchorPane.leftAnchor="139.0" />
-            <Button fx:id="upKey_ID" layoutX="85.0" layoutY="26.0" mnemonicParsing="false" onKeyPressed="#arrowKeyStrokesHandler" onKeyReleased="#arrowKeyReleaseHandler" text="Up" />
-            <Button fx:id="downKey_ID" layoutX="85.0" layoutY="58.0" mnemonicParsing="false" onKeyPressed="#arrowKeyStrokesHandler" onKeyReleased="#arrowKeyReleaseHandler" text="Down" />
-            <Button fx:id="leftKey_ID" layoutX="31.0" layoutY="58.0" mnemonicParsing="false" onKeyPressed="#arrowKeyStrokesHandler" onKeyReleased="#arrowKeyReleaseHandler" text="Left" />
+            <Button fx:id="rightKey_ID" layoutX="112.0" layoutY="58.0" mnemonicParsing="false" onKeyPressed="#arrowKeyStrokesHandler" onKeyReleased="#arrowKeyReleaseHandler" text="Right" AnchorPane.leftAnchor="112.0" />
+            <Button fx:id="upKey_ID" layoutX="58.0" layoutY="26.0" mnemonicParsing="false" onKeyPressed="#arrowKeyStrokesHandler" onKeyReleased="#arrowKeyReleaseHandler" text="Up" />
+            <Button fx:id="downKey_ID" layoutX="58.0" layoutY="58.0" mnemonicParsing="false" onKeyPressed="#arrowKeyStrokesHandler" onKeyReleased="#arrowKeyReleaseHandler" text="Down" />
+            <Button fx:id="leftKey_ID" layoutX="4.0" layoutY="58.0" mnemonicParsing="false" onKeyPressed="#arrowKeyStrokesHandler" onKeyReleased="#arrowKeyReleaseHandler" text="Left" />
          </children>
       </AnchorPane>
+      <Separator layoutX="266.0" layoutY="390.0" prefHeight="3.0" prefWidth="349.0" style="-fx-background-color: #eb4034;" />
+      <VBox layoutX="283.0" layoutY="14.0" prefHeight="286.0" prefWidth="320.0">
+         <children>
+            <MediaView fx:id="mediaView_ID" fitHeight="240.0" fitWidth="320.0" />
+            <Button fx:id="vidStartButton_ID" mnemonicParsing="false" onAction="#vidStartButtonClicked" prefHeight="32.0" prefWidth="358.0" text="Play Video">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <Separator layoutX="616.0" layoutY="2.0" orientation="VERTICAL" prefHeight="486.0" prefWidth="0.0" style="-fx-background-color: #eb4034;" />
+      <Pane fx:id="paneView_ID" layoutX="631.0" layoutY="22.0" prefHeight="240.0" prefWidth="320.0" />
+      <Button fx:id="camStartButton_ID1" layoutX="630.0" layoutY="262.0" mnemonicParsing="false" onAction="#camStartButtonClicked" prefHeight="32.0" prefWidth="320.0" text="Open Camera" />
    </children>
 </AnchorPane>
