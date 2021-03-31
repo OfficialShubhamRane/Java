@@ -119,6 +119,7 @@ public class HomeViewController {
             else if(currKey == KeyCode.S){ //DOWN/BACK
                 keyPressedMillis = System.currentTimeMillis();
             }
+
         }
     }   // time when key was pressed
     public void arrowKeyReleaseHandler(KeyEvent keyEvent) {
