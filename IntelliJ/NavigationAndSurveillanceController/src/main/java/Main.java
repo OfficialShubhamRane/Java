@@ -11,6 +11,8 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+        float temp = (float) (((5.0/360.0) * 10.0) / 0.00062137);
+        System.out.println(temp);
     }
 
     @Override

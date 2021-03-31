@@ -14,7 +14,7 @@ public class LoginController {
 
     @FXML
     public AnchorPane rootPane;
-    public String operatorName;
+    public static String operatorName;
 
     @FXML
     private PasswordField passwordTf_ID;
@@ -28,8 +28,9 @@ public class LoginController {
     void loginBtnClicked(ActionEvent event) throws SQLException, IOException {
         System.out.println("User_ID: " + userIDTf_ID.getText());
         System.out.println("Password: " + passwordTf_ID.getText());
+        operatorName = userIDTf_ID.getText();
+
         isValidUser = LoginDAO.authenticateUser(userIDTf_ID.getText(),passwordTf_ID.getText());
-        System.out.println(isValidUser);
 
         Pane navigationPanel = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("NavigationPanelView.fxml")));
         rootPane.setPrefHeight(440);
