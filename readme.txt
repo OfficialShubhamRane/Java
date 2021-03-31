@@ -1,1 +1,1 @@
-Project Directory consist of mojority of the projects.
+Project Directory consist of majority of the projects.
