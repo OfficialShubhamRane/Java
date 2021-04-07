@@ -170,11 +170,9 @@ public class HomeViewController {
         SwingUtilities.invokeLater(runner);
     }
 
-
     /**
      * Detect Face from Image
      * */
-
     public void ImageFaceDetectBtnClicked(ActionEvent event) throws SQLException {
 
 
@@ -189,7 +187,6 @@ public class HomeViewController {
         capureSnapShot();
 
     }
-
     public void capureSnapShot() {
 
         VideoCapture cap = new VideoCapture(0);
