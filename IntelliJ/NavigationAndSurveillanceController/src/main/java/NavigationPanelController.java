@@ -3,6 +3,9 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.media.Media;
@@ -10,8 +13,18 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
+
+import org.bytedeco.javacpp.opencv_core;
+import org.bytedeco.javacpp.opencv_videoio;
+import org.opencv.core.*;
+import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.imgproc.Imgproc;
+import org.opencv.objdetect.CascadeClassifier;
 
 
 public class NavigationPanelController {
@@ -19,11 +32,11 @@ public class NavigationPanelController {
     public TextArea systemLogTA_ID;
     public TextField opName_ID;
     public Button captureImageBtn_ID;
-    public Button stopVideoBtn_ID;
     public Button startVideoBtn_ID;
     public MediaView mediaView_ID;
     public TextField batteryLife_ID;
     public TextField distaceCovered_ID;
+    public Button forwardBtn_ID;
 
     public void initialize(){
         /** Sets operator name fetching from user_ID field from login */
@@ -33,7 +46,6 @@ public class NavigationPanelController {
         Kernel32.SYSTEM_POWER_STATUS batteryStatus = new Kernel32.SYSTEM_POWER_STATUS();
         Kernel32.INSTANCE.GetSystemPowerStatus(batteryStatus);
         batteryLife_ID.setText(batteryStatus.toString());
-
     }
 
     /**
@@ -73,7 +85,6 @@ public class NavigationPanelController {
     }
 
     /** System time - time when key was released */
-
     public void arrowKeyReleaseHandler(KeyEvent keyEvent) {
 
         KeyCode releasedKey = keyEvent.getCode();
@@ -163,7 +174,7 @@ public class NavigationPanelController {
         }
     }
 
-
+    /** Total distance travelled */
     public void totalDistanceTravelled(){
         System.out.println(timeTravelled);
         coveredDistance = (float) ((5.0 / 360.0) * timeTravelled);
@@ -171,12 +182,9 @@ public class NavigationPanelController {
     }
 
     /** Backtrack logs*/
-    public void backtrackBtn_ID(ActionEvent event) {
+    public void backtrackBtnClicked(ActionEvent event) {
         systemLogTA_ID.setText(String.valueOf(backTrackingLog));
     }
-
-
-
 
     /** MediaView Video Controls */
     final String  Media_URL = "sample1.mp4";
@@ -198,11 +206,10 @@ public class NavigationPanelController {
     /** Capture Image from Video Cam */
     boolean isCameraOpen = false;
     Webcam webCamObj = Webcam.getDefault();
+
     public void captureImageBtnClicked(ActionEvent event) throws IOException {
         webCamObj.open();
         ImageIO.write(webCamObj.getImage(), "JPG", new File("src/main/firstCapture.jpg"));
         webCamObj.close();
     }
-
-
 }

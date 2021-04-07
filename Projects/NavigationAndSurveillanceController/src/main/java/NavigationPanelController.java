@@ -1,8 +1,10 @@
 import com.github.sarxos.webcam.Webcam;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.media.Media;
@@ -13,21 +15,27 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
+
 public class NavigationPanelController {
 
     public TextArea systemLogTA_ID;
-    public Label opName_ID;
+    public TextField opName_ID;
     public Button captureImageBtn_ID;
-    public Button stopVideoBtn_ID;
     public Button startVideoBtn_ID;
     public MediaView mediaView_ID;
-
+    public TextField batteryLife_ID;
+    public TextField distaceCovered_ID;
+    public Button forwardBtn_ID;
 
     public void initialize(){
-        LoginController loginObj = new LoginController();
-//        opName_ID.setText(loginObj.operatorName);
-    }
+        /** Sets operator name fetching from user_ID field from login */
+        opName_ID.setText(LoginController.operatorName);
 
+        /** Battery of laptop showing here can be replaced with vehicles battery */
+        Kernel32.SYSTEM_POWER_STATUS batteryStatus = new Kernel32.SYSTEM_POWER_STATUS();
+        Kernel32.INSTANCE.GetSystemPowerStatus(batteryStatus);
+        batteryLife_ID.setText(batteryStatus.toString());
+    }
 
     /**
      * Calculating for How long key was pressed
@@ -36,6 +44,11 @@ public class NavigationPanelController {
     KeyCode lastKey = null;
     long keyPressedMillis = 0;
     long keyPressLength = 0;
+
+    StringBuilder backTrackingLog = new StringBuilder();
+
+    float timeTravelled = 0;
+    float coveredDistance = 0;
 
     /** Time when key was pressed */
     public void arrowKeyStrokesHandler(KeyEvent keyEvent) {
@@ -70,65 +83,113 @@ public class NavigationPanelController {
             lastKey = null;
         }
 
-
-        /** Controls and SystemLogging on TextArea*/
+        /** Controls and SystemLogging on TextArea */
         if (currKey == KeyCode.W) {
 
             if(keyPressLength/1000 > 0){
                 systemLogTA_ID.appendText("Forward : " + keyPressLength/1000 + " sec ");
                 systemLogTA_ID.appendText(keyPressLength%1000 + " millisec");
+                timeTravelled += keyPressLength;
+                totalDistanceTravelled();
+
+                backTrackingLog.append("Reverse : ").append(keyPressLength / 1000).append(" sec ");
+                backTrackingLog.append(keyPressLength % 1000).append(" millisec");
             }else{
                 systemLogTA_ID.appendText("Forward : " + keyPressLength%1000 + " millisec");
+                backTrackingLog.append("Reverse : ").append(keyPressLength % 1000).append(" millisec");
             }
             systemLogTA_ID.appendText("\n");
+            backTrackingLog.append("\n");
+
         }
         else if (currKey == KeyCode.A){
             if(keyPressLength/1000 > 0){
                 systemLogTA_ID.appendText("Left        : " + keyPressLength/1000 + " sec ");
                 systemLogTA_ID.appendText(keyPressLength%1000 + " millisec");
+                timeTravelled += keyPressLength;
+                totalDistanceTravelled();
+
+                backTrackingLog.append("Right      : ").append(keyPressLength / 1000).append(" sec ");
+                backTrackingLog.append(keyPressLength % 1000).append(" millisec");
             }else{
                 systemLogTA_ID.appendText("Left        : " + keyPressLength%1000 + " millisec");
+                backTrackingLog.append("Right      : ").append(keyPressLength % 1000).append(" millisec");
             }
             systemLogTA_ID.appendText("\n");
+            backTrackingLog.append("\n");
+            totalDistanceTravelled();
         }
         else if(currKey == KeyCode.S){
             if(keyPressLength/1000 > 0){
                 systemLogTA_ID.appendText("Reverse : " + keyPressLength/1000 + " sec ");
                 systemLogTA_ID.appendText(keyPressLength%1000 + " millisec");
+                timeTravelled += keyPressLength;
+                totalDistanceTravelled();
+
+                backTrackingLog.append("Forward : ").append(keyPressLength / 1000).append(" sec ");
+                backTrackingLog.append(keyPressLength % 1000).append(" millisec");
 
             }else{
                 systemLogTA_ID.appendText("Reverse : " + keyPressLength%1000 + " millisec");
+                backTrackingLog.append("Forward : ").append(keyPressLength % 1000).append(" millisec");
             }
             systemLogTA_ID.appendText("\n");
+            backTrackingLog.append("\n");
+            totalDistanceTravelled();
         }
         else if(currKey == KeyCode.D){
             if(keyPressLength/1000 > 0){
                 systemLogTA_ID.appendText("Right     : " + keyPressLength/1000 + " sec ");
                 systemLogTA_ID.appendText(keyPressLength%1000 + " millisec");
+                timeTravelled += keyPressLength;
+                totalDistanceTravelled();
+
+                backTrackingLog.append("Left       : ").append(keyPressLength / 1000).append(" sec ");
+                backTrackingLog.append(keyPressLength % 1000).append(" millisec");
             }else{
                 systemLogTA_ID.appendText("Right     : " + keyPressLength%1000 + " millisec");
+                backTrackingLog.append("Left       : ").append(keyPressLength % 1000).append(" millisec");
             }
             systemLogTA_ID.appendText("\n");
+            backTrackingLog.append("\n");
+
         }
         else if(currKey == KeyCode.SPACE){
             systemLogTA_ID.appendText("Brake");
             systemLogTA_ID.appendText("\n");
-        }
 
+            backTrackingLog.append("Brake");
+            backTrackingLog.append("\n");
+        }
+    }
+
+    /** Total distance travelled */
+    public void totalDistanceTravelled(){
+        System.out.println(timeTravelled);
+        coveredDistance = (float) ((5.0 / 360.0) * timeTravelled);
+        distaceCovered_ID.setText(String.valueOf(coveredDistance));
+    }
+
+    /** Backtrack logs*/
+    public void backtrackBtnClicked(ActionEvent event) {
+        systemLogTA_ID.setText(String.valueOf(backTrackingLog));
     }
 
     /** MediaView Video Controls */
     final String  Media_URL = "sample1.mp4";
     MediaPlayer media_player = new MediaPlayer(new Media(this.getClass().getResource(Media_URL).toExternalForm() ));
+    boolean isPaused = true;
 
-    /** Starts video in MediaView */
+    /** Play-Pause video in MediaView */
     public void startVideoBtnClicked(ActionEvent event) {
-        media_player.setAutoPlay(true);
-        mediaView_ID.setMediaPlayer(media_player);
-    }
-    /** Stops video in MediaView */
-    public void stopVideoBtnClicked(ActionEvent event) {
-        media_player.setAutoPlay(false);
+        if (isPaused){
+            media_player.play();
+            mediaView_ID.setMediaPlayer(media_player);
+            isPaused = false;
+        }else{
+            media_player.pause();
+            isPaused = true;
+        }
     }
 
     /** Capture Image from Video Cam */
@@ -139,4 +200,5 @@ public class NavigationPanelController {
         ImageIO.write(webCamObj.getImage(), "JPG", new File("src/main/firstCapture.jpg"));
         webCamObj.close();
     }
+
 }

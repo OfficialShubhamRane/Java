@@ -1,30 +1,36 @@
 import com.github.sarxos.webcam.Webcam;
-
 import com.github.sarxos.webcam.WebcamPanel;
-import com.github.sarxos.webcam.WebcamResolution;
+
+import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.embed.swing.SwingFXUtils;
+import org.opencv.core.Mat;
+import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.videoio.VideoCapture;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import javax.swing.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.awt.image.WritableRaster;
 import java.sql.*;
 
 public class HomeViewController {
 
     @FXML
-    public Pane paneView_ID;
+    public Button camStartButton_ID1;
+    public Pane webCamFeed_ID;
 
     @FXML
     private MediaView mediaView_ID;
@@ -47,6 +53,8 @@ public class HomeViewController {
 
     Connection con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
     Statement stmt = con.createStatement();
+
+    Mat matrix = new Mat();
 
 
     //constructor to handle exception thrown by Connection and statement
@@ -144,14 +152,76 @@ public class HomeViewController {
         mediaView_ID.setMediaPlayer(media_player);
     }
 
-    public void camStartButtonClicked(ActionEvent event) throws IOException {
-        Webcam webCamObj = Webcam.getDefault();
-        webCamObj.open();
-//        webCamObj.setViewSize(WebcamResolution.VGA.getSize());
+    Webcam webCamObj = Webcam.getDefault();
+    WebcamPanel webcamPanel = new WebcamPanel(webCamObj);
+    public void camStartButtonClicked() {
+        webCamFeed_ID = new Pane();
+        SwingNode swingNode = new SwingNode();
+        createContentPane(swingNode);
+        webCamFeed_ID.getChildren().add(swingNode);
+    }
+    public void createContentPane(SwingNode swingNode){
+        Runnable runner = new Runnable() {
+            @Override
+            public void run() {
+                swingNode.setContent(webcamPanel);
+            }
+        };
+        SwingUtilities.invokeLater(runner);
+    }
 
-//        WebcamPanel webcamPanelObj = new WebcamPanel(webCamObj);
-        ImageIO.write(webCamObj.getImage(), "JPG", new File("firstCapture.jpg"));
 
+    /**
+     * Detect Face from Image
+     * */
+
+    public void ImageFaceDetectBtnClicked(ActionEvent event) throws SQLException {
+
+
+        //Reading the Image from the file
+//        Mat matrix = Imgcodecs.imread("E:/Java/IntelliJ/DatabaseConnectionWithFX/src/main/Random1.jpg");
+//        System.out.println("Image Loaded");
+//
+//        Imgcodecs.imwrite("E:/Java/IntelliJ/DatabaseConnectionWithFX/src/main/Random2.jpg", matrix);
+//        System.out.println("Image Copied");
+
+        //Face detection
+        capureSnapShot();
 
     }
+
+    public void capureSnapShot() {
+
+        VideoCapture cap = new VideoCapture(0);
+        cap.read(matrix);
+        if(!matrix.empty()){
+            System.out.println("Read successfully");
+        }
+
+//        WritableImage WritableImage = null;
+//        VideoCapture capture = new VideoCapture(0);
+//
+//        // Reading the next video frame from the camera
+//
+//        capture.read(matrix);
+//
+//        // If camera is opened
+//        if( capture.isOpened()) {
+//            // If there is next video frame
+//            if (capture.read(matrix)) {
+//                // Creating BuffredImage from the matrix
+//                BufferedImage image = new BufferedImage(matrix.width(),
+//                        matrix.height(), BufferedImage.TYPE_3BYTE_BGR);
+//
+//                WritableRaster raster = image.getRaster();
+//                DataBufferByte dataBuffer = (DataBufferByte) raster.getDataBuffer();
+//                byte[] data = dataBuffer.getData();
+//                matrix.get(0, 0, data);
+//
+//                // Creating the Writable Image
+//                WritableImage = SwingFXUtils.toFXImage(image, null);
+//            }
+//        }
+    }
+
 }

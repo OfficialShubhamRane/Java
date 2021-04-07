@@ -1,0 +1,16 @@
+https://www.packtpub.com/product/java-machine-learning-for-computer-vision-video/9781789130652
+
+https://www.geeksforgeeks.org/image-processing-java-set-1-read-write/
+
+https://www.youtube.com/watch?v=-f0WEitGmiw&list=PLRqwX-V7Uu6YB9x6f23CBftiyx0u_5sO9	// Image Processing
+https://www.youtube.com/watch?v=-f0WEitGmiw&list=PLRqwX-V7Uu6YB9x6f23CBftiyx0u_5sO9	// Video Processing
+
+Library: opencv-processing  https://github.com/atduskgreg/opencv-processing		// opencv for processing
+
+What is Blob and Contour ?
+
+https://www.youtube.com/watch?v=YkC55xDREKE&list=PLDk0xqo2QeH-4XZ93KH38jOoGOd60-2GO&index=1&ab_channel=ManojM
+
+1) https://www.youtube.com/watch?v=Dk5zSWElkno&list=PLONz6FebFXOcKvYs0mm40eWgndxTRBwLc&index=11&ab_channel=TahaEmara //install opencv + eclipse
+2) https://www.youtube.com/watch?v=WeLET1tZPaE&list=PLONz6FebFXOcKvYs0mm40eWgndxTRBwLc&index=8&ab_channel=TahaEmara	// face detenction
+3) https://www.youtube.com/watch?v=IM2SXFfBwsg&list=PLONz6FebFXOcKvYs0mm40eWgndxTRBwLc&index=10&ab_channel=TahaEmara //capture video from webcam

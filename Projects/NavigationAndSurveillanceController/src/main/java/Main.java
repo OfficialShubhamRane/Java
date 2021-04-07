@@ -20,6 +20,7 @@ public class Main extends Application {
         Scene LoginViewScene = new Scene(LoginView);
         primaryStage.setScene(LoginViewScene);
         primaryStage.setTitle("Navigation&Surveillance Controller");
+//        primaryStage.setTitle("Login");
         primaryStage.show();
 
     }
