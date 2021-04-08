@@ -91,6 +91,8 @@ public class NavigationPanelController {
     HeatChart heatChartObj;
     double[][] heatChartData = new double[21][21];
     double i = 11, j = 11;
+//    double i = 11, j = 0;
+
     double ori_i = i;
     double ori_j = j;
 
@@ -98,23 +100,28 @@ public class NavigationPanelController {
     double desti_j = j;
 
     /** heatChart data generation */
-    public void heatChartGenerate(String direction, long distance){
+    public void heatChartGenerator(String direction, long distance){
 
         ori_i = desti_i;
         ori_j = desti_j;
 
-        if(direction.equals("Forward")){
-            desti_i -= distance;
-            desti_j = ori_j;
-        }else if(direction.equals("Left")){
-            desti_i = ori_i;
-            desti_j -= distance;
-        }else if(direction.equals("Right")){
-            desti_i = ori_i;
-            desti_j += distance;
-        }else if(direction.equals("Reverse")){
-            desti_i += distance;
-            desti_j = ori_j;
+        switch (direction) {
+            case "Forward":
+                desti_i -= distance;
+                desti_j = ori_j;
+                break;
+            case "Left":
+                desti_i = ori_i;
+                desti_j -= distance;
+                break;
+            case "Right":
+                desti_i = ori_i;
+                desti_j += distance;
+                break;
+            case "Reverse":
+                desti_i += distance;
+                desti_j = ori_j;
+                break;
         }
 
         double m = ori_i;
@@ -122,30 +129,26 @@ public class NavigationPanelController {
         System.out.println("ori_i : " + ori_i + "ori_j : " + ori_j);
         System.out.println("desti_i : " + desti_i + "desti_j : " + desti_j);
 
-        /** forward marking **/
-        while(m >= desti_i && direction.equals("Forward")){
+        /** Forward marking **/
+        while(m > desti_i && direction.equals("Forward")){
             heatChartData[(int) m][(int) n] += 1;
             m--;
         }
         /** Reverse  marking **/
-        while(m <= desti_i && direction.equals("Reverse")){
+        while(m < desti_i && direction.equals("Reverse")){
             heatChartData[(int) m][(int) n] += 1;
             m++;
         }
         /** Left  marking **/
-        while(n >= desti_j && direction.equals("Left")){
+        while(n > desti_j && direction.equals("Left")){
             heatChartData[(int) m][(int) n] += 1;
             n--;
         }
         /** Right  marking **/
-        while(n <= desti_j && direction.equals("Right")){
+        while(n < desti_j && direction.equals("Right")){
             heatChartData[(int) m][(int) n] += 1;
             n++;
         }
-
-
-
-
 
     }
 
@@ -189,7 +192,7 @@ public class NavigationPanelController {
 
                 direction = "Forward";
                 distance = keyPressLength/1000;
-                heatChartGenerate(direction, distance);
+                heatChartGenerator(direction, distance);
 
             }else{
                 systemLogTA_ID.appendText("Forward : " + keyPressLength%1000 + " millisec");
@@ -211,7 +214,7 @@ public class NavigationPanelController {
 
                 direction = "Left";
                 distance = keyPressLength/1000;
-                heatChartGenerate(direction, distance);
+                heatChartGenerator(direction, distance);
 
             }else{
                 systemLogTA_ID.appendText("Left        : " + keyPressLength%1000 + " millisec");
@@ -235,7 +238,7 @@ public class NavigationPanelController {
 
                 direction = "Reverse";
                 distance = keyPressLength/1000;
-                heatChartGenerate(direction, distance);
+                heatChartGenerator(direction, distance);
 
             }else{
                 systemLogTA_ID.appendText("Reverse : " + keyPressLength%1000 + " millisec");
@@ -257,7 +260,7 @@ public class NavigationPanelController {
 
                 direction = "Right";
                 distance = keyPressLength/1000;
-                heatChartGenerate(direction, distance);
+                heatChartGenerator(direction, distance);
 
             }else{
                 systemLogTA_ID.appendText("Right     : " + keyPressLength%1000 + " millisec");
