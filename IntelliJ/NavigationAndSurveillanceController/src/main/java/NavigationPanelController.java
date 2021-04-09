@@ -1,4 +1,5 @@
 import com.github.sarxos.webcam.Webcam;
+import com.sun.jdi.InvocationException;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -73,91 +74,8 @@ public class NavigationPanelController {
         }
     }
 
-    /**
-     * HeatMap Generation Processing
-     * */
-    HeatChart heatChartObj;
-    double[][] heatChartData = new double[21][21];
-    double i = 11, j = 11;
-//    double i = 11, j = 0;
-
-    double ori_i = i;
-    double ori_j = j;
-
-    double desti_i = i;
-    double desti_j = j;
-
-    /** heatChart data generation */
-    public void heatChartGenerator(String direction, long distance){
-
-        ori_i = desti_i;
-        ori_j = desti_j;
-
-        switch (direction) {
-            case "Forward":
-                desti_i -= distance;
-                desti_j = ori_j;
-                break;
-            case "Left":
-                desti_i = ori_i;
-                desti_j -= distance;
-                break;
-            case "Right":
-                desti_i = ori_i;
-                desti_j += distance;
-                break;
-            case "Reverse":
-                desti_i += distance;
-                desti_j = ori_j;
-                break;
-        }
-
-        double m = ori_i;
-        double n = ori_j;
-        System.out.println("ori_i : " + ori_i + "ori_j : " + ori_j);
-        System.out.println("desti_i : " + desti_i + "desti_j : " + desti_j);
-
-        /** Forward marking **/
-        while(m > desti_i && direction.equals("Forward")){
-            heatChartData[(int) m][(int) n] += 1;
-            m--;
-        }
-        /** Reverse  marking **/
-        while(m < desti_i && direction.equals("Reverse")){
-            heatChartData[(int) m][(int) n] += 1;
-            m++;
-        }
-        /** Left  marking **/
-        while(n > desti_j && direction.equals("Left")){
-            heatChartData[(int) m][(int) n] += 1;
-            n--;
-        }
-        /** Right  marking **/
-        while(n < desti_j && direction.equals("Right")){
-            heatChartData[(int) m][(int) n] += 1;
-            n++;
-        }
-
-    }
-
-    /** Generate heatmap upon click */
-    public void heatMapGenerationBtnClicked(ActionEvent actionEvent) throws IOException {
-        heatChartObj = new HeatChart(heatChartData);
-
-        heatChartObj.setTitle("Machine_1.1 Movement HeatMap");
-        heatChartObj.setXAxisLabel("Right - Left Movement");
-        heatChartObj.setYAxisLabel("Forward - Reverse Movement");
-
-        heatChartObj.saveToFile(new File("navigation-heatChart.png"));
-    }
-
     /** System time - time when key was released */
-    public void arrowKeyReleaseHandler(KeyEvent keyEvent) {
-
-        //Vlaues for heatmap
-        String direction = null;
-        long distance = 0;
-
+    public void arrowKeyReleaseHandler(KeyEvent keyEvent) throws IOException, InvocationException {
 
         KeyCode releasedKey = keyEvent.getCode();
         if (currKey == releasedKey) {
@@ -165,6 +83,10 @@ public class NavigationPanelController {
             keyPressedMillis = 0;
             lastKey = null;
         }
+
+        /** Values for heatmap */
+        String direction = null;
+        long distance = 0;
 
         /** Controls and SystemLogging on TextArea */
         if (currKey == KeyCode.W) {
@@ -180,7 +102,6 @@ public class NavigationPanelController {
 
                 direction = "Forward";
                 distance = keyPressLength/1000;
-                heatChartGenerator(direction, distance);
 
             }else{
                 systemLogTA_ID.appendText("Forward : " + keyPressLength%1000 + " millisec");
@@ -202,7 +123,6 @@ public class NavigationPanelController {
 
                 direction = "Left";
                 distance = keyPressLength/1000;
-                heatChartGenerator(direction, distance);
 
             }else{
                 systemLogTA_ID.appendText("Left        : " + keyPressLength%1000 + " millisec");
@@ -226,7 +146,6 @@ public class NavigationPanelController {
 
                 direction = "Reverse";
                 distance = keyPressLength/1000;
-                heatChartGenerator(direction, distance);
 
             }else{
                 systemLogTA_ID.appendText("Reverse : " + keyPressLength%1000 + " millisec");
@@ -248,7 +167,7 @@ public class NavigationPanelController {
 
                 direction = "Right";
                 distance = keyPressLength/1000;
-                heatChartGenerator(direction, distance);
+
 
             }else{
                 systemLogTA_ID.appendText("Right     : " + keyPressLength%1000 + " millisec");
@@ -266,10 +185,15 @@ public class NavigationPanelController {
             backTrackingLog.append("\n");
         }
 
+        /** Sending data tto heatMapGenerator class after each key release*/
+        assert direction != null;
+        HeatMapGenerator.heatChartGenerator(direction, distance);
+        HeatMapGenerator.heatMapGeneration();
 
+        /** Periodically check for battery status after each key release*/
+        batteryStatusChecker();
 
     }
-
 
     /** Total distance travelled */
     public void totalDistanceTravelled(){
@@ -282,6 +206,16 @@ public class NavigationPanelController {
     public void backtrackBtnClicked(ActionEvent event) {
         systemLogTA_ID.setText(String.valueOf(backTrackingLog));
     }
+
+    /** Batterlife cheking */
+    public void batteryStatusChecker(){
+        /** Battery of laptop showing here can be replaced with vehicles battery */
+        Kernel32.SYSTEM_POWER_STATUS batteryStatus = new Kernel32.SYSTEM_POWER_STATUS();
+        Kernel32.INSTANCE.GetSystemPowerStatus(batteryStatus);
+        batteryLife_ID.setText(batteryStatus.toString());
+    }
+
+
 
     /** MediaView Video Controls */
     final String  Media_URL = "sample1.mp4";
@@ -301,10 +235,8 @@ public class NavigationPanelController {
     }
 
     /** Capture Image from Video Cam */
-    boolean isCameraOpen = false;
-    Webcam webCamObj = Webcam.getDefault();
-
     public void captureImageBtnClicked(ActionEvent event) throws IOException {
+        Webcam webCamObj = Webcam.getDefault();
         webCamObj.open();
         ImageIO.write(webCamObj.getImage(), "JPG", new File("src/main/firstCapture.jpg"));
         webCamObj.close();
