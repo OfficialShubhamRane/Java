@@ -93,5 +93,5 @@ public interface Kernel32 extends StdCallLibrary {
     /**
      * Fill the structure.
      */
-    public int GetSystemPowerStatus(SYSTEM_POWER_STATUS result);
+    public void GetSystemPowerStatus(SYSTEM_POWER_STATUS result);
 }

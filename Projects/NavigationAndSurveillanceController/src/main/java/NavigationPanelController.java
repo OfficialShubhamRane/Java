@@ -1,11 +1,12 @@
+
+/** Author: Shubham Rane www.linkedin.com/in/shubham-rane97 **/
+
 import com.github.sarxos.webcam.Webcam;
+import com.sun.jdi.InvocationException;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.media.Media;
@@ -13,19 +14,9 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
-
-import org.bytedeco.javacpp.opencv_core;
-import org.bytedeco.javacpp.opencv_videoio;
-import org.opencv.core.*;
-import org.opencv.imgcodecs.Imgcodecs;
-import org.opencv.imgproc.Imgproc;
-import org.opencv.objdetect.CascadeClassifier;
-import org.tc33.jheatchart.HeatChart;
+import java.util.Objects;
 
 
 public class NavigationPanelController {
@@ -38,6 +29,7 @@ public class NavigationPanelController {
     public TextField batteryLife_ID;
     public TextField distaceCovered_ID;
     public Button forwardBtn_ID;
+
 
     public void initialize(){
         /** Sets operator name fetching from user_ID field from login */
@@ -56,11 +48,6 @@ public class NavigationPanelController {
     KeyCode lastKey = null;
     long keyPressedMillis = 0;
     long keyPressLength = 0;
-
-    StringBuilder backTrackingLog = new StringBuilder();
-
-    float timeTravelled = 0;
-    float coveredDistance = 0;
 
     /** Time when key was pressed */
     public void arrowKeyStrokesHandler(KeyEvent keyEvent) {
@@ -85,91 +72,9 @@ public class NavigationPanelController {
         }
     }
 
-    /**
-     * HeatMap Generation Processing
-     * */
-    HeatChart heatChartObj;
-    double[][] heatChartData = new double[21][21];
-    double i = 11, j = 11;
-//    double i = 11, j = 0;
-
-    double ori_i = i;
-    double ori_j = j;
-
-    double desti_i = i;
-    double desti_j = j;
-
-    /** heatChart data generation */
-    public void heatChartGenerator(String direction, long distance){
-
-        ori_i = desti_i;
-        ori_j = desti_j;
-
-        switch (direction) {
-            case "Forward":
-                desti_i -= distance;
-                desti_j = ori_j;
-                break;
-            case "Left":
-                desti_i = ori_i;
-                desti_j -= distance;
-                break;
-            case "Right":
-                desti_i = ori_i;
-                desti_j += distance;
-                break;
-            case "Reverse":
-                desti_i += distance;
-                desti_j = ori_j;
-                break;
-        }
-
-        double m = ori_i;
-        double n = ori_j;
-        System.out.println("ori_i : " + ori_i + "ori_j : " + ori_j);
-        System.out.println("desti_i : " + desti_i + "desti_j : " + desti_j);
-
-        /** Forward marking **/
-        while(m > desti_i && direction.equals("Forward")){
-            heatChartData[(int) m][(int) n] += 1;
-            m--;
-        }
-        /** Reverse  marking **/
-        while(m < desti_i && direction.equals("Reverse")){
-            heatChartData[(int) m][(int) n] += 1;
-            m++;
-        }
-        /** Left  marking **/
-        while(n > desti_j && direction.equals("Left")){
-            heatChartData[(int) m][(int) n] += 1;
-            n--;
-        }
-        /** Right  marking **/
-        while(n < desti_j && direction.equals("Right")){
-            heatChartData[(int) m][(int) n] += 1;
-            n++;
-        }
-
-    }
-
-    /** Generate heatmap upon click */
-    public void heatMapGenerationBtnClicked(ActionEvent actionEvent) throws IOException {
-        heatChartObj = new HeatChart(heatChartData);
-
-        heatChartObj.setTitle("Machine_1.1 Movement HeatMap");
-        heatChartObj.setXAxisLabel("Right - Left Movement");
-        heatChartObj.setYAxisLabel("Forward - Reverse Movement");
-
-        heatChartObj.saveToFile(new File("navigation-heatChart.png"));
-    }
-
     /** System time - time when key was released */
-    public void arrowKeyReleaseHandler(KeyEvent keyEvent) {
-
-        //Vlaues for heatmap
-        String direction = null;
-        long distance = 0;
-
+    StringBuilder backTrackingLog = new StringBuilder();
+    public void arrowKeyReleaseHandler(KeyEvent keyEvent) throws IOException, InvocationException {
 
         KeyCode releasedKey = keyEvent.getCode();
         if (currKey == releasedKey) {
@@ -177,6 +82,10 @@ public class NavigationPanelController {
             keyPressedMillis = 0;
             lastKey = null;
         }
+
+        /** Values for heatmap */
+        String direction = null;
+        long distance = 0;
 
         /** Controls and SystemLogging on TextArea */
         if (currKey == KeyCode.W) {
@@ -192,7 +101,6 @@ public class NavigationPanelController {
 
                 direction = "Forward";
                 distance = keyPressLength/1000;
-                heatChartGenerator(direction, distance);
 
             }else{
                 systemLogTA_ID.appendText("Forward : " + keyPressLength%1000 + " millisec");
@@ -214,7 +122,6 @@ public class NavigationPanelController {
 
                 direction = "Left";
                 distance = keyPressLength/1000;
-                heatChartGenerator(direction, distance);
 
             }else{
                 systemLogTA_ID.appendText("Left        : " + keyPressLength%1000 + " millisec");
@@ -238,7 +145,6 @@ public class NavigationPanelController {
 
                 direction = "Reverse";
                 distance = keyPressLength/1000;
-                heatChartGenerator(direction, distance);
 
             }else{
                 systemLogTA_ID.appendText("Reverse : " + keyPressLength%1000 + " millisec");
@@ -260,7 +166,7 @@ public class NavigationPanelController {
 
                 direction = "Right";
                 distance = keyPressLength/1000;
-                heatChartGenerator(direction, distance);
+
 
             }else{
                 systemLogTA_ID.appendText("Right     : " + keyPressLength%1000 + " millisec");
@@ -278,12 +184,19 @@ public class NavigationPanelController {
             backTrackingLog.append("\n");
         }
 
+        /** Sending data tto heatMapGenerator class after each key release*/
+        assert direction != null;
+        HeatMapGenerator.heatChartGenerator(direction, distance);
+        HeatMapGenerator.heatMapGeneration();
 
+        /** Periodically check for battery status after each key release*/
+        batteryStatusChecker();
 
     }
 
-
     /** Total distance travelled */
+    float timeTravelled = 0;
+    float coveredDistance = 0;
     public void totalDistanceTravelled(){
         System.out.println(timeTravelled);
         coveredDistance = (float) ((5.0 / 360.0) * timeTravelled);
@@ -295,13 +208,19 @@ public class NavigationPanelController {
         systemLogTA_ID.setText(String.valueOf(backTrackingLog));
     }
 
-    /** MediaView Video Controls */
-    final String  Media_URL = "sample1.mp4";
-    MediaPlayer media_player = new MediaPlayer(new Media(this.getClass().getResource(Media_URL).toExternalForm() ));
-    boolean isPaused = true;
+    /** Battery of laptop/vehicle displayed here */
+    public void batteryStatusChecker(){
+        Kernel32.SYSTEM_POWER_STATUS batteryStatus = new Kernel32.SYSTEM_POWER_STATUS();
+        Kernel32.INSTANCE.GetSystemPowerStatus(batteryStatus);
+        batteryLife_ID.setText(batteryStatus.toString());
+    }
 
-    /** Play-Pause video in MediaView */
+    /** MediaView Video Controls - Play-Pause video in MediaView */
+    private boolean isPaused = true;
+    final String  Media_URL = "sample1.mp4";
+    MediaPlayer media_player = new MediaPlayer(new Media(Objects.requireNonNull(this.getClass().getResource(Media_URL)).toExternalForm() ));
     public void startVideoBtnClicked(ActionEvent event) {
+
         if (isPaused){
             media_player.play();
             mediaView_ID.setMediaPlayer(media_player);
@@ -312,15 +231,16 @@ public class NavigationPanelController {
         }
     }
 
-    /** Capture Image from Video Cam */
-    boolean isCameraOpen = false;
-    Webcam webCamObj = Webcam.getDefault();
-
+    /** Capture multiple Image from default camera */
+    private int pictureID = 1;
     public void captureImageBtnClicked(ActionEvent event) throws IOException {
+        Webcam webCamObj = Webcam.getDefault();
         webCamObj.open();
-        ImageIO.write(webCamObj.getImage(), "JPG", new File("src/main/firstCapture.jpg"));
+
+        String fileNameCreator = "src/main/"+pictureID+"_Capture.jpg";
+        ImageIO.write(webCamObj.getImage(), "JPG", new File(fileNameCreator));
+        pictureID++;
         webCamObj.close();
     }
-
 
 }

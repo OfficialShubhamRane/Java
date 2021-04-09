@@ -1,10 +1,15 @@
+/** Author: Shubham Rane www.linkedin.com/in/shubham-rane97 **/
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -30,12 +35,20 @@ public class LoginController {
         System.out.println("Password: " + passwordTf_ID.getText());
         operatorName = userIDTf_ID.getText();
 
+        //Validates user from database
         isValidUser = LoginDAO.authenticateUser(userIDTf_ID.getText(),passwordTf_ID.getText());
 
         Pane navigationPanel = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("NavigationPanelView.fxml")));
-        rootPane.setPrefHeight(440);
-        rootPane.setPrefWidth(840);
+//        navigationPanel.setPrefHeight(440);
+//        navigationPanel.setPrefWidth(840);
+//        rootPane.setPrefHeight(440);
+//        rootPane.setPrefHeight(840);
+//
+//        navigationPanel.prefHeightProperty().bind(rootPane.widthProperty());
+//        navigationPanel.prefWidthProperty().bind(rootPane.heightProperty());
+
         rootPane.getChildren().setAll(navigationPanel);
+
     }
 
 }

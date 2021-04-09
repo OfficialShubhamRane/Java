@@ -1,3 +1,6 @@
+
+/** Author: Shubham Rane www.linkedin.com/in/shubham-rane97 **/
+
 import com.github.sarxos.webcam.Webcam;
 import com.sun.jdi.InvocationException;
 import javafx.event.ActionEvent;
@@ -9,19 +12,20 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
 
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
-
-import org.tc33.jheatchart.HeatChart;
 
 
 public class NavigationPanelController {
 
     public TextArea systemLogTA_ID;
-    public TextArea backLogTA_ID;
     public TextField opName_ID;
     public Button captureImageBtn_ID;
     public Button startVideoBtn_ID;
@@ -208,16 +212,15 @@ public class NavigationPanelController {
         systemLogTA_ID.setText(String.valueOf(backTrackingLog));
     }
 
-    /** Batterlife cheking */
+    /** Battery of laptop/vehicle displayed here */
     public void batteryStatusChecker(){
-        /** Battery of laptop showing here can be replaced with vehicles battery */
         Kernel32.SYSTEM_POWER_STATUS batteryStatus = new Kernel32.SYSTEM_POWER_STATUS();
         Kernel32.INSTANCE.GetSystemPowerStatus(batteryStatus);
         batteryLife_ID.setText(batteryStatus.toString());
     }
 
     /** MediaView Video Controls - Play-Pause video in MediaView */
-    boolean isPaused = true;
+    private boolean isPaused = true;
     final String  Media_URL = "sample1.mp4";
     MediaPlayer media_player = new MediaPlayer(new Media(Objects.requireNonNull(this.getClass().getResource(Media_URL)).toExternalForm() ));
     public void startVideoBtnClicked(ActionEvent event) {
@@ -233,16 +236,26 @@ public class NavigationPanelController {
     }
 
     /** Capture multiple Image from default camera */
-    int pictureID = 1;
+    private int pictureID = 1;
     public void captureImageBtnClicked(ActionEvent event) throws IOException {
         Webcam webCamObj = Webcam.getDefault();
         webCamObj.open();
-
         String fileNameCreator = "src/main/"+pictureID+"_Capture.jpg";
-        ImageIO.write(webCamObj.getImage(), "JPG", new File(fileNameCreator));
+
+        BufferedImage capturedImage = webCamObj.getImage();
+
+        byte[] pixels = ((DataBufferByte) capturedImage.getRaster().getDataBuffer()).getData();
+        // Create a Matrix the same size of image
+        Mat capturedMat = new Mat(capturedImage.getHeight(), capturedImage.getWidth(), CvType.CV_8UC3);
+        // Fill Matrix with image values
+        capturedMat.put(0, 0, pixels);
+
+        ImageProcessor.detectFaceFromImages(capturedMat);
+
+        ImageIO.write(capturedImage, "JPG", new File(fileNameCreator));
+
         pictureID++;
         webCamObj.close();
     }
-
 
 }

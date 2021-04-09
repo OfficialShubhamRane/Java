@@ -1,3 +1,6 @@
+
+/** Author: Shubham Rane www.linkedin.com/in/shubham-rane97 **/
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,7 +14,7 @@ import java.util.Objects;
 public class Main extends Application {
 
     public static void main(String[] args) {
-//        System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+        System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
         launch(args);
     }
 
@@ -19,8 +22,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
 
 
-//        Parent LoginView = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("LoginView.fxml")));
-        Parent LoginView = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("NavigationPanelView.fxml")));
+        Parent LoginView = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("LoginView.fxml")));
+//        Parent LoginView = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("NavigationPanelView.fxml")));
         Scene LoginViewScene = new Scene(LoginView);
         primaryStage.setResizable(true);
         primaryStage.setScene(LoginViewScene);

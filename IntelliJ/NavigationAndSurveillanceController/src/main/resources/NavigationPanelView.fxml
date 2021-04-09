@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NavigationPanelController">
    <children>
@@ -55,5 +56,6 @@
       <TextField fx:id="distaceCovered_ID" editable="false" layoutX="144.0" layoutY="108.0" prefHeight="26.0" prefWidth="76.0" />
       <Label layoutX="226.0" layoutY="121.0" text="meter" />
       <Button fx:id="backtrackBtn_ID" layoutX="750.0" layoutY="31.0" mnemonicParsing="false" onAction="#backtrackBtnClicked" text="Backtrack" />
+      <Text layoutX="734.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="By Shubham Rane" />
    </children>
 </AnchorPane>
