@@ -235,26 +235,18 @@ public class NavigationPanelController {
         }
     }
 
-    /** Capture multiple Image from default camera */
-    private int pictureID = 1;
+    /** Capture Images from default camera and sent to ImageProcessor */
     public void captureImageBtnClicked(ActionEvent event) throws IOException {
         Webcam webCamObj = Webcam.getDefault();
         webCamObj.open();
-        String fileNameCreator = "src/main/"+pictureID+"_Capture.jpg";
 
         BufferedImage capturedImage = webCamObj.getImage();
 
         byte[] pixels = ((DataBufferByte) capturedImage.getRaster().getDataBuffer()).getData();
-        // Create a Matrix the same size of image
         Mat capturedMat = new Mat(capturedImage.getHeight(), capturedImage.getWidth(), CvType.CV_8UC3);
-        // Fill Matrix with image values
         capturedMat.put(0, 0, pixels);
-
         ImageProcessor.detectFaceFromImages(capturedMat);
 
-        ImageIO.write(capturedImage, "JPG", new File(fileNameCreator));
-
-        pictureID++;
         webCamObj.close();
     }
 

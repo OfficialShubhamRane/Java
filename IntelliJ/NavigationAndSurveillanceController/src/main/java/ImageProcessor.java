@@ -6,20 +6,13 @@ import org.opencv.objdetect.Objdetect;
 
 public class ImageProcessor {
 
-    public static void main(String[] args) {
-        System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
-//        readImg();
-//        writeImg();
-
-    }
-
     /** Simple reading and writting image from specified path*/
-    public static Mat readImg(){
+    public Mat readImg(){
         Imgcodecs.imread("src/main/resources/img1.jpg");
         System.out.println("Read successful");
         return Imgcodecs.imread("src/main/resources/img1.jpg");
     }
-    public static void writeImg(){
+    public void writeImg(){
 
         Imgcodecs.imwrite("src/main/resources/img2.jpg", readImg());
         System.out.println("Written Successfully");
@@ -46,15 +39,17 @@ public class ImageProcessor {
         for(Rect face : facesArray) {
             Imgproc.rectangle(capturedMat, face.tl(), face.br(), new Scalar(0, 0, 255), 3);
         }
-        writeFaceDetectedImg(capturedMat, "src/main/resources/faceDetected_img");
-
+        writeFaceDetectedImg(capturedMat, "src/CaptureImages/faceDetected_img");
     }
 
-    /** Writting face detected image on specified path*/
+    /** Writting face detected image on specified path */
     static int pictureId = 1;
     public static void writeFaceDetectedImg(Mat srcImage, String targetImagePath) {
-
         Imgcodecs.imwrite(targetImagePath + pictureId +".jpg", srcImage);
+
         pictureId++;
     }
+
+
+
 }
