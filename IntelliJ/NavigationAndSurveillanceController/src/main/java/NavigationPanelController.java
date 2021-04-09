@@ -3,10 +3,13 @@
 
 import com.github.sarxos.webcam.Webcam;
 import com.sun.jdi.InvocationException;
+import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.media.Media;
@@ -14,12 +17,17 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
+import org.opencv.core.MatOfByte;
+import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.videoio.VideoCapture;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Objects;
 
 
@@ -33,6 +41,7 @@ public class NavigationPanelController {
     public TextField batteryLife_ID;
     public TextField distaceCovered_ID;
     public Button forwardBtn_ID;
+    public ImageView imageView_ID;
 
 
     public void initialize(){
@@ -43,6 +52,8 @@ public class NavigationPanelController {
         Kernel32.SYSTEM_POWER_STATUS batteryStatus = new Kernel32.SYSTEM_POWER_STATUS();
         Kernel32.INSTANCE.GetSystemPowerStatus(batteryStatus);
         batteryLife_ID.setText(batteryStatus.toString());
+
+        turnOnVideoCam();
     }
 
     /**
@@ -219,24 +230,13 @@ public class NavigationPanelController {
         batteryLife_ID.setText(batteryStatus.toString());
     }
 
-    /** MediaView Video Controls - Play-Pause video in MediaView */
-    private boolean isPaused = true;
-    final String  Media_URL = "sample1.mp4";
-    MediaPlayer media_player = new MediaPlayer(new Media(Objects.requireNonNull(this.getClass().getResource(Media_URL)).toExternalForm() ));
-    public void startVideoBtnClicked(ActionEvent event) {
-
-        if (isPaused){
-            media_player.play();
-            mediaView_ID.setMediaPlayer(media_player);
-            isPaused = false;
-        }else{
-            media_player.pause();
-            isPaused = true;
-        }
-    }
-
     /** Capture Images from default camera and sent to ImageProcessor */
-    public void captureImageBtnClicked(ActionEvent event) throws IOException {
+    boolean isCaptureClicked = false;
+    public void captureImageBtnClicked(ActionEvent event) {
+
+        isCaptureClicked = true;
+        ImageProcessor.stopCapture();
+
         Webcam webCamObj = Webcam.getDefault();
         webCamObj.open();
 
@@ -245,9 +245,23 @@ public class NavigationPanelController {
         byte[] pixels = ((DataBufferByte) capturedImage.getRaster().getDataBuffer()).getData();
         Mat capturedMat = new Mat(capturedImage.getHeight(), capturedImage.getWidth(), CvType.CV_8UC3);
         capturedMat.put(0, 0, pixels);
-        ImageProcessor.detectFaceFromImages(capturedMat);
-
+        ImageProcessor.detectFaceFromImages(capturedMat, isCaptureClicked);
+        isCaptureClicked = false;
         webCamObj.close();
+        turnOnVideoCam();
     }
 
+    /** Capture video from video cam **/
+    static VideoCapture capture;
+    public void turnOnVideoCam() {
+        capture = new VideoCapture(0);
+
+        new AnimationTimer() {
+            @Override public void handle(long l) {
+                /** Calling Image processor class for face detection */
+                imageView_ID.setImage(ImageProcessor.getCapture());
+            }
+        }.start();
+
+    }
 }

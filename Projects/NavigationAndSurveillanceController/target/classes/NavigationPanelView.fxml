@@ -5,10 +5,10 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NavigationPanelController">
@@ -37,10 +37,8 @@
          </children>
       </Pane>
       <Separator layoutX="268.0" layoutY="23.0" orientation="VERTICAL" prefHeight="388.0" prefWidth="0.0" />
-      <MediaView fx:id="mediaView_ID" fitHeight="300.0" fitWidth="332.0" layoutX="271.0" layoutY="38.0" />
       <Separator layoutX="275.0" layoutY="349.0" prefHeight="3.0" prefWidth="324.0" />
-      <Button fx:id="captureImageBtn_ID" layoutX="508.0" layoutY="365.0" mnemonicParsing="false" onAction="#captureImageBtnClicked" prefHeight="32.0" prefWidth="90.0" text="Capture" />
-      <Button fx:id="startVideoBtn_ID" layoutX="275.0" layoutY="365.0" mnemonicParsing="false" onAction="#startVideoBtnClicked" text="Play / Pause" />
+      <Button fx:id="captureImageBtn_ID" layoutX="451.0" layoutY="365.0" mnemonicParsing="false" onAction="#captureImageBtnClicked" prefHeight="32.0" prefWidth="139.0" text="Capture" />
       <Separator layoutX="603.0" layoutY="23.0" orientation="VERTICAL" prefHeight="388.0" prefWidth="0.0" />
       <Label layoutX="623.0" layoutY="38.0" text="Log Details" underline="true" />
       <TextArea fx:id="systemLogTA_ID" editable="false" layoutX="623.0" layoutY="71.0" prefHeight="315.0" prefWidth="200.0" promptText="System Log will be printed here." />
@@ -57,5 +55,6 @@
       <Label layoutX="226.0" layoutY="121.0" text="meter" />
       <Button fx:id="backtrackBtn_ID" layoutX="750.0" layoutY="31.0" mnemonicParsing="false" onAction="#backtrackBtnClicked" text="Backtrack" />
       <Text layoutX="734.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="By Shubham Rane" />
+      <ImageView fx:id="imageView_ID" fitHeight="307.0" fitWidth="324.0" layoutX="274.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

@@ -39,14 +39,6 @@ public class LoginController {
         isValidUser = LoginDAO.authenticateUser(userIDTf_ID.getText(),passwordTf_ID.getText());
 
         Pane navigationPanel = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("NavigationPanelView.fxml")));
-//        navigationPanel.setPrefHeight(440);
-//        navigationPanel.setPrefWidth(840);
-//        rootPane.setPrefHeight(440);
-//        rootPane.setPrefHeight(840);
-//
-//        navigationPanel.prefHeightProperty().bind(rootPane.widthProperty());
-//        navigationPanel.prefWidthProperty().bind(rootPane.heightProperty());
-
         rootPane.getChildren().setAll(navigationPanel);
 
     }

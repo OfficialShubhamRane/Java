@@ -1,8 +1,13 @@
+import javafx.scene.image.Image;
 import org.opencv.core.*;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.objdetect.Objdetect;
+import org.opencv.videoio.VideoCapture;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 
 public class ImageProcessor {
 
@@ -18,8 +23,9 @@ public class ImageProcessor {
         System.out.println("Written Successfully");
     }
 
-    /** Detecting faces from specifies image*/
-    public static void detectFaceFromImages(Mat capturedMat){
+    /** Detecting faces from specifies image
+     * @return*/
+    public static Mat detectFaceFromImages(Mat capturedMat, boolean isCaptureClicked){
 
         MatOfRect facesDetected = new MatOfRect();
 
@@ -39,7 +45,10 @@ public class ImageProcessor {
         for(Rect face : facesArray) {
             Imgproc.rectangle(capturedMat, face.tl(), face.br(), new Scalar(0, 0, 255), 3);
         }
-        writeFaceDetectedImg(capturedMat, "src/CaptureImages/faceDetected_img");
+        if(isCaptureClicked){
+            writeFaceDetectedImg(capturedMat, "src/CaptureImages/faceDetected_img");
+        }
+        return capturedMat;
     }
 
     /** Writting face detected image on specified path */
@@ -50,6 +59,27 @@ public class ImageProcessor {
         pictureId++;
     }
 
+    /** Image processing for video feed */
+    public static  Image mat2Img(Mat mat) {
+        MatOfByte bytes = new MatOfByte();
+        Imgcodecs.imencode(".jpg", mat, bytes);
+        InputStream inputStream = new ByteArrayInputStream(bytes.toArray());
+        return new Image(inputStream);
+    }
+
+
+
+    public static Image getCapture() {
+
+        Mat mat = new Mat();
+        NavigationPanelController.capture.read(mat);
+        Mat haarClassifiedImg = detectFaceFromImages(mat,false);
+        return mat2Img(haarClassifiedImg);
+    }
+
+    public static void stopCapture(){
+        NavigationPanelController.capture.release();
+    }
 
 
 }
