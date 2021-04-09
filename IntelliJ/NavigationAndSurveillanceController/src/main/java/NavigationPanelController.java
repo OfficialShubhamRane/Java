@@ -13,6 +13,7 @@ import javafx.scene.media.MediaView;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 import org.tc33.jheatchart.HeatChart;
 
@@ -20,6 +21,7 @@ import org.tc33.jheatchart.HeatChart;
 public class NavigationPanelController {
 
     public TextArea systemLogTA_ID;
+    public TextArea backLogTA_ID;
     public TextField opName_ID;
     public Button captureImageBtn_ID;
     public Button startVideoBtn_ID;
@@ -27,6 +29,7 @@ public class NavigationPanelController {
     public TextField batteryLife_ID;
     public TextField distaceCovered_ID;
     public Button forwardBtn_ID;
+
 
     public void initialize(){
         /** Sets operator name fetching from user_ID field from login */
@@ -45,11 +48,6 @@ public class NavigationPanelController {
     KeyCode lastKey = null;
     long keyPressedMillis = 0;
     long keyPressLength = 0;
-
-    StringBuilder backTrackingLog = new StringBuilder();
-
-    float timeTravelled = 0;
-    float coveredDistance = 0;
 
     /** Time when key was pressed */
     public void arrowKeyStrokesHandler(KeyEvent keyEvent) {
@@ -75,6 +73,7 @@ public class NavigationPanelController {
     }
 
     /** System time - time when key was released */
+    StringBuilder backTrackingLog = new StringBuilder();
     public void arrowKeyReleaseHandler(KeyEvent keyEvent) throws IOException, InvocationException {
 
         KeyCode releasedKey = keyEvent.getCode();
@@ -196,6 +195,8 @@ public class NavigationPanelController {
     }
 
     /** Total distance travelled */
+    float timeTravelled = 0;
+    float coveredDistance = 0;
     public void totalDistanceTravelled(){
         System.out.println(timeTravelled);
         coveredDistance = (float) ((5.0 / 360.0) * timeTravelled);
@@ -215,15 +216,12 @@ public class NavigationPanelController {
         batteryLife_ID.setText(batteryStatus.toString());
     }
 
-
-
-    /** MediaView Video Controls */
-    final String  Media_URL = "sample1.mp4";
-    MediaPlayer media_player = new MediaPlayer(new Media(this.getClass().getResource(Media_URL).toExternalForm() ));
+    /** MediaView Video Controls - Play-Pause video in MediaView */
     boolean isPaused = true;
-
-    /** Play-Pause video in MediaView */
+    final String  Media_URL = "sample1.mp4";
+    MediaPlayer media_player = new MediaPlayer(new Media(Objects.requireNonNull(this.getClass().getResource(Media_URL)).toExternalForm() ));
     public void startVideoBtnClicked(ActionEvent event) {
+
         if (isPaused){
             media_player.play();
             mediaView_ID.setMediaPlayer(media_player);
@@ -234,11 +232,15 @@ public class NavigationPanelController {
         }
     }
 
-    /** Capture Image from Video Cam */
+    /** Capture multiple Image from default camera */
+    int pictureID = 1;
     public void captureImageBtnClicked(ActionEvent event) throws IOException {
         Webcam webCamObj = Webcam.getDefault();
         webCamObj.open();
-        ImageIO.write(webCamObj.getImage(), "JPG", new File("src/main/firstCapture.jpg"));
+
+        String fileNameCreator = "src/main/"+pictureID+"_Capture.jpg";
+        ImageIO.write(webCamObj.getImage(), "JPG", new File(fileNameCreator));
+        pictureID++;
         webCamObj.close();
     }
 
