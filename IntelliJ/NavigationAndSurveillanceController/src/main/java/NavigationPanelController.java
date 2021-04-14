@@ -4,31 +4,18 @@
 import com.github.sarxos.webcam.Webcam;
 import com.sun.jdi.InvocationException;
 import javafx.animation.AnimationTimer;
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
-import org.opencv.core.MatOfByte;
-import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.videoio.VideoCapture;
-
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
-import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Objects;
 
 
 public class NavigationPanelController {
@@ -36,8 +23,6 @@ public class NavigationPanelController {
     public TextArea systemLogTA_ID;
     public TextField opName_ID;
     public Button captureImageBtn_ID;
-    public Button startVideoBtn_ID;
-    public MediaView mediaView_ID;
     public TextField batteryLife_ID;
     public TextField distaceCovered_ID;
     public Button forwardBtn_ID;
@@ -219,7 +204,7 @@ public class NavigationPanelController {
     }
 
     /** Backtrack logs */
-    public void backtrackBtnClicked(ActionEvent event) {
+    public void backtrackBtnClicked() {
         systemLogTA_ID.setText(String.valueOf(backTrackingLog));
     }
 
@@ -232,7 +217,7 @@ public class NavigationPanelController {
 
     /** Capture Images from default camera and sent to ImageProcessor */
     boolean isCaptureClicked = false;
-    public void captureImageBtnClicked(ActionEvent event) {
+    public void captureImageBtnClicked() {
 
         isCaptureClicked = true;
         ImageProcessor.stopCapture();

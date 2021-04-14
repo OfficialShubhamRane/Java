@@ -4,14 +4,13 @@ import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.objdetect.Objdetect;
-import org.opencv.videoio.VideoCapture;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 public class ImageProcessor {
 
-    /** Simple reading and writting image from specified path*/
+    /** Simple reading and writting image from specified path - Testing*/
     public Mat readImg(){
         Imgcodecs.imread("src/main/resources/img1.jpg");
         System.out.println("Read successful");
@@ -51,7 +50,7 @@ public class ImageProcessor {
         return capturedMat;
     }
 
-    /** Writting face detected image on specified path */
+    /** Writing face detected image on specified path */
     static int pictureId = 1;
     public static void writeFaceDetectedImg(Mat srcImage, String targetImagePath) {
         Imgcodecs.imwrite(targetImagePath + pictureId +".jpg", srcImage);
@@ -59,7 +58,7 @@ public class ImageProcessor {
         pictureId++;
     }
 
-    /** Image processing for video feed */
+    /** Converts matrix to Img */
     public static  Image mat2Img(Mat mat) {
         MatOfByte bytes = new MatOfByte();
         Imgcodecs.imencode(".jpg", mat, bytes);
@@ -67,8 +66,7 @@ public class ImageProcessor {
         return new Image(inputStream);
     }
 
-
-
+    /** Called from NavigationController to start video streaming*/
     public static Image getCapture() {
 
         Mat mat = new Mat();
@@ -77,6 +75,7 @@ public class ImageProcessor {
         return mat2Img(haarClassifiedImg);
     }
 
+    /** Temporarily stops video capture to click photo */
     public static void stopCapture(){
         NavigationPanelController.capture.release();
     }
