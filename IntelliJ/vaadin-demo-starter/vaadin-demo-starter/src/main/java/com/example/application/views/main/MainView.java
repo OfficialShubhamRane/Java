@@ -3,7 +3,9 @@ package com.example.application.views.main;
 import com.example.application.backend.entity.Company;
 import com.example.application.backend.entity.Contact;
 import com.example.application.backend.service.ContactService;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
@@ -11,8 +13,10 @@ import com.vaadin.flow.router.Route;
 
 
 @Route("/")
+@CssImport("./styles/shared-styles.css")
 public class MainView extends VerticalLayout {
 
+    private final ContactForm form;
     Grid<Contact> grid = new Grid<>(Contact.class);
     TextField filterText = new TextField();
 
@@ -24,9 +28,14 @@ public class MainView extends VerticalLayout {
         setSizeFull();
         configureGrid();
         configurationFilter();
-        
 
-        add(filterText, grid);
+        form = new ContactForm();
+
+        Div content = new Div(grid, form);
+        content.addClassName("content");
+        content.setSizeFull();
+
+        add(filterText, content);
         updateList();
 
     }
