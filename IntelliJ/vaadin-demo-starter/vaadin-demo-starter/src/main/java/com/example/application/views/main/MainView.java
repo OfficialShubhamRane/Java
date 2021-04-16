@@ -2,6 +2,7 @@ package com.example.application.views.main;
 
 import com.example.application.backend.entity.Company;
 import com.example.application.backend.entity.Contact;
+import com.example.application.backend.service.CompanyService;
 import com.example.application.backend.service.ContactService;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
@@ -22,14 +23,15 @@ public class MainView extends VerticalLayout {
 
     private ContactService contactService;
 
-    public MainView(ContactService contactService) {
+    public MainView(ContactService contactService,
+                    CompanyService companyService) {
         this.contactService = contactService;
         addClassName("list-view");
         setSizeFull();
         configureGrid();
         configurationFilter();
 
-        form = new ContactForm();
+        form = new ContactForm(companyService.findAll());
 
         Div content = new Div(grid, form);
         content.addClassName("content");
