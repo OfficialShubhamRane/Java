@@ -20,16 +20,24 @@ public class EnterApplication extends HorizontalLayout {
 
     private TextField companyNameBtn;
     private TextField position;
+    private TextField location;
+    private TextField source;
     private Button submitApplicationBtn;
 
 
     public EnterApplication() {
         addClassName("enterApplication-view");
 
-        companyNameBtn = new TextField("Enter Company Name: ");
-        position = new TextField("Enter Position: ");
+        companyNameBtn = new TextField("Company Name: ");
+        position = new TextField("Position: ");
+        location = new TextField("Location: ");
+        source = new TextField("Source: ");
+
         submitApplicationBtn = new Button("Submit");
-        add(companyNameBtn, position, submitApplicationBtn);
+
+        VerticalLayout formLayout = new VerticalLayout(companyNameBtn, position, location, source, submitApplicationBtn );
+        formLayout.setDefaultHorizontalComponentAlignment(Alignment.BASELINE);
+        add(formLayout);
 
         submitApplicationBtn.addClickListener(e ->{
             Notification.show("Application successfully submitted");

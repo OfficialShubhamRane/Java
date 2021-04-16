@@ -16,20 +16,9 @@ import com.vaadin.flow.component.dependency.CssImport;
 @CssImport("./views/dashboard/dashboard-view.css")
 public class DashboardView extends HorizontalLayout {
 
-    private TextField name;
-    private Button enterFirstName;
-
     public DashboardView() {
         addClassName("dashboard-view");
 
-        name = new TextField("First Name");
-        enterFirstName = new Button("Enter");
-        add(name, enterFirstName);
-        setVerticalComponentAlignment(Alignment.END, name, enterFirstName);
-
-        enterFirstName.addClickListener(e -> {
-            Notification.show("Welcome " + name.getValue());
-        });
     }
 
 }

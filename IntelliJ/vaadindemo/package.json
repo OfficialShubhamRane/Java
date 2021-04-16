@@ -2,7 +2,6 @@
   "name": "no-name",
   "license": "UNLICENSED",
   "dependencies": {
-    "@polymer/iron-icon": "3.0.1",
     "@polymer/iron-list": "3.1.0",
     "@polymer/polymer": "3.2.0",
     "@vaadin/vaadin-accordion": "1.2.0",
@@ -25,8 +24,6 @@
     "@vaadin/vaadin-dialog": "2.5.2",
     "@vaadin/vaadin-form-layout": "2.3.0",
     "@vaadin/vaadin-grid": "5.7.11",
-    "@vaadin/vaadin-grid-pro": "2.2.2",
-    "@vaadin/vaadin-icons": "4.3.2",
     "@vaadin/vaadin-item": "2.3.0",
     "@vaadin/vaadin-list-box": "1.4.0",
     "@vaadin/vaadin-login": "1.2.0",
@@ -39,7 +36,6 @@
     "@vaadin/vaadin-radio-button": "1.5.1",
     "@vaadin/vaadin-rich-text-editor": "1.3.0",
     "@vaadin/vaadin-select": "2.4.0",
-    "@vaadin/vaadin-shrinkwrap": "14.5.2",
     "@vaadin/vaadin-split-layout": "4.3.0",
     "@vaadin/vaadin-tabs": "3.2.0",
     "@vaadin/vaadin-text-field": "2.8.4",
@@ -122,6 +118,6 @@
       "ts-loader": "8.0.12",
       "typescript": "4.0.3"
     },
-    "hash": "20691cd83ffd5bc52aac1ec5e96ab54f2e5f336aadab9276b23e19070688978f"
+    "hash": "234f619f36a9442240b316514da0a70174f745a64010a5478919f68a216db664"
   }
 }
