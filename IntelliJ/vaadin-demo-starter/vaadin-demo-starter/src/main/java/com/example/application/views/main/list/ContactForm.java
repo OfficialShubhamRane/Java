@@ -1,8 +1,7 @@
-package com.example.application.views.main;
+package com.example.application.views.main.list;
 
 import com.example.application.backend.entity.Company;
 import com.example.application.backend.entity.Contact;
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.Key;
