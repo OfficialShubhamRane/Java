@@ -1,39 +1,38 @@
 package com.example.application.views.main;
 
 import com.vaadin.flow.component.applayout.AppLayout;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.dependency.CssImport;
-import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.applayout.DrawerToggle;
+import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouterLink;
 
 
-@Route("/")
-@CssImport("./styles/shared-styles.css")
+@Route(value = "/dashboard")
+@PageTitle("DashBoard | VaadinBasics")
 public class MainLayout extends AppLayout{
 
-    TextField tf = new TextField();
-    Button btn = new Button("Search");
-
-    HorizontalLayout h_layout = new HorizontalLayout();
-
     public MainLayout(){
-        tf.setPlaceholder("Search...");
-        tf.setClearButtonVisible(true);
 
-        btn.addClickListener(e -> {
-            if(!tf.getValue().isEmpty()){
-                Notification.show("Searching: ".concat( tf.getValue() ));
-            }
-        });
+        createDrawer();
+        createNavBar();
 
-        h_layout.setPadding(true);
-        h_layout.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.END);
-        h_layout.add(tf, btn);
-        addToNavbar(h_layout);
     }
 
+    private void createNavBar() {
+        H3 ApplicationName = new H3("Vaadin Basics");
+        addToNavbar(new DrawerToggle(), ApplicationName);
+    }
+
+    private void createDrawer() {
+        RouterLink dashboardLink = new RouterLink("Dashboard", DashboardLayout.class);
+        RouterLink aboutLink = new RouterLink("About", AboutLayout.class);
+
+        addToDrawer(new VerticalLayout(
+                dashboardLink,
+                aboutLink
+        ));
+    }
 
 }
