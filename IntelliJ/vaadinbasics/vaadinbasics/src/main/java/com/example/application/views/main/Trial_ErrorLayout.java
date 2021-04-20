@@ -4,6 +4,7 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
@@ -34,28 +35,33 @@ public class Trial_ErrorLayout extends VerticalLayout {
 
     }
 
+    /** Getting objects from Database */
     private void formPopupWindow() throws SQLException {
         btn = new Button("Click here");
         VerticalLayout layout = new VerticalLayout();
         layout.add(btn);
         btn.addClickListener(e -> {
-            System.out.println("Button Clicked");
-
+            System.out.println("Get data from db");
+            Notification ntf = null;
             try {
                 System.out.println("Trying to make connection...");
                 con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
                 stmt = con.createStatement();
+
 
                 String getSQL = "SELECT * from application_portal.vaadinbasics";
                 ResultSet rs = stmt.executeQuery(getSQL);
 
                 while(rs.next()){
                     System.out.println(rs.getString("name"));
+                    ntf = new Notification( rs.getString("name"), 3000 );
+                    ntf.open();
+
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-            
+
         });
 
         add((layout));
