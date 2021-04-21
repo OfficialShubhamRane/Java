@@ -15,11 +15,9 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 
-@Tag("dashboard")
-@JsModule("./dashboard-view.ts")
 @Route(value = "/", layout = MainLayout.class)
 @RouteAlias(value = "/dashboard", layout = MainLayout.class)
-@PageTitle("DashBoard | VaadinBasics")
+@PageTitle("DashBoard | AMP")
 public class DashboardLayout extends VerticalLayout {
 
     /** Dashboard constructor */
@@ -32,16 +30,14 @@ public class DashboardLayout extends VerticalLayout {
     /** Create base skeleton layout for dashboard */
     private void setBaseDashboardLayout() {
 
-        Div barChart_1_div = new Div( new Label(" Place holder for First Bar Chart") );
-        barChart_1_div.setHeight("200px");
         Div pieChart_1_div = new Div( new Label(" Place holder for First Pie Chart") );
         pieChart_1_div.setHeight("400px");
+        pieChart_1_div.setWidth("625px");
         Div pieChart_2_div = new Div( new Label(" Place holder for Second Pie Chart"));
         pieChart_2_div.setHeight("400px");
-
-        Label barChart_1 = new Label("First Bar Chart");
-        Label pieChart_1 = new Label("First Pie Chart");
-        Label pieChart_2 = new Label("Second Pie Chart");
+        pieChart_2_div.setWidth("625px");
+        Div barChart_1_div = new Div( new Label(" Place holder for First Bar Chart") );
+        barChart_1_div.setHeight("200px");
 
         SplitLayout horizontalSplitLayout = new SplitLayout();
         horizontalSplitLayout.addToPrimary(pieChart_1_div);

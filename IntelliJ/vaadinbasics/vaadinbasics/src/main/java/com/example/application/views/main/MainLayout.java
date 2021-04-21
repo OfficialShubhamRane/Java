@@ -8,10 +8,11 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouteAlias;
 import com.vaadin.flow.router.RouterLink;
 
-
-@PageTitle("DashBoard | VaadinBasics")
+@PageTitle("DashBoard | AMP")
 public class MainLayout extends AppLayout{
 
     public MainLayout(){
@@ -25,7 +26,7 @@ public class MainLayout extends AppLayout{
         HorizontalLayout layout = new HorizontalLayout();
 
         /** Replace application name with logo*/
-        H3 ApplicationName = new H3("Vaadin Basics");
+        H3 ApplicationName = new H3("Application Management Portal");
 
         layout.add( new DrawerToggle(), ApplicationName);
         layout.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.END);

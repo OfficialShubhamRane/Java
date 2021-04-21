@@ -23,7 +23,7 @@ import com.vaadin.flow.router.Route;
  * does not overwrite or otherwise change this file.
  */
 @Route(value = "/add-application", layout = MainLayout.class)
-@PageTitle("Add Applications | Vaadin Basics")
+@PageTitle("Add Applications | AMP")
 public class AddApplication extends VerticalLayout {
 
     /**

@@ -6,7 +6,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 @Route(value = "/about", layout = MainLayout.class)
-@PageTitle("About | VaadinBasics")
+@PageTitle("About | AMP")
 public class AboutLayout extends VerticalLayout {
 
 }
