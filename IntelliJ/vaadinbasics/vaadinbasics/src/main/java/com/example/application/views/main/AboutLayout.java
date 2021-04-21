@@ -9,7 +9,4 @@ import com.vaadin.flow.router.Route;
 @PageTitle("About | VaadinBasics")
 public class AboutLayout extends VerticalLayout {
 
-    public AboutLayout(){
-        add(new Text("About"));
-    }
 }

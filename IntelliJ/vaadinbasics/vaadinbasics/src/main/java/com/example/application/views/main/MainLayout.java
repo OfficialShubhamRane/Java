@@ -1,5 +1,6 @@
 package com.example.application.views.main;
 
+import com.example.application.Application;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.H3;
@@ -34,13 +35,14 @@ public class MainLayout extends AppLayout{
 
     private void createDrawer() {
         RouterLink dashboardLink = new RouterLink("Dashboard", DashboardLayout.class);
+        RouterLink addApplicationLink = new RouterLink("Add Application", AddApplication.class);
+        RouterLink applicationsListLink = new RouterLink("Applications List", ApplicationList.class);
         RouterLink aboutLink = new RouterLink("About", AboutLayout.class);
-        RouterLink trialError = new RouterLink("Trial&Error", Trial_ErrorLayout.class);
-
 
         addToDrawer(new VerticalLayout(
                 dashboardLink,
-                trialError,
+                addApplicationLink,
+                applicationsListLink,
                 aboutLink
 
         ));
