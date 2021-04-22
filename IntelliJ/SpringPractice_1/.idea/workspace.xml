@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c0b10e43-d846-4cee-878a-7ad54a06a7cd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../IntelliJ_FX" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/.idea/dictionaries" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/NavigationAndSurveillanceController.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/Screenshots/Controller_1.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/Screenshots/LoginScreen.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/Screenshots/Logs backtracked.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/Screenshots/bandicam 2021-03-31 19-53-10-911.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/src/CaptureImages/faceDetected_img1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/src/CaptureImages/faceDetected_img2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/src/CaptureImages/navigation-heatChart.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/src/main/java/Constants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/src/main/java/HeatMapGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/src/main/java/ImageProcessor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/src/main/java/Kernel32.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/src/main/java/LoginController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/src/main/java/LoginDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/src/main/java/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/src/main/java/NavigationPanelController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/src/main/resources/LoginView.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/src/main/resources/Login_image_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/src/main/resources/NavigationPanelView.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/src/main/resources/haarcascade_frontalface_alt.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/target/classes/Constants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/target/classes/HeatMapGenerator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/target/classes/ImageProcessor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/target/classes/Kernel32$SYSTEM_POWER_STATUS.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/target/classes/Kernel32.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/target/classes/LoginController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/target/classes/LoginDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/target/classes/LoginView.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/target/classes/Login_image_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/target/classes/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/target/classes/NavigationPanelController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/target/classes/NavigationPanelController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/target/classes/NavigationPanelView.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../NavigationAndSurveillanceController/target/classes/haarcascade_frontalface_alt.xml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1rV2eUCuZeWgznOcSYBb1DXv9mO" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringPractice1Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="SpringPractice_1" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.springpractice_1.SpringPractice1Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c0b10e43-d846-4cee-878a-7ad54a06a7cd" name="Default Changelist" comment="" />
+      <created>1619047034302</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1619047034302</updated>
+      <workItem from="1619047035926" duration="1329000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VaadinDesigner.SizePresetsSettingsComponent">
+    <option name="sizePresets">
+      <list>
+        <SizePreset>
+          <option name="caption" value="Phone" />
+          <option name="height" value="568" />
+          <option name="width" value="320" />
+        </SizePreset>
+        <SizePreset>
+          <option name="caption" value="Tablet" />
+          <option name="height" value="1024" />
+          <option name="width" value="768" />
+        </SizePreset>
+        <SizePreset>
+          <option name="caption" value="Desktop" />
+          <option name="height" value="900" />
+          <option name="width" value="1440" />
+        </SizePreset>
+      </list>
+    </option>
+  </component>
+  <component name="com.vaadin.designer2.intellij.settings.SizePresetsSettingsComponent">
+    <option name="sizePresets">
+      <list>
+        <SizePreset>
+          <option name="caption" value="Phone" />
+          <option name="height" value="568" />
+          <option name="width" value="320" />
+        </SizePreset>
+        <SizePreset>
+          <option name="caption" value="Tablet" />
+          <option name="height" value="1024" />
+          <option name="width" value="768" />
+        </SizePreset>
+        <SizePreset>
+          <option name="caption" value="Desktop" />
+          <option name="height" value="900" />
+          <option name="width" value="1440" />
+        </SizePreset>
+      </list>
+    </option>
+  </component>
+  <component name="designer.settings">
+    <option name="autodetectServerAddress" value="true" />
+    <option name="serverIp" value="localhost" />
+  </component>
+</project>
