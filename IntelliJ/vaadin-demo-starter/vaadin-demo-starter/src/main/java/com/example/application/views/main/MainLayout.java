@@ -29,7 +29,6 @@ public class MainLayout extends AppLayout {
                 new RouterLink("Dashboard", DashboardView.class)
         ));
 
-
     }
 
     private void createHeader() {
@@ -45,8 +44,5 @@ public class MainLayout extends AppLayout {
         addToNavbar(header);
 
     }
-
-
-
 
 }
