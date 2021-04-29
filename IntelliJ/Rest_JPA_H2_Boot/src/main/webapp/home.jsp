@@ -13,6 +13,14 @@
 
         <input type="text" name="aid"><br>
         <input type="text" name="aName"><br>
+        <input type="text" name="tech"><br>
+        <input type="submit">
+
+    </form>
+
+    <form action="getAlien">
+
+        <input type="text" name="aid"><br>
         <input type="submit">
 
     </form>

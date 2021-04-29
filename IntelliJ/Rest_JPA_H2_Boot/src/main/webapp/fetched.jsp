@@ -9,8 +9,7 @@
 
     <h1> Fetched Page</h1>
 
-    ${aid}
-    ${aName}
+    ${alien}
 
 
 

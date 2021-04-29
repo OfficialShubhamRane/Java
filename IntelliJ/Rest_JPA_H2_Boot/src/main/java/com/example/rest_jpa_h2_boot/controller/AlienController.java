@@ -17,6 +17,7 @@ public class AlienController {
     @GetMapping("home")
     public String home(){
         System.out.println("log: Inside home controller");
+
         return "home.jsp";
     }
 
@@ -26,6 +27,15 @@ public class AlienController {
 
         alienRepo.save(alien);
         return "home.jsp";
+    }
+
+    @GetMapping("getAlien")
+    public ModelAndView getAlien( int aid ){
+
+        ModelAndView mv = new ModelAndView("fetched.jsp");
+        Alien alien = alienRepo.findById(aid).orElse(new Alien());
+        mv.addObject(alien);
+        return mv;
     }
 
 
