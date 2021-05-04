@@ -12,8 +12,11 @@
     <h3> Add alien from here</h3>
     <form action="addAlien">
 
+        <label>aid: </label><br>
         <input type="text" name="aid"><br>
+        <label>aName: </label><br>
         <input type="text" name="aName"><br>
+        <label>tech: </label><br>
         <input type="text" name="tech"><br>
         <input type="submit">
 
@@ -23,15 +26,8 @@
     <h3> Retrieve alien from here BY AID</h3>
     <form action="fetchAlien">
 
+        <label>aid: </label><br>
         <input type="text" name="aid"><br>
-        <input type="submit">
-
-    </form>
-    <br>
-
-    <h3> Retrieve alien from here BY TECH = Java</h3>
-    <form action="getAlienByTech">
-
         <input type="submit">
 
     </form>
@@ -40,6 +36,7 @@
     <h3> Delete alien from here</h3>
     <form action="deleteAlien">
 
+        <label>aid: </label><br>
         <input type="text" name="aid"><br>
         <input type="submit">
 

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,58 +18,47 @@ public class AlienController {
     @Autowired
     AlienRepo alienRepo;
 
+    /** Directs to home page */
     @GetMapping("home")
     public String home(){
-        System.out.println("log: Inside home controller");
         return "home.jsp";
     }
 
+    /** Adds new Alien to H2 DB using JpaRepository methods */
     @GetMapping("addAlien")
     public String addAlien(Alien alien){
-        System.out.println("Submitting Alien data");
-
         alienRepo.save(alien);
         return "home.jsp";
     }
 
+    /** Fetches an Alien with specifies aid in JSON format */
     @GetMapping("fetchAlien")
-    public ModelAndView fetchAlien( int aid ){
-
-        ModelAndView mv = new ModelAndView("fetched.jsp");
-        Alien alien = alienRepo.findById(aid).orElse(new Alien());
-        mv.addObject(alien);
-
-        return mv;
+    @ResponseBody
+    public Optional<Alien> fetchAlien(int aid ){
+        return alienRepo.findById(aid);
     }
 
+    /** Deletes an alien with specified aid */
     @GetMapping("deleteAlien")
     public String deleteAlien(int aid){
-
         Alien alien = alienRepo.findById(aid).orElse(new Alien());
         alienRepo.delete(alien);
         return "home.jsp";
     }
 
-    @GetMapping("getAlienByTech")
-    public String getAlienByTech(){
-
-        System.out.println("Un-Sorted: " + alienRepo.findByTech("Java"));
-        System.out.println("Sorted: " + alienRepo.findByTechSorted("Java"));
-
-        return "home.jsp";
-    }
-
-    // localhost:8080/alien
-    @GetMapping("alien/{aid}")
-    @ResponseBody
-    public Optional<Alien> getAlien(@PathVariable("aid") int aid){
-        return alienRepo.findById(aid);
-    }
-
+    /** FROM HERE STARTS THE REST OPERATIONS */
+    /** fetches all the aliens in JSON format */
     @GetMapping("aliens")
     @ResponseBody
     public List<Alien> getAliens(){
         return alienRepo.findAll();
+    }
+
+    /** Fetches an alien with specified aid in the URL in JSON format */
+    @GetMapping("alien/{aid}")
+    @ResponseBody
+    public Optional<Alien> getAlien(@PathVariable("aid") int aid){
+        return alienRepo.findById(aid);
     }
 
 }
