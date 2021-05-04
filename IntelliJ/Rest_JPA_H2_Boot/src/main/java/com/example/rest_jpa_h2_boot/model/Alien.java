@@ -15,9 +15,10 @@ public class Alien {
 
     }
 
-    public Alien(int aid, String aName) {
+    public Alien(int aid, String aName, String tech) {
         this.aid = aid;
         this.aName = aName;
+        this.tech = tech;
     }
 
     public int getAid() {
@@ -49,6 +50,7 @@ public class Alien {
         return "Alien{" +
                 "aid=" + aid +
                 ", aName='" + aName + '\'' +
+                ", tech='" + tech + '\'' +
                 '}';
     }
 }
