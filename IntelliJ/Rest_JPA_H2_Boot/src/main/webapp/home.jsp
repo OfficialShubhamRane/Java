@@ -14,8 +14,10 @@
 
         <label>aid: </label><br>
         <input type="text" name="aid"><br>
+
         <label>aName: </label><br>
         <input type="text" name="aName"><br>
+
         <label>tech: </label><br>
         <input type="text" name="tech"><br>
         <input type="submit">

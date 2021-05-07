@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 import java.util.Optional;
 
-
 @Controller
 public class AlienController {
 
@@ -31,7 +30,8 @@ public class AlienController {
         return "home.jsp";
     }
 
-    /** Fetches an Alien with specifies aid in JSON format */
+    /** Fetches an Alien with specifies aid in JSON format
+     * @return*/
     @GetMapping("fetchAlien")
     @ResponseBody
     public Optional<Alien> fetchAlien(int aid ){
@@ -41,12 +41,14 @@ public class AlienController {
     /** Deletes an alien with specified aid */
     @GetMapping("deleteAlien")
     public String deleteAlien(int aid){
-        Alien alien = alienRepo.findById(aid).orElse(new Alien());
+        Alien alien = alienRepo.findById(aid).orElse( new Alien() );
         alienRepo.delete(alien);
         return "home.jsp";
     }
 
+
     /** FROM HERE STARTS THE REST OPERATIONS */
+
     /** fetches all the aliens in JSON format */
     @GetMapping("aliens")
     @ResponseBody
@@ -60,5 +62,16 @@ public class AlienController {
     public Optional<Alien> getAlien(@PathVariable("aid") int aid){
         return alienRepo.findById(aid);
     }
+
+    @GetMapping("deleteAlien/{aid}")
+    @ResponseBody
+    public Optional<Alien> deleteAlienRest( @PathVariable("aid") int aid){
+        Alien alien = alienRepo.findById(aid).orElse( new Alien() );
+        Optional<Alien> deletedObject = alienRepo.findById(aid);
+        alienRepo.delete(alien);
+
+        return deletedObject;
+    }
+
 
 }
