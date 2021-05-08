@@ -11,26 +11,40 @@
 
 <body>
 
+<div class = "container" >
+
 <h1>Corona Virus Tracker Application</h1>
 <h3>This application reports total number of reported cases across the globe</h3>
 
-<div class="card">
-    <h1 class="card-title" th:text="${totalNoReportedCases}"></h1>
-    <p class="card-text">Total cases reported as of day</p>
-</div>
+<br>
+<div class="jumbotron">
+    <p class="lead">Total cases reported as of day:</p>
+    <h1 class="display-4" th:text="${totalNoReportedCases}"></h1>
+    <hr class="my-4">
+    <p>
+        <span> New cases reported since previous:</span>
+        <span th:text="${newNoReportedCases}"></span>
+    </p>
 
-<table>
-    <tr>
-        <th>STATES</th>
-        <th>COUNTRY</th>
-        <th>TOTAL REPORTED CASES</th>
-    </tr>
-    <tr th:each="locationStat : ${locationStats}">
-        <td th:text="${locationStat.country}"></td>
-        <td th:text="${locationStat.state}"></td>
-        <td th:text="${locationStat.latestTotalCases}">0</td>
-    </tr>
-</table>
+</div>
+<br>
+
+
+    <table class="table">
+        <tr>
+            <th>STATES</th>
+            <th>COUNTRY</th>
+            <th>TOTAL REPORTED CASES</th>
+            <th>RECENT CHANGES</th>
+        </tr>
+        <tr th:each="locationStat : ${locationStats}">
+            <td th:text="${locationStat.country}"></td>
+            <td th:text="${locationStat.state}"></td>
+            <td th:text="${locationStat.latestTotalCases}">0</td>
+            <td th:text="${locationStat.diffFromPrevDay}">0</td>
+        </tr>
+    </table>
+</div>
 
 </body>
 
