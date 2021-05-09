@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -18,11 +17,13 @@ public class HomeController {
 
     @GetMapping("/")
     public String home( Model model ){
-        List<LocationStats> locationStats = covid19DataService.getAllStats();
-        int totalNoReportedCases = locationStats.stream().mapToInt(LocationStats::getLatestTotalCases).sum();
-        int newNoReportedCases = locationStats.stream().mapToInt(LocationStats::getDiffFromPrevDay).sum();
 
-        model.addAttribute("locationStats", covid19DataService.getAllStats() );
+        /** Getting data to be shown at frontend */
+        List<LocationStats> allStats = covid19DataService.getAllStats();
+        int totalNoReportedCases = allStats.stream().mapToInt(LocationStats::getLatestTotalCases).sum();
+        int newNoReportedCases = allStats.stream().mapToInt(LocationStats::getDiffFromPrevDay).sum();
+
+        model.addAttribute("allStats", allStats );
         model.addAttribute("totalNoReportedCases", totalNoReportedCases );
         model.addAttribute("newNoReportedCases", newNoReportedCases);
 

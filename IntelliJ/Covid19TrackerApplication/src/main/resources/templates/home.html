@@ -32,16 +32,16 @@
 
     <table class="table">
         <tr>
-            <th>STATES</th>
             <th>COUNTRY</th>
+            <th>STATES</th>
             <th>TOTAL REPORTED CASES</th>
             <th>RECENT CHANGES</th>
         </tr>
-        <tr th:each="locationStat : ${locationStats}">
-            <td th:text="${locationStat.country}"></td>
-            <td th:text="${locationStat.state}"></td>
-            <td th:text="${locationStat.latestTotalCases}">0</td>
-            <td th:text="${locationStat.diffFromPrevDay}">0</td>
+        <tr th:each="Stat : ${allStats}">
+            <td th:text="${Stat.country}"></td>
+            <td th:text="${Stat.state}"></td>
+            <td th:text="${Stat.latestTotalCases}">0</td>
+            <td th:text="${Stat.diffFromPrevDay}">0</td>
         </tr>
     </table>
 </div>
