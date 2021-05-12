@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -50,17 +51,31 @@ public class AlienController {
     /** FROM HERE STARTS THE REST OPERATIONS */
 
     /** fetches all the aliens in JSON format */
-    @GetMapping("aliens")
+    @GetMapping("getAllAliens")
     @ResponseBody
     public List<Alien> getAliens(){
         return alienRepo.findAll();
     }
 
     /** Fetches an alien with specified aid in the URL in JSON format */
-    @GetMapping("alien/{aid}")
+    @GetMapping("getAlien/{aid}")
     @ResponseBody
     public Optional<Alien> getAlien(@PathVariable("aid") int aid){
         return alienRepo.findById(aid);
+    }
+
+    @GetMapping("addAlienREST/{aid}/{aName}/{tech}")
+    @ResponseBody
+    public Alien addAlien( @PathVariable("aid")int aid,
+                                     @PathVariable("aName") String aName,
+                                     @PathVariable("tech") String tech ){
+        Alien newAlien = new Alien();
+        newAlien.setAid(aid);
+        newAlien.setaName(aName);
+        newAlien.setTech(tech);
+
+        alienRepo.save(newAlien);
+        return newAlien;
     }
 
     @GetMapping("deleteAlien/{aid}")
