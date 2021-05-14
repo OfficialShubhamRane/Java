@@ -11,40 +11,40 @@
 
 <body>
 
-<div class = "container" >
+    <div class = "container" >
 
-<h1>Corona Virus Tracker Application</h1>
-<h3>This application reports total number of reported cases across the globe</h3>
+    <h1>Corona Virus Tracker Application</h1>
+    <h3>This application reports total number of reported cases across the globe</h3>
 
-<br>
-<div class="jumbotron">
-    <p class="lead">Total cases reported as of day:</p>
-    <h1 class="display-4" th:text="${totalNoReportedCases}"></h1>
-    <hr class="my-4">
-    <p>
-        <span> New cases reported since previous:</span>
-        <span th:text="${newNoReportedCases}"></span>
-    </p>
+    <br>
+    <div class="jumbotron">
+        <p class="lead">Total cases reported as of day:</p>
+        <h1 class="display-4" th:text="${totalNoReportedCases}"></h1>
+        <hr class="my-4">
+        <p>
+            <span> New cases reported since previous:</span>
+            <span th:text="${newNoReportedCases}"></span>
+        </p>
 
-</div>
-<br>
+    </div>
+    <br>
 
 
-    <table class="table">
-        <tr>
-            <th>COUNTRY</th>
-            <th>STATES</th>
-            <th>TOTAL REPORTED CASES</th>
-            <th>RECENT CHANGES</th>
-        </tr>
-        <tr th:each="Stat : ${allStats}">
-            <td th:text="${Stat.country}"></td>
-            <td th:text="${Stat.state}"></td>
-            <td th:text="${Stat.latestTotalCases}">0</td>
-            <td th:text="${Stat.diffFromPrevDay}">0</td>
-        </tr>
-    </table>
-</div>
+        <table class="table">
+            <tr>
+                <th>COUNTRY</th>
+                <th>STATES</th>
+                <th>TOTAL REPORTED CASES</th>
+                <th>RECENT CHANGES</th>
+            </tr>
+            <tr th:each="Stat : ${allStats}">
+                <td th:text="${Stat.country}"></td>
+                <td th:text="${Stat.state}"></td>
+                <td th:text="${Stat.latestTotalCases}">0</td>
+                <td th:text="${Stat.diffFromPrevDay}">0</td>
+            </tr>
+        </table>
+    </div>
 
 </body>
 
