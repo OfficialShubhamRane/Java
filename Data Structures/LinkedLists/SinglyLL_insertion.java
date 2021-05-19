@@ -3,14 +3,13 @@ public class SinglyLL_insertion {
     public static void main(String[] args) {
 
         Singly_Node head = new Singly_Node();
-        Singly_Node first = head;
 
         /** Declaring and initializing at same time in a loop */
         for (int i = 0; i < 10; i++) {
 
-            System.out.println(head + " " + first);
+            // System.out.println(head + " " + first);
             Singly_Node node = new Singly_Node(String.valueOf(i));
-            System.out.println(node + " " + i);
+            // System.out.println(node + " " + i);
             head.next = node;
             node = head;
 
