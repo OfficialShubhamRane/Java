@@ -23,28 +23,28 @@ public class AlienController {
         return "home.jsp";
     }
 
-    /** Adds new Alien to H2 DB using JpaRepository methods */
-    @GetMapping("addAlien")
-    public String addAlien(Alien alien){
-        alienRepo.save(alien);
-        return "home.jsp";
-    }
-
-    /** Fetches an Alien with specifies aid in JSON format
-     * @return */
-    @GetMapping("fetchAlien")
-    @ResponseBody
-    public Optional<Alien> fetchAlien(int aid ){
-        return alienRepo.findById(aid);
-    }
-
-    /** Deletes an alien with specified aid */
-    @GetMapping("deleteAlien")
-    public String deleteAlien(int aid){
-        Alien alien = alienRepo.findById(aid).orElse( new Alien() );
-        alienRepo.delete(alien);
-        return "home.jsp";
-    }
+//    /** Adds new Alien to H2 DB using JpaRepository methods */
+//    @GetMapping("addAlien")
+//    public String addAlien(Alien alien){
+//        alienRepo.save(alien);
+//        return "home.jsp";
+//    }
+//
+//    /** Fetches an Alien with specifies aid in JSON format
+//     * @return */
+//    @GetMapping("fetchAlien")
+//    @ResponseBody
+//    public Optional<Alien> fetchAlien(int aid ){
+//        return alienRepo.findById(aid);
+//    }
+//
+//    /** Deletes an alien with specified aid */
+//    @GetMapping("deleteAlien")
+//    public String deleteAlien(int aid){
+//        Alien alien = alienRepo.findById(aid).orElse( new Alien() );
+//        alienRepo.delete(alien);
+//        return "home.jsp";
+//    }
 
 
     /** FROM HERE STARTS THE REST OPERATIONS */
