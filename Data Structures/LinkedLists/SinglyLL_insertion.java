@@ -19,7 +19,6 @@ public class SinglyLL_insertion {
         Singly_Node newNode = new Singly_Node("10");
         head.next = newNode;
         head = newNode;
-
         System.out.println(head.data);
 
     }
