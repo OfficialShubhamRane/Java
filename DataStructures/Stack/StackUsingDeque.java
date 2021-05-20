@@ -8,6 +8,9 @@ public class StackUsingDeque {
 
     public static void main(String[] args) {
 
+        /**
+         * By default capacity of deque is 16
+         */
         Deque<String> dequeStack = new ArrayDeque();
 
         dequeStack.push("1");
