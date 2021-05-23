@@ -3,6 +3,7 @@ public class Into_to_threading {
     public static void main(String[] args) {
         A obj_A = new A();
         B obj_B = new B();
+
         Thread x = new Thread(obj_B);
 
         obj_A.start();
