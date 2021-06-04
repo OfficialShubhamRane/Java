@@ -2,6 +2,7 @@ package com.example.amigoscodespringboot.Student;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Table
@@ -20,24 +21,23 @@ public class StudentModel {
     private Long id;
     private String fullName;
     private LocalDate dob;
+    @Transient
     private Integer age;
     private String email;
 
     public StudentModel() {
     }
 
-    public StudentModel(Long id, String fullName, LocalDate dob, Integer age, String email) {
+    public StudentModel(Long id, String fullName, LocalDate dob, String email) {
         this.id = id;
         this.fullName = fullName;
         this.dob = dob;
-        this.age = age;
         this.email = email;
     }
 
-    public StudentModel(String fullName, LocalDate dob, Integer age, String email) {
+    public StudentModel(String fullName, LocalDate dob, String email) {
         this.fullName = fullName;
         this.dob = dob;
-        this.age = age;
         this.email = email;
     }
 
@@ -66,7 +66,7 @@ public class StudentModel {
     }
 
     public Integer getAge() {
-        return age;
+        return Period.between(this.dob, LocalDate.now()).getYears();
     }
 
     public void setAge(Integer age) {

@@ -9,32 +9,27 @@ import java.util.List;
 @Service
 public class StudentService {
 
-    @Autowired
-    StudentRepo studentRepo;
+    private final StudentRepo studentRepo;
 
+    public StudentService(StudentRepo studentRepo) {
+        this.studentRepo = studentRepo;
+    }
+
+    /** Returns data from database */
     public List<StudentModel> getStudent(){
+        return studentRepo.findAll();
+    }
 
+    /** Saves Data into Database */
+    public void saveStudents(){
         studentRepo.save(
                 new StudentModel(
                         1L,
                         "Shubham Rane",
                         LocalDate.of(1997, 9, 29),
-                        24,
                         "xyz.com"
                 )
         );
-
-        return List.of(
-                new StudentModel(
-                        1L,
-                        "Shubham Rane",
-                        LocalDate.of(1997, 9, 29),
-                        24,
-                        "xyz.com"
-                )
-        );
-
     }
-
 
 }
