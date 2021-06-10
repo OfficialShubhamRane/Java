@@ -10,6 +10,7 @@ import java.util.Optional;
 @Service
 public class StudentService {
 
+    @Autowired
     private final StudentRepo studentRepo;
 
     public StudentService(StudentRepo studentRepo) {
@@ -35,17 +36,17 @@ public class StudentService {
                 LocalDate.of(1997, 9, 29),
                 "xyz.com"
         );
-        studentRepo.save(studentModel);
+//        studentRepo.save(studentModel);
 
         /** To check if email already exists are throw an exception */
+        /**
         studentModel = new StudentModel(
                 "Shubham Rane",
                 LocalDate.of(1997, 9, 29),
                 "xyz.com"
         );
-
+         */
         Optional<StudentModel> studentByEmail = studentRepo.findStudentByEmail(studentModel.getEmail());
-
         if(studentByEmail.isPresent()){
             throw new IllegalStateException("Email taken");
         }

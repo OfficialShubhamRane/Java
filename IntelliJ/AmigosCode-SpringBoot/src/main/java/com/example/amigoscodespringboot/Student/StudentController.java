@@ -1,10 +1,7 @@
 package com.example.amigoscodespringboot.Student;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,7 +29,8 @@ public class StudentController {
     /** Calls business login to save student data*/
     @GetMapping("/api/v1/saveStudents")
     public void saveStudents(){
+        System.out.println("Controller : entered saveStudent");
         studentService.saveStudents();
+        System.out.println("Controller : exiting saveStudent");
     }
-
 }
