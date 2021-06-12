@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MovieInfoService_Controller {
 
     @GetMapping("/{movieID}")
-    public MovieDetails_Model getMovieDetails(@PathVariable("movieID") Integer movieID){
+    public MovieDetails_Model getMovieDetails(@PathVariable("movieID") String movieID){
 
         MovieDetails_Model demoMovieDetails_object = new MovieDetails_Model();
         demoMovieDetails_object.setMovieID(movieID);

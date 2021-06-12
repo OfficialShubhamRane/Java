@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class MovieDetails_Model {
 
-    private Integer movieID;
+    private String movieID;
     private String movieName;
     private String movieDetails;
 }
