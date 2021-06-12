@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,18 +24,38 @@ public class MovieCatalogService_Controller {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private WebClient.Builder webClientBuilder;
+
     @GetMapping("/{userID}")
     public List<MovieCatalogItems_Model> getMovieCatalog(@PathVariable("userID") String userID){
 
         /** Get all the rated movies IDs */
         RatingsDataList_Model ratingObject = restTemplate.getForObject(
-                "http://localhost:8083/api/getRatingsData/users/"+userID,
-                RatingsDataList_Model.class);
+                "http://movie-rating-service/api/getRatingsData/users/" +userID,
+                            RatingsDataList_Model.class);
+
+//        RatingsDataList_Model ratingObject = webClientBuilder.build()
+//                .get()
+//                .uri("http://movie-rating-service/api/getRatingsData/users/" +userID)
+//                .retrieve()
+//                .bodyToMono(RatingsDataList_Model.class)
+//                .block();
+
 
         return ratingObject.getRatingsData_List().stream().map(rating -> {
             /** Get their name and Description from MovieInfoService  */
             MovieDetails_Model movieObject = restTemplate
-                    .getForObject("http://localhost:8082/api/getMovieInfo/" + rating.getMovieID(), MovieDetails_Model.class);
+                    .getForObject("http://movie-info-service/api/getMovieInfo/" + rating.getMovieID(),
+                            MovieDetails_Model.class);
+
+//            MovieDetails_Model movieObject = webClientBuilder.build()
+//                    .get()
+//                    .uri("http://movie-info-service/api/getMovieInfo/" + rating.getMovieID())
+//                    .retrieve()
+//                    .bodyToMono(MovieDetails_Model.class)
+//                    .block();
+
 
             /** Combine it all together */
             return new MovieCatalogItems_Model(
