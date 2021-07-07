@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.Currency;
 import java.util.List;
 
 @RestController
@@ -21,7 +20,6 @@ public class ProductService_Controller {
             @PathVariable() String currency,
             @PathVariable() Long productId){
 
-        System.out.println(productId);
         List<Product_Model> productList = new ArrayList<>();
         populateProductList(productList);
 
