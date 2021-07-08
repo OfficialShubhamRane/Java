@@ -12,8 +12,16 @@ public class User {
     private UUID uuid;
     private String fName;
     private String lName;
-    private Date birthDate;
     private String contactNo;
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public User(){
         this.uuid = UUID.randomUUID();
@@ -41,14 +49,6 @@ public class User {
 
     public void setlName(String lName) {
         this.lName = lName;
-    }
-
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
     }
 
     public String getContactNo() {

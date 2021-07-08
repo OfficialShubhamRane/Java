@@ -11,12 +11,24 @@
     <h4> Fill up the below form to complete the registration</h4>
     <div>
         <%--@elvariable id="user" type="com.example.jsp_tutorial.model.User"--%>
-        <form:form action="register" method="post" modelAttribute="user">
-            <form:label path="fName">First Name:</form:label>
-            <form:input path="fName"/>
+        <div align="center">
+            <form:form action="register" method="post" modelAttribute="user" >
+                <form:label path="fName">First Name:</form:label>
+                <form:input path="fName"/>
 
-            <form:button>Register</form:button>
-        </form:form>
+                <form:label path="lName">Last Name:</form:label>
+                <form:input path="lName"/>
+
+                <form:label path="contactNo">Personal Contact:</form:label>
+                <form:input path="contactNo"/>
+
+                <form:label path="email">Email:</form:label>
+                <form:input path="email"/>
+
+                <form:button>Register</form:button>
+            </form:form>
+        </div>
+
     </div>
 </body>
 </html>
