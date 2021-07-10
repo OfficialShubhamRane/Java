@@ -8,8 +8,7 @@
 </head>
 <body>
     <h2>Successful Registration Details</h2>
-    <span>First Name: </span><span>${user.fName}</span>
-    <span>Last Name: </span><span>${user.lName}</span>
+    <span>First Name: </span><span>${user.fullName}</span>
     <span>Contact: </span><span>${user.contactNo}</span>
     <span>Email: </span><span>${user.email}</span>
 </body>

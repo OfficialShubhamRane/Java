@@ -2,7 +2,6 @@ package com.example.jsp_tutorial.model;
 
 import lombok.*;
 
-import java.util.Date;
 import java.util.UUID;
 
 @Data
@@ -10,19 +9,18 @@ import java.util.UUID;
 public class User {
 
     private UUID uuid;
-    private String fName;
-    private String lName;
+    private String fullName;
+    private String password;
+    private String confirmPassword;
     private String contactNo;
     private String email;
+    private Character gender;
+    private String birthdate;
+    private String highestEducation;
+    private Boolean isMarried;
+    private String Note;
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
+    /** Constructor for UUID */
     public User(){
         this.uuid = UUID.randomUUID();
     }
@@ -36,19 +34,19 @@ public class User {
     }
 
     public String getfName() {
-        return fName;
+        return fullName;
     }
 
     public void setfName(String fName) {
-        this.fName = fName;
+        this.fullName = fName;
     }
 
-    public String getlName() {
-        return lName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setlName(String lName) {
-        this.lName = lName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getContactNo() {
@@ -58,4 +56,45 @@ public class User {
     public void setContactNo(String contactNo) {
         this.contactNo = contactNo;
     }
+
+    public Character getGender() {
+        return gender;
+    }
+
+    public void setGender(Character gender) {
+        this.gender = gender;
+    }
+
+    public String getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(String birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public String getProfession() {
+        return highestEducation;
+    }
+
+    public void setProfession(String profession) {
+        this.highestEducation = profession;
+    }
+
+    public Boolean getMarried() {
+        return isMarried;
+    }
+
+    public void setMarried(Boolean married) {
+        isMarried = married;
+    }
+
+    public String getNote() {
+        return Note;
+    }
+
+    public void setNote(String note) {
+        Note = note;
+    }
+
 }

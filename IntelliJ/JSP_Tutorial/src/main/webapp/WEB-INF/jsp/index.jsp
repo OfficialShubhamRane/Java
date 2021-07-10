@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <h2 align="center">Index Home Page</h2>
+    <h2>Index Home Page</h2>
     <a href="${pageContext.request.contextPath}/register" >Click here for registration</a>
 
 </body>
