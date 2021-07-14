@@ -8,6 +8,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * This application handles simple hello <person_name> GET requests
+ * Input parameters are accepted as a Path variable
+ * Output is returned as String
+ * */
 @SpringBootApplication
 public class HelloWorldApplication {
 
@@ -22,11 +27,11 @@ public class HelloWorldApplication {
 class HelloWorld_controller{
 
     @Autowired
-    HelloWorld_service helloWorldService;
+    HelloWorld_service helloWorld_service;
 
     @RequestMapping(value = {"/","/{name}", "/hello/{name}"}, method = RequestMethod.GET)
     public String getHelloWorld(@PathVariable(required = false) String name){
-        return helloWorldService.getHelloWorld(name);
+        return helloWorld_service.getHelloWorld(name);
     }
 }
 
