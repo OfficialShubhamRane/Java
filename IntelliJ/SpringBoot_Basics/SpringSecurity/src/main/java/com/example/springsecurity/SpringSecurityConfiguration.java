@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    /** Authentication */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
@@ -29,12 +30,13 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return NoOpPasswordEncoder.getInstance();
     }
 
+    /** Authorization */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/user").hasRole("user")
                 .antMatchers("/admin").hasRole("admin")
+                .antMatchers("/user").hasAnyRole("user","admin")
+                .antMatchers("/").permitAll()
                 .and().formLogin();
     }
 
