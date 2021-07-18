@@ -25,6 +25,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .roles("admin");
     }
 
+    /** Password encoder is part of Authentication as Spring Security does not allow clear password storage */
     @Bean
     public PasswordEncoder getPasswordEncoder(){
         return NoOpPasswordEncoder.getInstance();
