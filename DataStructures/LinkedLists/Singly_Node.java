@@ -3,6 +3,7 @@ public class Singly_Node {
     String data;
     Singly_Node next;
 
+    /** Default Constructor */
     public Singly_Node() {
         this.next = null;
     }
