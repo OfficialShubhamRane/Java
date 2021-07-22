@@ -1,3 +1,5 @@
+import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
+
 public class LL_refresher {
 
     // returns if empty
@@ -34,6 +36,23 @@ public class LL_refresher {
 
     }
 
+    // SinglyLL insertions
+    private void insert(int value, Node head) {
+
+        Node temp_head = head;
+        Node tobeInserted = new Node(value);
+
+        while (temp_head.next != null) {
+            if (temp_head.data <= value && temp_head.next.data > value) {
+                tobeInserted.next = temp_head.next;
+                temp_head.next = tobeInserted;
+                break;
+            }
+            temp_head = temp_head.next;
+        }
+
+    }
+
     // SignlyLL deletion
     private void delete(Node head, int target) {
 
@@ -64,11 +83,11 @@ public class LL_refresher {
         LL_refresher obj = new LL_refresher();
         Node head = new Node();
 
-        System.out.println(obj.isEmpty(head));
+        System.out.println("Is list empty: " + obj.isEmpty(head));
         obj.populate(head);
-        System.out.println(obj.isEmpty(head));
-        obj.delete(head, 60);
+        obj.delete(head, 10);
         System.out.println("size of the list is: " + obj.size(head));
+        obj.insert(10, head);
         obj.traverse(head);
 
     }
