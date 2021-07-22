@@ -1,25 +1,44 @@
 public class LL_refresher {
 
-    public static void main(String[] args) {
+    // returns if empty
+    private boolean isEmpty(Node head) {
+        if (head.next == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-        Node head = new Node(10);
+    // Return size()
+    private int size(Node head) {
+        int count = 0;
+        while (head.next != null) {
+            count++;
+            head = head.next;
+        }
+        return count;
+    }
+
+    // SignlyLL populate
+    private void populate(Node head) {
+
         Node temp_head = head;
 
-        // SinglyLL insertion
-        while (temp_head.data <= 100) {
+        while (temp_head.data == null || temp_head.data <= 100) {
+            if (temp_head.data == null) {
+                temp_head.data = 0;
+            }
             temp_head.next = new Node(temp_head.data + 10);
             temp_head = temp_head.next;
         }
-        temp_head = head; // reseting temp_head for future operations and reuse
 
-        // // Traversal
-        // while (head.next != null) {
-        // System.out.println(head.data);
-        // head = head.next;
-        // }
+    }
 
-        // SignlyLL deletion
-        int target = 40;
+    // SignlyLL deletion
+    private void delete(Node head, int target) {
+
+        Node temp_head = head;
+
         while (temp_head.next != null) {
 
             if (temp_head.next.data == target) {
@@ -30,12 +49,27 @@ public class LL_refresher {
             temp_head = temp_head.next;
 
         }
+    }
 
-        // Traversal
+    // Traverse
+    public void traverse(Node head) {
         while (head.next != null) {
             System.out.println(head.data);
             head = head.next;
         }
+    }
+
+    public static void main(String[] args) {
+
+        LL_refresher obj = new LL_refresher();
+        Node head = new Node();
+
+        System.out.println(obj.isEmpty(head));
+        obj.populate(head);
+        System.out.println(obj.isEmpty(head));
+        obj.delete(head, 60);
+        System.out.println("size of the list is: " + obj.size(head));
+        obj.traverse(head);
 
     }
 }
