@@ -1,4 +1,4 @@
-import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
+import jdk.javadoc.doclet.Taglet;
 
 public class LL_refresher {
 
@@ -71,11 +71,32 @@ public class LL_refresher {
     }
 
     // Traverse
-    public void traverse(Node head) {
-        while (head.next != null) {
-            System.out.println(head.data);
-            head = head.next;
+    private void traverse(Node head) {
+
+        Node temp_head = head;
+        while (temp_head.next != null) {
+            System.out.println(temp_head.data);
+            temp_head = temp_head.next;
         }
+
+    }
+
+    private int search(Node head, int target) {
+        Node temp_head = head;
+        int index = -1;
+        while (temp_head.next != null) {
+
+            index++;
+
+            if (temp_head.data == target) {
+                return index;
+            } else {
+                temp_head = temp_head.next;
+            }
+
+        }
+
+        return -1;
     }
 
     public static void main(String[] args) {
@@ -86,9 +107,11 @@ public class LL_refresher {
         System.out.println("Is list empty: " + obj.isEmpty(head));
         obj.populate(head);
         obj.delete(head, 10);
-        System.out.println("size of the list is: " + obj.size(head));
+        System.out.println("Size of the list is: " + obj.size(head));
         obj.insert(10, head);
         obj.traverse(head);
+        int target = 10;
+        System.out.println("Target: " + target + " is present at: " + obj.search(head, target));
 
     }
 }
