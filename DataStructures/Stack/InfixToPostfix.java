@@ -4,7 +4,7 @@ public class InfixToPostfix {
 
     public static void main(String[] args) {
 
-        String input = "a+b-c";
+        String input = "a*b-c";
         InfixToPostfix obj = new InfixToPostfix();
         String output = obj.covnertInfixToPostfix(input);
         System.out.println(output);
@@ -26,7 +26,15 @@ public class InfixToPostfix {
             if (Character.isLetterOrDigit(currentCharacter)) {
                 output += currentCharacter;
             } else {
-                operatorStack.add(currentCharacter);
+                // operatorStack.add(currentCharacter);
+
+                if (!operatorStack.empty()
+                        && operatorValuator(currentCharacter) < operatorValuator(operatorStack.peek())) {
+                    output += operatorStack.pop();
+                    operatorStack.add(currentCharacter);
+                } else {
+                    operatorStack.add(currentCharacter);
+                }
 
             }
             i++;
@@ -39,4 +47,22 @@ public class InfixToPostfix {
         return output;
     }
 
+    private int operatorValuator(char currentChar) {
+        int value = 0;
+        switch (currentChar) {
+            case '*':
+                value = 2;
+                break;
+            case '/':
+                value = 2;
+                break;
+            case '-':
+                value = 1;
+                break;
+            case '+':
+                value = 1;
+                break;
+        }
+        return value;
+    }
 }
