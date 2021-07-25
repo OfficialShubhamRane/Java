@@ -2,7 +2,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 /**
- * StackUsingDeque
+ * Stack Using Deque
  */
 public class StackUsingDeque {
 
@@ -30,7 +30,7 @@ public class StackUsingDeque {
         System.out.println(dequeStack.size());
 
         System.out.println(dequeStack.toString());
-        ;
+
     }
 
 }

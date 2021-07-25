@@ -46,7 +46,7 @@ public class Stack_intro {
         /**
          * Peek returns top most element on stack
          */
-        System.out.println("Popped: ".concat(stack.peek()));
+        System.out.println("Peeked: ".concat(stack.peek()));
 
         /**
          * isCapacity method is from vector class and returns allocated capacity to the
@@ -54,5 +54,8 @@ public class Stack_intro {
          * are pushed in the stack
          */
         System.out.println("Capacity: ".concat(String.valueOf(stack.capacity())));
+
+        /** Current size of a Stack */
+        System.out.println("No of elemetns in stack now: " + stack.size());
     }
 }
