@@ -4,7 +4,7 @@ public class InfixToPostfix {
 
     public static void main(String[] args) {
 
-        String input = "a*b-c";
+        String input = "a+b/c^d*e";
         InfixToPostfix obj = new InfixToPostfix();
         String output = obj.covnertInfixToPostfix(input);
         System.out.println(output);
@@ -50,6 +50,9 @@ public class InfixToPostfix {
     private int operatorValuator(char currentChar) {
         int value = 0;
         switch (currentChar) {
+            case '^':
+                value = 3;
+                break;
             case '*':
                 value = 2;
                 break;
