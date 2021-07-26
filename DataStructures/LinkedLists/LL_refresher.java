@@ -1,8 +1,6 @@
-import jdk.javadoc.doclet.Taglet;
-
 public class LL_refresher {
 
-    // returns if empty
+    // Returns if empty
     private boolean isEmpty(Node head) {
         if (head.next == null) {
             return true;
@@ -99,19 +97,38 @@ public class LL_refresher {
         return -1;
     }
 
+    private Node reverseLL(Node head) {
+        Node current = head;
+        Node prev = null;
+        Node next = null;
+
+        while (current != null){
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        return prev;
+
+    }
+
     public static void main(String[] args) {
 
         LL_refresher obj = new LL_refresher();
         Node head = new Node();
 
-        System.out.println("Is list empty: " + obj.isEmpty(head));
+        // System.out.println("Is list empty: " + obj.isEmpty(head));
         obj.populate(head);
-        obj.delete(head, 10);
-        System.out.println("Size of the list is: " + obj.size(head));
-        obj.insert(10, head);
-        obj.traverse(head);
-        int target = 10;
-        System.out.println("Target: " + target + " is present at: " + obj.search(head, target));
+        // obj.delete(head, 10);
+        // System.out.println("Size of the list is: " + obj.size(head));
+        // obj.insert(10, head);
 
+        obj.traverse(head);
+        // int target = 10;
+        // System.out.println("Target: " + target + " is present at: " + obj.search(head, target));
+
+        obj.traverse(obj.reverseLL(head));
+ 
     }
+
 }
