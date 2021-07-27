@@ -29,7 +29,7 @@ class Tree_Node{
     }
 
     public void insert(int value) {
-        
+        System.out.println(data);
         if( value < data ){ 
             if( left == null){
                 left = new Tree_Node(value);
@@ -49,7 +49,6 @@ class Tree_Node{
 
     public void inorderTraversal(){
         
-
         if(left != null){
             left.inorderTraversal();
         }
@@ -70,11 +69,13 @@ class Intro_To_Tree{
         Tree_Node obj = new Tree_Node(100);
         obj.insert(10);
         obj.insert(20);
-        obj.insert(30);
-        obj.insert(40);
-        obj.insert(50);
-        obj.contains(30);
-        obj.inorderTraversal();
+        obj.insert(9);
+        obj.insert(140);
+        obj.insert(150);
+
+        // obj.contains(20);
+
+        // obj.inorderTraversal();
         
     }
 

@@ -1,6 +1,6 @@
 public class Singly_Node {
 
-    String data;
+    Object data;
     Singly_Node next;
 
     /** Default Constructor */
@@ -9,7 +9,7 @@ public class Singly_Node {
     }
 
     /** Parameterized Constructor */
-    public Singly_Node(String data) {
+    public Singly_Node(Object data) {
 
         this.data = data;
         this.next = null;
