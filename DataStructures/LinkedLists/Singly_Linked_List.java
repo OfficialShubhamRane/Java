@@ -3,7 +3,7 @@ public class Singly_Linked_List {
     Singly_Node head;
 
     /** Appending node in the end */
-    public void append( Object value){
+    public void append( int value){
 
         Singly_Node current = head;
         if(head == null){
@@ -18,7 +18,7 @@ public class Singly_Linked_List {
     }
 
     /** Prepending node in the start */
-    public void prepend(Object value){
+    public void prepend(int value){
         Singly_Node current;
     
         current = new Singly_Node( value );
@@ -28,7 +28,7 @@ public class Singly_Linked_List {
     }
 
     /** Deleting node with a particular value */
-    public void deleteWithValue(Object value){
+    public void deleteWithValue(int value){
         
         if(head == null){return ;}
 
@@ -49,6 +49,9 @@ public class Singly_Linked_List {
 
     public static void main(String[] args) {
         Singly_Node head = new Singly_Node(10);
+
+        head.append(10);
+
         
     }
 
