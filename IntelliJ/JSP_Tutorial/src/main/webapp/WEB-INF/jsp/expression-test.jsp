@@ -13,9 +13,13 @@
 </head>
 <body>
 
+<h2> JSP Expression, Scriplets, Declarations etc.</h2><br/>
+
+<%--    JSP Expression --%>
     <%= new java.util.Date()  %>
     <br>
 
+<%--JSP Scriplet--%>
     <%
         for(int i=0; i<5; i++){
             out.print( "Hello: " + i );
@@ -23,17 +27,26 @@
     %>
     <br>
 
+<%-- JSP Declaration --%>
     <%! public String makeLower(String data){
         return data.toLowerCase();
     }%>
+<%-- Using in page Declaration --%>
     <%=
         makeLower("MAKE ME LOWER")
     %>
     <br>
 
+<%-- Using imported Declaration--%>
     <%=
         makeLower("MAKE ME LOWER")
     %>
+    <br>
 
+<h2> Built In Objects </h2><br/>
+    Request user Agent <%= request.getHeader("User-Agent") %>
+<br>
+    Request language: <%= request.getLocale() %>
+<br>
 </body>
 </html>
