@@ -38,4 +38,9 @@ public class HomeController {
         return "register_successful";
     }
 
+    @GetMapping("expression-test")
+    public String expressionTest(){
+        return "expression-test";
+    }
+
 }
