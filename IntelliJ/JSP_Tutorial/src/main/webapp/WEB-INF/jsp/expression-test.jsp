@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.example.jsp_tutorial.controller.ExpressionController" %>
 <html>
 <head>
     <title>Expression Test</title>
@@ -31,7 +32,7 @@
     <br>
 
     <%=
-        com.example.jsp_tutorial.controller.ExpressionController.makeLower("MAKE ME LOWER")
+        makeLower("MAKE ME LOWER")
     %>
 
 </body>
