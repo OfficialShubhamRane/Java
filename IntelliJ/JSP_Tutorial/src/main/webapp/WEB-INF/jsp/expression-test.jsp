@@ -12,12 +12,14 @@
     <title>Expression Test</title>
 </head>
 <body>
+<%-- importing JSP header --%>
+<jsp:include page="header-v1.jsp" />
 
 <h2> JSP Expression, Scriplets, Declarations etc.</h2><br/>
 
 <%--    JSP Expression --%>
     <%= new java.util.Date()  %>
-    <br>
+    <br/>
 
 <%--JSP Scriplet--%>
     <%
@@ -25,7 +27,7 @@
             out.print( "Hello: " + i );
         }
     %>
-    <br>
+    <br/>
 
 <%-- JSP Declaration --%>
     <%! public String makeLower(String data){
@@ -35,18 +37,25 @@
     <%=
         makeLower("MAKE ME LOWER")
     %>
-    <br>
+    <br/>
 
 <%-- Using imported Declaration--%>
     <%=
         makeLower("MAKE ME LOWER")
     %>
-    <br>
+    <br/>
 
+<%-- Accessing build in objecs --%>
 <h2> Built In Objects </h2><br/>
-    Request user Agent <%= request.getHeader("User-Agent") %>
-<br>
-    Request language: <%= request.getLocale() %>
-<br>
+    Request user Agent <%= request.getHeader("User-Agent") %><br/>
+    Request language: <%= request.getLocale() %><br/>
+
+Form submitted by: <br/>
+<%= request.getParameter("firstName") %>
+${param.lastName} <br/>
+
+<%-- importing JSP footer--%>
+<jsp:include page="footer-v1.jsp" />
+
 </body>
 </html>

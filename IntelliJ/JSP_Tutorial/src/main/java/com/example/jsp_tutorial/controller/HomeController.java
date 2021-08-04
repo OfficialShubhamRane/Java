@@ -38,9 +38,15 @@ public class HomeController {
         return "register_successful";
     }
 
-    @GetMapping("expression-test")
+    @GetMapping("/expression-test")
     public String expressionTest(){
         return "expression-test";
     }
+
+    @GetMapping("/form")
+    public String form(){
+        return "form";
+    }
+
 
 }
