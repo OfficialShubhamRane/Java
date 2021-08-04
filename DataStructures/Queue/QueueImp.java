@@ -37,6 +37,21 @@ public class QueueImp {
     public boolean isEmpty(){
         return head == null;
     }
+
+    public void reverseQueue(){
+        QueueNode prev = null;
+        QueueNode next = null;
+        QueueNode current = head;
+
+        while (current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        head = prev;
+        
+    }
     
     public static void main(String[] args) {
         QueueImp obj = new QueueImp();
@@ -46,7 +61,8 @@ public class QueueImp {
         obj.push(30);
         obj.push(40);
         obj.push(50);
-        System.out.println( obj.peek());
+        // System.out.println( obj.peek());
+        obj.reverseQueue();
         System.out.println(obj.pop());
         System.out.println(obj.pop());
         System.out.println(obj.pop());
