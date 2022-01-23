@@ -1,0 +1,2327 @@
+#!/usr/bin/perl -I.
+#
+# Project: Pharma Logistics (Libertyville, IL)
+# Device: pl-trk1 64-bit tracking controller inside of CP-1 panel
+#
+# io.pl - I/O definitions for a racks of ECAT I/O inside of CP1 panel
+#
+# Rack 1 starting ECAT address is 0
+
+# 04/03/2020 rpp: initial version
+#===========================================================================
+
+#========================================================
+# ECAT I/O rack 1 inside of the control panel CP-1
+#========================================================
+trakbase::message( 'i/o definitions for ECAT I/O rack 1 inside CP-1' );
+
+# --- CP-1 (rack 1) slot 0 (addr 0) EK1100 coupler
+ethercat::add( 'EK1100', {prefix=>''} );
+
+# --- CP-1 (rack 1) slot 1 (addr 1) EL1018
+ethercat::add( 'EL1018', {prefix=>'r1m1'} );
+in( 'r1m1i1', 'cp1-1ss',  'CP1 control power on/off', {'report'=>'both'} );
+in( 'r1m1i2', 'cp1-espb', 'CP1 panel e-stop pb, 1 - pressed', {report=>both} );
+in( 'r1m1i3', 'cp1-1pb',  'CP1 panel start pb', {'edge'=>'dead_long', 'report'=>'both'} );
+in( 'r1m1i4', 'cp1-2pb',  'CP1 panel stop pb', {'edge'=>'dead_long', 'report'=>'both'} );
+in( 'r1m1i5', 'cp1-3pb',  'CP1 panel reset pb, 1 - pressed', {'edge'=>'dead_long','report'=>'both'} );
+in( 'r1m1i6', 'cp1-cr1',  'CP1 control pwr relay', {'edge'=>'fault', 'report'=>'both'} );
+in( 'r1m1i7', 'cp1-mcr1', 'CP1 master ctrl relay', {'edge'=>'fault', 'report'=>'both'} );
+in( 'r1m1i8', 'cp1-es1',  'CP1 e-stop relay 1', {edge=>fault,report=>both} );
+
+# --- CP-1 (rack 1) slot 3 (addr 2) EL1018
+ethercat::add( 'EL1018', {prefix=>'r1m2'} );
+in( 'r1m2i1', 'cr12002', 'cr12002', {report=>both});
+in( 'r1m2i2', 'cr12006', 'cr12006', {report=>both});
+#    r1m2i3  spare
+#    r1m2i4  spare
+#    r1m2i5  spare
+#    r1m2i6  spare
+#    r1m2i7  spare
+#    r1m2i8  spare
+
+# --- CP-1 (rack 1) slot 3 (addr 3) EL1018
+ethercat::add( 'EL1018', {prefix=>'r1m3'} );
+#    r1m3i1  spare
+#    r1m3i2  spare
+#    r1m3i3  spare
+#    r1m3i4  spare
+#    r1m2i5  spare
+#    r1m2i6  spare
+#    r1m2i7  spare
+#    r1m2i8  spare
+
+# --- CP-1 (rack 1) slot 4 (addr 4) EL1018
+ethercat::add( 'EL1018', {prefix=>'r1m4'} );
+#    r1m4i1  spare
+#    r1m4i2  spare
+#    r1m4i3  spare
+#    r1m4i4  spare
+#    r1m4i5  spare
+#    r1m4i6  spare
+#    r1m4i7  spare
+#    r1m4i8  spare
+
+# --- CP-1 (rack 1) slot 5 (addr 5) EL2008
+ethercat::add( 'EL2008', {prefix=>'r1m5'} );
+out( 'r1m5o1', 'cp1hrn-1', 'horn hrn-1' );
+out( 'r1m5o2', 'cp1bcn-3', 'red light stack beacon bcn-1' );
+out( 'r1m5o3', 'cp1bcn-2', 'amber light stack beacon bcn-1' );
+out( 'r1m5o4', 'cp1bcn-1', 'green light stack beacon bcn-1' );
+out( 'r1m5o5', 'cp1-1pbpl', 'CP1 panel start pb light' );
+out( 'r1m5o6', 'cp1-3pbpl', 'CP1 panel reset pb light' ); 
+#    r1m5o7  spare
+#    r1m5o8  spare
+
+# --- CP-1 (rack 1) slot 6 EL9100 feed terminal
+
+# --- CP1 (rack 1) slot 7 (addr 6) EL2008
+ethercat::add( 'EL2008', {prefix=>'r1m7'} );
+out( 'r1m7o1', 'cr14050', 'spare ps 1', {report=>both} );
+out( 'r1m7o2', 'cr14051', 'spare ps 2', {report=>both} );
+#     r1m7o3  spare
+#     r1m7o4  spare
+#     r1m7o5  spare
+#     r1m7o6  spare
+#     r1m7o7  spare
+#     r1m7o8  spare
+
+# --- CP1 (rack 1) slot 8 (addr 7) EL2008
+ethercat::add( 'EL2008', {prefix=>'r1m8'} );
+out( 'r1m8o1', 'cr14059', 'ps100B, ps102D', {report=>both} );
+out( 'r1m8o2', 'cr14060', 'ps104H, ps106F', {report=>both} );
+out( 'r1m8o3', 'cr14061', 'ps108F, ps110H', {report=>both} );
+out( 'r1m8o4', 'cr14062', 'ps112A, ps114A', {report=>both} );
+out( 'r1m8o5', 'cr14063', 'ps116L, ps118D', {report=>both} );
+out( 'r1m8o6', 'cr14064', 'ps120D, ps122E', {report=>both} );
+out( 'r1m8o7', 'cr14065', 'ps124E, ps126A', {report=>both} );
+out( 'r1m8o8', 'cr14066', 'ps128F', {report=>both} );
+
+# --- CP1 (rack 1) slot 9 (addr 8) EL2008
+ethercat::add( 'EL2008', {prefix=>'r1m9'} );
+out( 'r1m9o1', 'cr14200', 'ps90D, ps92E', {report=>both} );
+out( 'r1m9o2', 'cr14201', 'ps94C, ps96B', {report=>both} );
+#     r1m9o3  spare
+#     r1m9o4  spare
+#     r1m9o5  spare
+#     r1m9o6  spare
+#     r1m9o7  spare
+#     r1m9o8  spare
+
+# --- CP1 (rack 1) slot 10 (addr 9) EL2008
+ethercat::add( 'EL2008', {prefix=>'r1m10'} );
+#     r1m10o1  spare
+#     r1m10o2  spare
+#     r1m10o3  spare
+#     r1m10o4  spare
+#     r1m10o5  spare
+#     r1m10o6  spare
+#     r1m10o7  spare
+#     r1m10o8  spare
+
+#========================================================
+# IBE (idlinx) I/O modules
+#========================================================
+trakbase::message( 'i/o definitions for IBE (idlinx) I/O' );
+
+# --- ib100A-1 idlinx module at .11
+linx::add( 'ib100A-1', {'ip'=>'192.168.1.11', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib100A-1_sns_a', 'pe100A-1', 'pe100A-1', {dir=>'rev',report=>'both'} ); # FIELD CHANGE switched with in b
+#in( 'ib100A-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib100A-1_sns_b', 'pe100A-2', 'pe100A-2', {dir=>'rev',report=>'both'} ); # FIELD CHANGE switched with in a
+#in( 'ib100A-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr100A-1', 'ib100A-1', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} ); # FIELD CHANGE switched with b
+idlinx_motor( 'mdr100A-2', 'ib100A-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} ); # FIELD CHANGE switched with a
+in( 'ib100A-1_in1', 'pe100A-1A', 'start eye pe100A-1A', {dir=>'rev'}  );
+in( 'ib100A-1_in2', 'peint90A-2', 'line full peint90A-1', {edge=>'full'});
+in( 'ib100A-1_in3', 'psint96B-1', 'power supply ok psint96B-1', {edge=>'fault'});
+out( 'ib100A-1_out1', 'relint96D-1', 'relint96D-1');
+#out( 'ib100A-1_out2', '', '');
+out( 'ib100A-1_out3', 'stopint89A-1', 'stopint89A-1');
+#out( 'ib100A-1_out4', '', '');
+#out( 'ib100A-1_out5', '', '');
+
+# --- ib100B-1 idlinx module at .12
+linx::add( 'ib100B-1', {'ip'=>'192.168.1.12', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib100B-1_sns_a', 'pe100B-1', 'pe100B-1', {dir=>'rev',report=>'both'} );
+#in( 'ib100B-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+# in( 'ib100B-1_sns_b', 'pe100B-2', 'pe100B-2', {dir=>'rev',report=>'both'} ); # FIELD CHANGE switched to card 100B-2
+#in( 'ib100B-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr100B-1', 'ib100B-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+# idlinx_motor( 'mdr100B-2', 'ib100B-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} ); # FIELD CHANGE switched to card 100B-2
+in( 'ib100B-1_in1', 'psint90D-1', 'power supply ok psint90D-1', {edge=>'fault'});
+in( 'ib100B-1_in2', 'psint92E-1', 'power supply ok psint92E-1', {edge=>'fault'});
+in( 'ib100B-1_in3', 'psint94C-1', 'power supply ok psint94C-1', {edge=>'fault'});
+#out( 'ib100B-1_out1', '', '');
+#out( 'ib100B-1_out2', '', '');
+#out( 'ib100B-1_out3', '', '');
+#out( 'ib100B-1_out4', '', '');
+#out( 'ib100B-1_out5', '', '');
+
+# --- ib100B-2 idlinx module at .13
+linx::add( 'ib100B-2', {'ip'=>'192.168.1.13', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib100B-2_sns_a', 'pe100B-3', 'pe100B-3', {dir=>'rev',report=>'both'} );
+#in( 'ib100B-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib100B-2_sns_b', 'pe100B-2', 'pe100B-2', {dir=>'rev',report=>'both'} ); # FIELD CHANGE from card 100B-1
+#in( 'ib100B-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr100B-3', 'ib100B-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} ); 
+idlinx_motor( 'mdr100B-2', 'ib100B-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} ); # FIELD CHANGE switched from card 100B-1
+in( 'ib100B-2_in1', 'psint100B-1', 'power supply ok ps100B-1', {edge=>'fault'}); 
+#in( 'ib100B-2_in2', '', '');
+#in( 'ib100B-2_in3', '', '');
+#out( 'ib100B-2_out1', '', '');
+#out( 'ib100B-2_out2', '', '');
+#out( 'ib100B-2_out3', '', '');
+#out( 'ib100B-2_out4', '', '');
+#out( 'ib100B-2_out5', '', '');
+
+# --- ib100C-1 idlinx module at .14
+linx::add( 'ib100C-1', {'ip'=>'192.168.1.14', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib100C-1_sns_a', 'pe100C-2', 'pe100C-2', {dir=>'rev',report=>'both'} );
+#in( 'ib100C-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib100C-1_sns_b', 'pe100C-1', 'pe100C-1', {dir=>'rev',report=>'both'} );
+#in( 'ib100C-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr100C-2', 'ib100C-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr100C-1', 'ib100C-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib100C-1_in1', '', '');
+#in( 'ib100C-1_in2', '', '');
+#in( 'ib100C-1_in3', '', '');
+#out( 'ib100C-1_out1', '', '');
+#out( 'ib100C-1_out2', '', '');
+#out( 'ib100C-1_out3', '', '');
+#out( 'ib100C-1_out4', '', '');
+#out( 'ib100C-1_out5', '', '');
+
+# --- ib100C-2 idlinx module at .15
+linx::add( 'ib100C-2', {'ip'=>'192.168.1.15', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib100C-2_sns_a', 'pe100C-4', 'pe100C-4', {dir=>'rev',report=>'both'} );
+#in( 'ib100C-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib100C-2_sns_b', 'pe100C-3', 'pe100C-3', {dir=>'rev',report=>'both'} );
+#in( 'ib100C-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr100C-4', 'ib100C-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr100C-3', 'ib100C-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib100C-2_in1', '', '');
+#in( 'ib100C-2_in2', '', '');
+#in( 'ib100C-2_in3', '', '');
+#out( 'ib100C-2_out1', '', '');
+#out( 'ib100C-2_out2', '', '');
+#out( 'ib100C-2_out3', '', '');
+#out( 'ib100C-2_out4', '', '');
+#out( 'ib100C-2_out5', '', '');
+
+# --- ib100D-1 idlinx module at .16
+linx::add( 'ib100D-1', {'ip'=>'192.168.1.16', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib100D-1_sns_a', 'pe100D-2', 'pe100D-2', {dir=>'rev',report=>'both'} );
+#in( 'ib100D-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib100D-1_sns_b', 'pe100D-1', 'pe100D-1', {dir=>'rev',report=>'both'} );
+#in( 'ib100D-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr100D-2', 'ib100D-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} ); 
+idlinx_motor( 'mdr100D-1', 'ib100D-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib100D-1_in1', '', '');
+#in( 'ib100D-1_in2', '', '');
+#in( 'ib100D-1_in3', '', '');
+#out( 'ib100D-1_out1', '', '');
+#out( 'ib100D-1_out2', '', '');
+out( 'ib100D-1_out3', 'scnint100D-1', 'side scanner scn100D-1');
+#out( 'ib100D-1_out4', '', '');
+#out( 'ib100D-1_out5', '', '');
+
+# --- ib100E-1 idlinx module at .17
+linx::add( 'ib100E-1', {'ip'=>'192.168.1.17', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib100E-1_sns_a', 'pe100E-2', 'pe100E-2', {dir=>'rev',report=>'both'} );
+#in( 'ib100E-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib100E-1_sns_b', 'pe100E-1', 'pe100E-1', {dir=>'rev',report=>'both'} );
+#in( 'ib100E-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr100E-2', 'ib100E-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr100E-1', 'ib100E-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib100E-1_in1', '', '');
+#in( 'ib100E-1_in2', '', '');
+#in( 'ib100E-1_in3', '', '');
+#out( 'ib100E-1_out1', '', '');
+#out( 'ib100E-1_out2', '', '');
+#out( 'ib100E-1_out3', '', '');
+#out( 'ib100E-1_out4', '', '');
+#out( 'ib100E-1_out5', '', '');
+
+# --- ib100F-1 idlinx module at .18
+linx::add( 'ib100F-1', {'ip'=>'192.168.1.18', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib100F-1_sns_a', 'pe100F-1C', 'pe100F-1C', {dir=>'rev',report=>'both'} );
+#in( 'ib100F-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib100F-1_sns_b', 'pe100F-1A', 'pe100F-1A', {dir=>'rev',report=>'both'} );
+#in( 'ib100F-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr100F-1', 'ib100F-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr100F-2', 'ib100F-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib100F-1_in1', 'peg100L-1A', 'line full peg100L-1A', {dir=>'rev', edge=>'full'});
+in( 'ib100F-1_in2', 'peg100N-1A', 'line full peg100N-1A', {dir=>'rev', edge=>'full'});
+#in( 'ib100F-1_in3', '', '');
+out( 'ib100F-1_out1', 'liftint100F-1', 'lift main liftint100F-1');
+#out( 'ib100F-1_out2', '', '');
+#out( 'ib100F-1_out3', '', '');
+#out( 'ib100F-1_out4', '', '');
+#out( 'ib100F-1_out5', '', '');
+
+# --- ib100F-2 idlinx module at .19
+linx::add( 'ib100F-2', {'ip'=>'192.168.1.19', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib100F-2_sns_a', 'pe100F-1D', 'pe100F-1D', {dir=>'rev',report=>'both'} );
+#in( 'ib100F-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib100F-2_sns_b', 'pe100F-1B', 'pe100F-1B', {dir=>'rev',report=>'both'} );
+#in( 'ib100F-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr100F-3', 'ib100F-2', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} ); # not rev
+#idlinx_motor( '', 'ib100F-2', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib100F-2_in1', 'prx100F-4', 'lower wing prx100F-4');
+in( 'ib100F-2_in2', 'prx100F-3', 'raise wing prx100F-3');
+in( 'ib100F-2_in3', 'pb100F-1', 'reset pb100F-1');
+#out( 'ib100F-2_out1', '', '');
+#out( 'ib100F-2_out2', '', '');
+#out( 'ib100F-2_out3', '', '');
+#out( 'ib100F-2_out4', '', '');
+#out( 'ib100F-2_out5', '', '');
+
+# --- ib100F-3 idlinx module at .20
+linx::add( 'ib100F-3', {'ip'=>'192.168.1.20', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib100F-3_sns_a', 'pe100F-1E', 'pe100F-1E', {dir=>'rev',report=>'both'} );
+#in( 'ib100F-3_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib100F-3_sns_b', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib100F-3_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr100F-4', 'ib100F-3', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib100F-3', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib100F-3_in1', 'prx100F-1', 'raise main prx100F-1');
+in( 'ib100F-3_in2', 'prx100F-2', 'lower main prx100F-2');
+in( 'ib100F-3_in3', 'pe100F-1F', 'pe100F-1F');
+out( 'ib100F-3_out1', 'liftint100F-2', 'lift wing 100F-2');
+#out( 'ib100F-3_out2', '', '');
+#out( 'ib100F-3_out3', '', '');
+#out( 'ib100F-3_out4', '', '');
+#out( 'ib100F-3_out5', '', '');
+
+# --- ib100G-1 idlinx module at .21
+linx::add( 'ib100G-1', {'ip'=>'192.168.1.21', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib100G-1_sns_a', 'pe100G-2', 'pe100G-2', {dir=>'rev',report=>'both'} );
+#in( 'ib100G-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib100G-1_sns_b', 'pe100G-1', 'pe100G-1', {dir=>'rev',report=>'both'} );
+#in( 'ib100G-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr100G-2', 'ib100G-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr100G-1', 'ib100G-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib100G-1_in1', '', '');
+#in( 'ib100G-1_in2', '', '');
+#in( 'ib100G-1_in3', '', '');
+#out( 'ib100G-1_out1', '', '');
+#out( 'ib100G-1_out2', '', '');
+#out( 'ib100G-1_out3', '', '');
+#out( 'ib100G-1_out4', '', '');
+#out( 'ib100G-1_out5', '', '');
+
+# --- ib100H-1 idlinx module at .22
+linx::add( 'ib100H-1', {'ip'=>'192.168.1.22', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib100H-1_sns_a', 'pe100H-1A', 'pe100H-1A', {dir=>'rev',report=>'both'} );
+in( 'ib100H-1_sns_a_flt', 'pe100H-1C', 'pe100G-1C', {dir=>'rev',report=>'both'} );
+in( 'ib100H-1_sns_b', 'pe100H-1B', 'pe100H-1B', {dir=>'rev',report=>'both'} );
+#in( 'ib100H-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr100H-1', 'ib100H-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr100H-2', 'ib100H-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib100H-1_in1', '', '');
+#in( 'ib100H-1_in2', '', '');
+#in( 'ib100H-1_in3', '', '');
+out( 'ib100H-1_out1', 'liftint100H-1', 'lift main liftint100H-1');
+#out( 'ib100H-1_out2', '', '');
+#out( 'ib100H-1_out3', '', '');
+#out( 'ib100H-1_out4', '', '');
+#out( 'ib100H-1_out5', '', '');
+
+# --- ib100H-2 idlinx module at .23
+linx::add( 'ib100H-2', {'ip'=>'192.168.1.23', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib100H-2_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib100H-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib100H-2_sns_b', 'prx100H-1', 'prx100H-1', {report=>'both'} );
+in( 'ib100H-2_sns_b_flt', 'prx100H-2', 'prx100H-2', {report=>'both'} );
+idlinx_motor( 'mdr100H-3', 'ib100H-2', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib100H-2', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib100H-2_in1', 'peg100J-1A', 'line full peg100J-1A', {dir=>'rev', edge=>'full'});
+in( 'ib100H-2_in2', 'peg100K-1A', 'line full peg100K-1A', {dir=>'rev', edge=>'full'});
+in( 'ib100H-2_in3', 'pb100H-1', 'reset pb100H-1');
+out( 'ib100H-2_out1', 'bcn100H-1', 'red bcn100H-1');
+out( 'ib100H-2_out2', 'hrn100H-1', 'hrn100H-1');
+#out( 'ib100H-2_out3', '', '');
+#out( 'ib100H-2_out4', '', '');
+#out( 'ib100H-2_out5', '', '');
+
+# --- ib102A-1 idlinx module at .24
+linx::add( 'ib102A-1', {'ip'=>'192.168.1.24', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib102A-1_sns_a', 'pe102A-2', 'pe102A-2', {dir=>'rev',report=>'both'} );
+#in( 'ib102A-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib102A-1_sns_b', 'pe102A-1', 'pe102A-1', {dir=>'rev',report=>'both'} );
+#in( 'ib102A-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr102A-2', 'ib102A-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr102A-1', 'ib102A-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib102A-1_in1', '', '');
+#in( 'ib102A-1_in2', '', '');
+#in( 'ib102A-1_in3', '', '');
+#out( 'ib102A-1_out1', '', '');
+#out( 'ib102A-1_out2', '', '');
+#out( 'ib102A-1_out3', '', '');
+#out( 'ib102A-1_out4', '', '');
+#out( 'ib102A-1_out5', '', '');
+
+# --- ib102A-2 idlinx module at .25
+linx::add( 'ib102A-2', {'ip'=>'192.168.1.25', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib102A-2_sns_a', 'pe102A-4', 'pe102A-4', {dir=>'rev',report=>'both'} );
+#in( 'ib102A-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib102A-2_sns_b', 'pe102A-3', 'pe102A-3', {dir=>'rev',report=>'both'} );
+#in( 'ib102A-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr102A-4', 'ib102A-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr102A-3', 'ib102A-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib102A-2_in1', 'peint102B-1A', 'zone status pe102B-1A');
+in( 'ib102A-2_in2', 'psint102D-1', 'power supply ok ps102D-1', {edge=>'fault'}); # FIELD CHANGE
+#in( 'ib102A-2_in3', '', '');
+#out( 'ib102A-2_out1', '', '');
+#out( 'ib102A-2_out2', '', '');
+out( 'ib102A-2_out3', 'runint102B-3', 'runint102B-3');
+out( 'ib102A-2_out4', 'stopint102B-3', 'stopint102B-3');
+#out( 'ib102A-2_out5', '', '');
+
+# --- ib106J-1 idlinx module at .26
+linx::add( 'ib106J-1', {'ip'=>'192.168.1.26', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib106J-1_sns_a', 'pe106J-2', 'pe106J-2', {dir=>'rev',report=>'both'} );
+#in( 'ib106J-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib106J-1_sns_b', 'pe106J-1', 'pe106J-1', {dir=>'rev',report=>'both'} );
+#in( 'ib106J-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr106J-2', 'ib106J-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr106J-1', 'ib106J-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib106J-1_in1', 'peint106H-4', 'zone status peint106H-4');
+# in( 'ib106J-1_in2', 'psint102D-1', 'power supply ok ps102D-1', {edge=>'fault'}); FIELD CHANGE
+in( 'ib106J-1_in3', 'psint104E-1', 'power supply ok ps104E-1', {edge=>'fault'});
+#out( 'ib106J-1_out1', '', '');
+#out( 'ib106J-1_out2', '', '');
+out( 'ib106J-1_out3', 'relint106H-4', 'release relint106H-4');
+#out( 'ib106J-1_out4', '', '');
+#out( 'ib106J-1_out5', '', '');
+
+# --- ib106J-2 idlinx module at .27
+linx::add( 'ib106J-2', {'ip'=>'192.168.1.27', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib106J-2_sns_a', 'pe106J-4', 'pe106J-4', {dir=>'rev',report=>'both'} );
+#in( 'ib106J-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib106J-2_sns_b', 'pe106J-3', 'pe106J-3', {dir=>'rev',report=>'both'} );
+#in( 'ib106J-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr106J-4', 'ib106J-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr106J-3', 'ib106J-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib106J-2_in1', 'psint106F-1', 'power supply ok ps106F-1', {edge=>'fault'});
+#in( 'ib106J-2_in2', '', '');
+#in( 'ib106J-2_in3', '', '');
+#out( 'ib106J-2_out1', '', '');
+#out( 'ib106J-2_out2', '', '');
+#out( 'ib106J-2_out3', '', '');
+#out( 'ib106J-2_out4', '', '');
+#out( 'ib106J-2_out5', '', '');
+
+# --- ib106K-1 idlinx module at .28
+linx::add( 'ib106K-1', {'ip'=>'192.168.1.28', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib106K-1_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib106K-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib106K-1_sns_b', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib106K-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr106K-1', 'ib106K-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib106K-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib106K-1_in1', '', '');
+#in( 'ib106K-1_in2', '', '');
+#in( 'ib106K-1_in3', '', '');
+#out( 'ib106K-1_out1', '', '');
+#out( 'ib106K-1_out2', '', '');
+#out( 'ib106K-1_out3', '', '');
+#out( 'ib106K-1_out4', '', '');
+#out( 'ib106K-1_out5', '', '');
+
+# --- ib106K-2 idlinx module at .29
+linx::add( 'ib106K-2', {'ip'=>'192.168.1.29', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib106K-2_sns_a', 'pe106K-3', 'pe106K-3', {dir=>'rev',report=>'both'} );
+#in( 'ib106K-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib106K-2_sns_b', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib106K-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr106K-3', 'ib106K-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr106K-2', 'ib106K-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib106K-2_in1', '', '');
+#in( 'ib106K-2_in2', '', '');
+#in( 'ib106K-2_in3', '', '');
+#out( 'ib106K-2_out1', '', '');
+#out( 'ib106K-2_out2', '', '');
+#out( 'ib106K-2_out3', '', '');
+#out( 'ib106K-2_out4', '', '');
+#out( 'ib106K-2_out5', '', '');
+
+# --- ib108B-1 idlinx module at .30
+linx::add( 'ib108B-1', {'ip'=>'192.168.1.30', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib108B-1_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib108B-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib108B-1_sns_b', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib108B-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr108B-3', 'ib108B-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} ); # FIELD CHANGE switch with 3
+idlinx_motor( 'mdr108B-4', 'ib108B-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} ); # FIELD CHANGE switch with 4
+in( 'ib108B-1_in1', 'pe108A-1', 'presence eye p108A-1', {dir=>'rev'});
+#in( 'ib108B-1_in2', '', '');
+#in( 'ib108B-1_in3', '', '');
+#out( 'ib108B-1_out1', '', '');
+#out( 'ib108B-1_out2', '', '');
+out( 'ib108B-1_out3', 'runint108A-1', 'runint108A-1');
+#out( 'ib108B-1_out4', '', '');
+#out( 'ib108B-1_out5', '', '');
+
+# --- ib108B-2 idlinx module at .31
+linx::add( 'ib108B-2', {'ip'=>'192.168.1.31', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib108B-2_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib108B-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib108B-2_sns_b', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib108B-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr108B-2', 'ib108B-2', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr108B-1', 'ib108B-2', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib108B-2_in1', 'pe108B-2', 'pe108B-1', {dir=>'rev'});
+in( 'ib108B-2_in2', 'pe108B-1', 'pe108B-2', {dir=>'rev'});
+#in( 'ib108B-2_in3', '', '');
+#out( 'ib108B-2_out1', '', '');
+#out( 'ib108B-2_out2', '', '');
+#out( 'ib108B-2_out3', '', '');
+#out( 'ib108B-2_out4', '', '');
+#out( 'ib108B-2_out5', '', '');
+
+# --- ib108C-1 idlinx module at .32
+linx::add( 'ib108C-1', {'ip'=>'192.168.1.32', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib108C-1_sns_a', 'pe108C-1', 'pe108C-1', {dir=>'rev',report=>'both'} );
+#in( 'ib108C-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib108C-1_sns_b', 'pe108C-2', 'pe108C-2', {dir=>'rev',report=>'both'} ); # FIELD CHANGE to card 108C-2
+#in( 'ib108C-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr108C-1', 'ib108C-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( 'mdr108C-2', 'ib108C-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} ); # FIELD CHANGE to card 108C-2
+#in( 'ib108C-1_in1', '', '');
+#in( 'ib108C-1_in2', '', '');
+#in( 'ib108C-1_in3', '', '');
+#out( 'ib108C-1_out1', '', '');
+#out( 'ib108C-1_out2', '', '');
+#out( 'ib108C-1_out3', '', '');
+#out( 'ib108C-1_out4', '', '');
+#out( 'ib108C-1_out5', '', '');
+
+# --- ib108C-2 idlinx module at .33
+linx::add( 'ib108C-2', {'ip'=>'192.168.1.33', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib108C-2_sns_a', 'pe108C-3', 'pe108C-3', {dir=>'rev',report=>'both'} );
+#in( 'ib108C-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib108C-2_sns_b', 'pe108C-2', 'pe108C-2', {dir=>'rev',report=>'both'} ); # FIELD CHANGE from card 108C-1
+#in( 'ib108C-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr108C-3', 'ib108C-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr108C-2', 'ib108C-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} ); # FIELD CHANGE from card 108C-1
+#in( 'ib108C-2_in1', '', '');
+#in( 'ib108C-2_in2', '', '');
+#in( 'ib108C-2_in3', '', '');
+#out( 'ib108C-2_out1', '', '');
+#out( 'ib108C-2_out2', '', '');
+out( 'ib108C-2_out3', 'scnint108C-1', 'side scanner scn108C-1');
+#out( 'ib108C-2_out4', '', '');
+#out( 'ib108C-2_out5', '', '');
+
+# --- ib108D-1 idlinx module at .34
+linx::add( 'ib108D-1', {'ip'=>'192.168.1.34', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib108D-1_sns_a', 'pe108D-1A', 'pe108D-1A', {dir=>'rev',report=>'both'} );
+in( 'ib108D-1_sns_a_flt', 'pe108D-1C', 'pe108D-1C', {dir=>'rev',report=>'both'} );
+in( 'ib108D-1_sns_b', 'pe108D-1B', 'pe108D-1B', {dir=>'rev',report=>'both'} );
+#in( 'ib108D-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr108D-1', 'ib108D-1', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr108D-2', 'ib108D-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib108D-1_in1', '', '');
+#in( 'ib108D-1_in2', '', '');
+#in( 'ib108D-1_in3', '', '');
+out( 'ib108D-1_out1', 'liftint108D-1', 'lift main liftint108D-1');
+#out( 'ib108D-1_out2', '', '');
+#out( 'ib108D-1_out3', '', '');
+#out( 'ib108D-1_out4', '', '');
+#out( 'ib108D-1_out5', '', '');
+
+# --- ib108D-2 idlinx module at .35
+linx::add( 'ib108D-2', {'ip'=>'192.168.1.35', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib108D-2_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib108D-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib108D-2_sns_b', 'prx108D-1', 'raise main prx108D-1', {report=>'both'} );
+in( 'ib108D-2_sns_b_flt', 'prx108D-2', 'lower main prx108D-2', {report=>'both'} );
+idlinx_motor( 'mdr108D-3', 'ib108D-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib108D-2', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib108D-2_in1', 'peg108K-1A', 'line full peg108K-1A', {dir=>'rev', edge=>'full'});
+#in( 'ib108D-2_in2', '', '');
+#in( 'ib108D-2_in3', '', '');
+#out( 'ib108D-2_out1', '', '');
+#out( 'ib108D-2_out2', '', '');
+out( 'ib108D-2_out3', 'runint108E-1', 'runint108E-1');
+#out( 'ib108D-2_out4', '', '');
+#out( 'ib108D-2_out5', '', '');
+
+# --- ib108F-1 idlinx module at .36
+linx::add( 'ib108F-1', {'ip'=>'192.168.1.36', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib108F-1_sns_a', 'pe108F-1', 'pe108F-1', {dir=>'rev',report=>'both'} );
+#in( 'ib108F-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib108F-1_sns_b', 'pe108F-2', 'pe108F-2', {dir=>'rev',report=>'both'} ); # FIELD CHANGE to card 108F-2
+#in( 'ib108F-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr108F-1', 'ib108F-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( 'mdr108F-2', 'ib108F-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} ); # FIELD CHANGE to card 108F-2
+#in( 'ib108F-1_in1', '', '');
+#in( 'ib108F-1_in2', '', '');
+#in( 'ib108F-1_in3', '', '');
+#out( 'ib108F-1_out1', '', '');
+#out( 'ib108F-1_out2', '', '');
+#out( 'ib108F-1_out3', '', '');
+#out( 'ib108F-1_out4', '', '');
+#out( 'ib108F-1_out5', '', '');
+
+# --- ib108F-2 idlinx module at .37
+linx::add( 'ib108F-2', {'ip'=>'192.168.1.37', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib108F-2_sns_a', 'pe108F-3', 'pe108F-3', {dir=>'rev',report=>'both'} );
+#in( 'ib108F-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib108F-2_sns_b', 'pe108F-2', 'pe108F-2', {dir=>'rev',report=>'both'} ); # FIELD CHANGE from card 108F-1
+#in( 'ib108F-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr108F-3', 'ib108F-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr108F-2', 'ib108F-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} ); # FIELD CHANGE from card 108F-1
+in( 'ib108F-2_in1', 'psint108F-1', 'power supply ok ps108F-1', {edge=>'fault'});
+in( 'ib108F-2_in2', 'pb108F-1', 'reset pb108F-1');
+#in( 'ib108F-2_in3', '', '');
+#out( 'ib108F-2_out1', '', '');
+#out( 'ib108F-2_out2', '', '');
+#out( 'ib108F-2_out3', '', '');
+#out( 'ib108F-2_out4', '', '');
+#out( 'ib108F-2_out5', '', '');
+
+# --- ib108G-1 idlinx module at .38
+linx::add( 'ib108G-1', {'ip'=>'192.168.1.38', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib108G-1_sns_a', 'pe108G-1A', 'pe108G-1A', {dir=>'rev',report=>'both'} );
+in( 'ib108G-1_sns_a_flt', 'pe108G-1C', 'pe108G-1C', {dir=>'rev',report=>'both'} );
+in( 'ib108G-1_sns_b', 'pe108G-1B', 'pe108G-1B', {dir=>'rev',report=>'both'} );
+in( 'ib108G-1_sns_b_flt', 'pe108G-1D', 'pe108G-1D', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr108G-1', 'ib108G-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr108G-2', 'ib108G-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib108G-1_in1', '', '');
+#in( 'ib108G-1_in2', '', '');
+#in( 'ib108G-1_in3', '', '');
+out( 'ib108G-1_out1', 'liftint108G-1', 'lift main liftint108G-1');
+#out( 'ib108G-1_out2', '', '');
+#out( 'ib108G-1_out3', '', '');
+#out( 'ib108G-1_out4', '', '');
+#out( 'ib108G-1_out5', '', '');
+
+# --- ib108G-2 idlinx module at .39
+linx::add( 'ib108G-2', {'ip'=>'192.168.1.39', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib108G-2_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib108G-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib108G-2_sns_b', 'prx108G-1', 'raise main prx108G-1', {report=>'both'} );
+in( 'ib108G-2_sns_b_flt', 'prx108G-2', 'lower main prx108G-2', {report=>'both'} );
+idlinx_motor( 'mdr108G-3', 'ib108G-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib108G-2', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib108G-2_in1', '', '');
+#in( 'ib108G-2_in2', '', '');
+#in( 'ib108G-2_in3', '', '');
+#out( 'ib108G-2_out1', '', '');
+#out( 'ib108G-2_out2', '', '');
+#out( 'ib108G-2_out3', '', '');
+#out( 'ib108G-2_out4', '', '');
+#out( 'ib108G-2_out5', '', '');
+
+# # --- ib108J-1 idlinx module at .40
+# linx::add( 'ib108J-1', {'ip'=>'192.168.1.40', run=>'cp1_run', reset=>'cp1_reset'} );
+# in( 'ib108J-1_sns_a', 'pe108J-2', 'pe108J-2', {dir=>'rev',report=>'both'} );
+# #in( 'ib108J-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+# in( 'ib108J-1_sns_b', 'pe108J-1A', 'pe108J-1A', {dir=>'rev',report=>'both'} ); # FIELD CHANGE switch with pe108J-1A
+# #in( 'ib108J-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+# idlinx_motor( 'mdr108J-2', 'ib108J-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+# idlinx_motor( 'mdr108J-1', 'ib108J-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+# in( 'ib108J-1_in1', 'pe108J-1', 'pe108J-1', {dir=>'rev'}); # FIELD CHANGE switch with pe108J-1
+# #in( 'ib108J-1_in2', '', '');
+# #in( 'ib108J-1_in3', '', '');
+# #out( 'ib108J-1_out1', '', '');
+# #out( 'ib108J-1_out2', '', '');
+# #out( 'ib108J-1_out3', '', '');
+# #out( 'ib108J-1_out4', '', '');
+# #out( 'ib108J-1_out5', '', '');
+
+# # --- ib108J-2 idlinx module at .41
+# linx::add( 'ib108J-2', {'ip'=>'192.168.1.41', run=>'cp1_run', reset=>'cp1_reset'} );
+# in( 'ib108J-2_sns_a', 'pe108J-4', 'pe108J-4', {dir=>'rev',report=>'both'} );
+# #in( 'ib108J-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+# in( 'ib108J-2_sns_b', 'pe108J-3', 'pe108J-3', {dir=>'rev',report=>'both'} );
+# #in( 'ib108J-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+# idlinx_motor( 'mdr108J-4', 'ib108J-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+# idlinx_motor( 'mdr108J-3', 'ib108J-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+# #in( 'ib108J-2_in1', '', '');
+# #in( 'ib108J-2_in2', '', '');
+# #in( 'ib108J-2_in3', '', '');
+# #out( 'ib108J-2_out1', '', '');
+# #out( 'ib108J-2_out2', '', '');
+# #out( 'ib108J-2_out3', '', '');
+# #out( 'ib108J-2_out4', '', '');
+# #out( 'ib108J-2_out5', '', '');
+
+# --- ib108H-1 idlinx module at .42
+linx::add( 'ib108H-1', {'ip'=>'192.168.1.42', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib108H-1_sns_a', 'pe108H-2', 'pe108H-2', {dir=>'rev',report=>'both'} );
+#in( 'ib108H-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib108H-1_sns_b', 'pe108H-1', 'pe108H-1', {dir=>'rev',report=>'both'} );
+#in( 'ib108H-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr108H-2', 'ib108H-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr108H-1', 'ib108H-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib108H-1_in1', 'pe108K-1A', 'start pe108K-1A', {dir=>'rev'});
+in( 'ib108H-1_in2', 'peint108J-4', 'zone status peint108J-4');
+#in( 'ib108H-1_in3', '', '');
+#out( 'ib108H-1_out1', '', '');
+#out( 'ib108H-1_out2', '', '');
+out( 'ib108H-1_out3', 'relint108J-4', 'release relint108J-4');
+out( 'ib108H-1_out4', 'stopint108J-4', 'stopint108J-4');
+#out( 'ib108H-1_out5', '', '');
+
+# --- ib108H-2 idlinx module at .43
+linx::add( 'ib108H-2', {'ip'=>'192.168.1.43', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib108H-2_sns_a', 'pe108H-4', 'pe108H-4', {dir=>'rev',report=>'both'} );
+#in( 'ib108H-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib108H-2_sns_b', 'pe108H-3', 'pe108H-3', {dir=>'rev',report=>'both'} );
+#in( 'ib108H-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr108H-4', 'ib108H-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr108H-3', 'ib108H-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib108H-2_in1', '', '');
+#in( 'ib108H-2_in2', '', '');
+#in( 'ib108H-2_in3', '', '');
+#out( 'ib108H-2_out1', '', '');
+#out( 'ib108H-2_out2', '', '');
+out( 'ib108H-2_out3', 'scnint108H-1', 'side scanner scn108H-1');
+#out( 'ib108H-2_out4', '', '');
+#out( 'ib108H-2_out5', '', '');
+
+# --- ib110B-1 idlinx module at .44
+linx::add( 'ib110B-1', {'ip'=>'192.168.1.44', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib110B-1_sns_a', 'pe110B-2', 'pe110B-2', {dir=>'rev',report=>'both'} );
+#in( 'ib110B-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib110B-1_sns_b', 'pe110B-1', 'pe110B-1', {dir=>'rev',report=>'both'} );
+#in( 'ib110B-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr110B-1', 'ib110B-1', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} ); # FIELD CHANGE switched with b
+idlinx_motor( 'mdr110B-2', 'ib110B-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} ); # FIELD CHANGE switched with a
+#in( 'ib110B-1_in1', '', '');
+#in( 'ib110B-1_in2', '', '');
+#in( 'ib110B-1_in3', '', '');
+#out( 'ib110B-1_out1', '', '');
+#out( 'ib110B-1_out2', '', '');
+#out( 'ib110B-1_out3', '', '');
+#out( 'ib110B-1_out4', '', '');
+#out( 'ib110B-1_out5', '', '');
+
+# --- ib110C-1 idlinx module at .45
+linx::add( 'ib110C-1', {'ip'=>'192.168.1.45', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib110C-1_sns_a', 'pe110C-1', 'pe110C-1', {dir=>'rev',report=>'both'} );
+#in( 'ib110C-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib110C-1_sns_b', 'pe110C-2', 'pe110C-2', {dir=>'rev',report=>'both'} ); # FIELD CHANGE to card ib110C-2
+#in( 'ib110C-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr110C-1', 'ib110C-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( 'mdr110C-2', 'ib110C-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );#s FIELD CHANGE to card ib110C-2
+#in( 'ib110C-1_in1', '', '');
+#in( 'ib110C-1_in2', '', '');
+#in( 'ib110C-1_in3', '', '');
+#out( 'ib110C-1_out1', '', '');
+#out( 'ib110C-1_out2', '', '');
+#out( 'ib110C-1_out3', '', '');
+#out( 'ib110C-1_out4', '', '');
+#out( 'ib110C-1_out5', '', '');
+
+# --- ib110C-2 idlinx module at .46
+linx::add( 'ib110C-2', {'ip'=>'192.168.1.46', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib110C-2_sns_a', 'pe110C-3', 'pe110C-3', {dir=>'rev',report=>'both'} );
+#in( 'ib110C-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib110C-2_sns_b', 'pe110C-2', 'pe110C-2', {dir=>'rev',report=>'both'} ); # FIELD CHANGE from card 110C-1
+#in( 'ib110C-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr110C-3', 'ib110C-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr110C-2', 'ib110C-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} ); # FIELD CHANGE from card 110C-1
+#in( 'ib110C-2_in1', '', '');
+#in( 'ib110C-2_in2', '', '');
+#in( 'ib110C-2_in3', '', '');
+#out( 'ib110C-2_out1', '', '');
+#out( 'ib110C-2_out2', '', '');
+out( 'ib110C-2_out3', 'scnint110C-1', 'side scanner scn110C-1');
+#out( 'ib110C-2_out4', '', '');
+#out( 'ib110C-2_out5', '', '');
+
+# --- ib110D-1 idlinx module at .47
+linx::add( 'ib110D-1', {'ip'=>'192.168.1.47', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib110D-1_sns_a', 'pe110D-1A', 'pe110D-1A', {dir=>'rev',report=>'both'} );
+in( 'ib110D-1_sns_a_flt', 'pe110D-1C', 'pe110D-1C', {dir=>'rev',report=>'both'} );
+in( 'ib110D-1_sns_b', 'pe110D-1B', 'pe110D-1B', {dir=>'rev',report=>'both'} );
+#in( 'ib110D-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr110D-1', 'ib110D-1', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr110D-2', 'ib110D-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib110D-1_in1', '', '');
+#in( 'ib110D-1_in2', '', '');
+#in( 'ib110D-1_in3', '', '');
+out( 'ib110D-1_out1', 'liftint110D-1', 'lift main liftint110D-1');
+#out( 'ib110D-1_out2', '', '');
+#out( 'ib110D-1_out3', '', '');
+#out( 'ib110D-1_out4', '', '');
+#out( 'ib110D-1_out5', '', '');
+
+# --- ib110D-2 idlinx module at .48
+linx::add( 'ib110D-2', {'ip'=>'192.168.1.48', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib110D-2_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib110D-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib110D-2_sns_b', 'prx110D-1', 'raise main prx110D-1', {report=>'both'} );
+in( 'ib110D-2_sns_b_flt', 'prx110D-2', 'lower main prx110D-2', {report=>'both'} );
+idlinx_motor( 'mdr110D-3', 'ib110D-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib110D-2', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib110D-2_in1', 'peg110F-1A', 'line full peg110F-1A', {dir=>'rev', edge=>'full'});
+#in( 'ib110D-2_in2', '', '');
+#in( 'ib110D-2_in3', '', '');
+#out( 'ib110D-2_out1', '', '');
+#out( 'ib110D-2_out2', '', '');
+out( 'ib110D-2_out3', 'runint110E-1', 'runint110E-1');
+#out( 'ib110D-2_out4', '', '');
+#out( 'ib110D-2_out5', '', '');
+
+# --- ib110H-1 idlinx module at .49
+linx::add( 'ib110H-1', {'ip'=>'192.168.1.49', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib110H-1_sns_a', 'pe110H-2', 'pe110H-2', {dir=>'rev',report=>'both'} );
+#in( 'ib110H-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib110H-1_sns_b', 'pe110H-1', 'pe110H-1', {dir=>'rev',report=>'both'} );
+#in( 'ib110H-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr110H-2', 'ib110H-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr110H-1', 'ib110H-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib110H-1_in1', 'psint110H-1', 'power supply ok ps110H-1', {edge=>'fault'});
+# in( 'ib110H-1_in2', 'peint110J-1', 'zone status peint110J-1', {dir=>'rev'});
+#in( 'ib110H-1_in2', '', '');
+#in( 'ib110H-1_in3', '', '');
+#out( 'ib110H-1_out1', '', '');
+#out( 'ib110H-1_out2', '', '');
+# out( 'ib110H-1_out3', 'runint110J-1', 'runint110J-1');
+# out( 'ib110H-1_out4', 'stopint110J-1', 'stopint110J-1');
+#out( 'ib110H-1_out3', '', '');
+#out( 'ib110H-1_out4', '', '');
+#out( 'ib110H-1_out5', '', '');
+
+# --- ib112B-1 idlinx module at .50
+linx::add( 'ib112B-1', {'ip'=>'192.168.1.50', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib112B-1_sns_a', 'pe112B-2', 'pe112B-2', {dir=>'rev',report=>'both'} );
+#in( 'ib112B-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib112B-1_sns_b', 'pe112B-1', 'pe112B-1', {dir=>'rev',report=>'both'} );
+#in( 'ib112B-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr112B-2', 'ib112B-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr112B-1', 'ib112B-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib112B-1_in1', 'psint112A-1', 'power supply ok ps112A-1');
+in( 'ib112B-1_in2', 'peint112A-4', 'zone status peint112A-4');
+#in( 'ib112B-1_in3', '', '');
+#out( 'ib112B-1_out1', '', '');
+#out( 'ib112B-1_out2', '', '');
+out( 'ib112B-1_out3', 'relint112A-4', 'release relint112A-4');
+#out( 'ib112B-1_out4', '', '');
+#out( 'ib112B-1_out5', '', '');
+
+# --- ib112B-2 idlinx module at .51
+linx::add( 'ib112B-2', {'ip'=>'192.168.1.51', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib112B-2_sns_a', 'pe112B-4', 'pe112B-4', {dir=>'rev',report=>'both'} );
+#in( 'ib112B-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib112B-2_sns_b', 'pe112B-3', 'pe112B-3', {dir=>'rev',report=>'both'} );
+#in( 'ib112B-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr112B-4', 'ib112B-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr112B-3', 'ib112B-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib112B-2_in1', '', '');
+#in( 'ib112B-2_in2', '', '');
+#in( 'ib112B-2_in3', '', '');
+#out( 'ib112B-2_out1', '', '');
+#out( 'ib112B-2_out2', '', '');
+out( 'ib112B-2_out3', 'scnint112B-1', 'side scanner scn112B-1');
+#out( 'ib112B-2_out4', '', '');
+#out( 'ib112B-2_out5', '', '');
+
+# --- ib112C-1 idlinx module at .52
+linx::add( 'ib112C-1', {'ip'=>'192.168.1.52', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib112C-1_sns_a', 'pe112C-1B', 'pe112C-1B', {dir=>'rev',report=>'both'} );
+in( 'ib112C-1_sns_a_flt', 'pe112C-1D', 'pe112C-1D', {dir=>'rev',report=>'both'} );
+in( 'ib112C-1_sns_b', 'pe112C-1A', 'pe112C-1A', {dir=>'rev',report=>'both'} );
+#in( 'ib112C-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr112C-1', 'ib112C-1', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr112C-2', 'ib112C-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib112C-1_in1', '', '');
+#in( 'ib112C-1_in2', '', '');
+#in( 'ib112C-1_in3', '', '');
+out( 'ib112C-1_out1', 'liftint112C-1', 'lift main liftint112C-1');
+#out( 'ib112C-1_out2', '', '');
+#out( 'ib112C-1_out3', '', '');
+#out( 'ib112C-1_out4', '', '');
+#out( 'ib112C-1_out5', '', '');
+
+# --- ib112C-2 idlinx module at .53
+linx::add( 'ib112C-2', {'ip'=>'192.168.1.53', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib112C-2_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib112C-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib112C-2_sns_b', 'prx112C-1', 'raise main prx112C-1', {report=>'both'} );
+in( 'ib112C-2_sns_b_flt', 'prx112C-2', 'lower main prx112C-2', {report=>'both'} );
+idlinx_motor( 'mdr112C-3', 'ib112C-2', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib112C-2', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib112C-2_in1', '', '');
+#in( 'ib112C-2_in2', '', '');
+#in( 'ib112C-2_in3', '', '');
+#out( 'ib112C-2_out1', '', '');
+#out( 'ib112C-2_out2', '', '');
+#out( 'ib112C-2_out3', '', '');
+#out( 'ib112C-2_out4', '', '');
+#out( 'ib112C-2_out5', '', '');
+
+# --- ib112E-1 idlinx module at .54
+linx::add( 'ib112E-1', {'ip'=>'192.168.1.54', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib112E-1_sns_a', 'pe112E-2', 'pe112E-2', {dir=>'rev',report=>'both'} );
+#in( 'ib112E-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib112E-1_sns_b', 'pe112E-1', 'pe112E-1', {dir=>'rev',report=>'both'} );
+#in( 'ib112E-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr112E-1', 'ib112E-1', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} ); # switch with B
+idlinx_motor( 'mdr112E-2', 'ib112E-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} ); # switch with A
+#in( 'ib112E-1_in1', '', '');
+#in( 'ib112E-1_in2', '', '');
+#in( 'ib112E-1_in3', '', '');
+#out( 'ib112E-1_out1', '', '');
+#out( 'ib112E-1_out2', '', '');
+#out( 'ib112E-1_out3', '', '');
+#out( 'ib112E-1_out4', '', '');
+#out( 'ib112E-1_out5', '', '');
+
+# --- ib112F-1 idlinx module at .55
+linx::add( 'ib112F-1', {'ip'=>'192.168.1.55', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib112F-1_sns_a', 'pe112F-1C', 'pe112F-1C', {dir=>'rev',report=>'both'} );
+#in( 'ib112F-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib112F-1_sns_b', 'pe112F-1A', 'pe112F-1A', {dir=>'rev',report=>'both'} );
+#in( 'ib112F-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr112F-1', 'ib112F-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr112F-2', 'ib112F-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib112F-1_in1', 'peg112J-1A', 'line full peg112J-1A', {dir=>'rev', edge=>'full'});
+in( 'ib112F-1_in2', 'peg112L-1A', 'line full peg112L-1A', {dir=>'rev', edge=>'full'});
+#in( 'ib112F-1_in3', '', '');
+out( 'ib112F-1_out1', 'liftint112F-1', 'lift main liftint112F-1');
+#out( 'ib112F-1_out2', '', '');
+#out( 'ib112F-1_out3', '', '');
+#out( 'ib112F-1_out4', '', '');
+#out( 'ib112F-1_out5', '', '');
+
+# --- ib112F-2 idlinx module at .56
+linx::add( 'ib112F-2', {'ip'=>'192.168.1.56', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib112F-2_sns_a', 'pe112F-1D', 'pe112F-1D', {dir=>'rev',report=>'both'} );
+#in( 'ib112F-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib112F-2_sns_b', 'pe112F-1B', 'pe112F-1B', {dir=>'rev',report=>'both'} );
+#in( 'ib112F-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr112F-3', 'ib112F-2', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib112F-2', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib112F-2_in1', 'prx112F-4', 'lower wing prx112F-4');
+in( 'ib112F-2_in2', 'prx112F-3', 'raise wing prx112F-3');
+#in( 'ib112F-2_in3', '', '');
+#out( 'ib112F-2_out1', '', '');
+#out( 'ib112F-2_out2', '', '');
+#out( 'ib112F-2_out3', '', '');
+#out( 'ib112F-2_out4', '', '');
+#out( 'ib112F-2_out5', '', '');
+
+# --- ib112F-3 idlinx module at .57
+linx::add( 'ib112F-3', {'ip'=>'192.168.1.57', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib112F-3_sns_a', 'pe112F-1E', 'pe112F-1E', {dir=>'rev',report=>'both'} );
+#in( 'ib112F-3_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib112F-3_sns_b', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib112F-3_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr112F-4', 'ib112F-3', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib112F-3', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib112F-3_in1', 'prx112F-1', 'raise main prx112F-1');
+in( 'ib112F-3_in2', 'prx112F-2', 'lower main prx112F-2');
+in( 'ib112F-3_in3', 'pe112F-1F', 'pe112F-1F');
+out( 'ib112F-3_out1', 'liftint112F-2', 'lift wing liftint112F-2');
+#out( 'ib112F-3_out2', '', '');
+#out( 'ib112F-3_out3', '', '');
+#out( 'ib112F-3_out4', '', '');
+#out( 'ib112F-3_out5', '', '');
+
+# --- ib112G-1 idlinx module at .58
+linx::add( 'ib112G-1', {'ip'=>'192.168.1.58', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib112G-1_sns_a', 'pe112G-2', 'pe112G-2', {dir=>'rev',report=>'both'} );
+#in( 'ib112G-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib112G-1_sns_b', 'pe112G-1', 'pe112G-1', {dir=>'rev',report=>'both'} );
+#in( 'ib112G-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr112G-2', 'ib112G-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr112G-1', 'ib112G-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib112G-1_in1', '', '');
+#in( 'ib112G-1_in2', '', '');
+#in( 'ib112G-1_in3', '', '');
+#out( 'ib112G-1_out1', '', '');
+#out( 'ib112G-1_out2', '', '');
+#out( 'ib112G-1_out3', '', '');
+#out( 'ib112G-1_out4', '', '');
+#out( 'ib112G-1_out5', '', '');
+
+# --- ib112H-1 idlinx module at .59
+linx::add( 'ib112H-1', {'ip'=>'192.168.1.59', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib112H-1_sns_a', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib112H-1_sns_a_flt', 'prx112H-1', 'lower row 1 & 2 prx112H-1', {report=>'both'} );
+#in( 'ib112H-1_sns_b', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib112H-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr112H-1A', 'ib112H-1', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr112H-1B', 'ib112H-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib112H-1_in1', 'prx112H-2', 'raise row 1 & 2 prx112H-2');
+in( 'ib112H-1_in2', 'prx112H-3', 'lower row 3 & 4 prx112H-3');
+in( 'ib112H-1_in3', 'prx112H-4', 'raise row 3 & 4 prx112H-4');
+out( 'ib112H-1_out1', 'liftint112H-1', 'lift row 1 & 2 liftint112H-1');
+out( 'ib112H-1_out2', 'liftint112H-2', 'lift row 3 & 4 liftint112H-2');
+#out( 'ib112H-1_out3', '', '');
+#out( 'ib112H-1_out4', '', '');
+#out( 'ib112H-1_out5', '', '');
+
+# --- ib112H-2 idlinx module at .60
+linx::add( 'ib112H-2', {'ip'=>'192.168.1.60', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib112H-2_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib112H-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib112H-2_sns_b', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib112H-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr112H-2', 'ib112H-2', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib112H-2', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib112H-2_in1', 'pe112H-1', 'pe112H-1', {dir=>'rev'});
+in( 'ib112H-2_in2', 'pe112H-2', 'pe112H-2', {dir=>'rev'});
+#in( 'ib112H-2_in3', '', '');
+#out( 'ib112H-2_out1', '', '');
+#out( 'ib112H-2_out2', '', '');
+#out( 'ib112H-2_out3', '', '');
+#out( 'ib112H-2_out4', '', '');
+#out( 'ib112H-2_out5', '', '');
+
+# --- ib112H-3 idlinx module at .61
+linx::add( 'ib112H-3', {'ip'=>'192.168.1.61', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib112H-3_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib112H-3_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib112H-3_sns_b', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib112H-3_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr112H-4', 'ib112H-3', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr112H-3', 'ib112H-3', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib112H-3_in1', 'pe112H-4', 'pe112H-4', {dir=>'rev'});
+#in( 'ib112H-3_in2', '', '');
+#in( 'ib112H-3_in3', '', '');
+#out( 'ib112H-3_out1', '', '');
+#out( 'ib112H-3_out2', '', '');
+#out( 'ib112H-3_out3', '', '');
+#out( 'ib112H-3_out4', '', '');
+#out( 'ib112H-3_out5', '', '');
+
+# --- ib114A-1 idlinx module at .62
+linx::add( 'ib114A-1', {'ip'=>'192.168.1.62', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib114A-1_sns_a', 'pe114A-2', 'pe114A-2', {dir=>'rev',report=>'both'} );
+#in( 'ib114A-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib114A-1_sns_b', 'pe114A-1', 'pe114A-1', {dir=>'rev',report=>'both'} );
+#in( 'ib114A-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr114A-2', 'ib114A-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr114A-1', 'ib114A-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib114A-1_in1', '', '');
+#in( 'ib114A-1_in2', '', '');
+#in( 'ib114A-1_in3', '', '');
+#out( 'ib114A-1_out1', '', '');
+#out( 'ib114A-1_out2', '', '');
+#out( 'ib114A-1_out3', '', '');
+#out( 'ib114A-1_out4', '', '');
+#out( 'ib114A-1_out5', '', '');
+
+# --- ib114A-2 idlinx module at .63
+linx::add( 'ib114A-2', {'ip'=>'192.168.1.63', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib114A-2_sns_a', 'pe114A-4', 'pe114A-4', {dir=>'rev',report=>'both'} );
+#in( 'ib114A-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib114A-2_sns_b', 'pe114A-3', 'pe114A-3', {dir=>'rev',report=>'both'} );
+#in( 'ib114A-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr114A-4', 'ib114A-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr114A-3', 'ib114A-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib114A-2_in1', 'psint114A-1', 'power supply ok ps114A-1', {edge=>'fault'});
+in( 'ib114A-2_in2', 'pb114A-1', 'reset pb114-1');
+#in( 'ib114A-2_in3', '', '');
+#out( 'ib114A-2_out1', '', '');
+#out( 'ib114A-2_out2', '', '');
+#out( 'ib114A-2_out3', '', '');
+#out( 'ib114A-2_out4', '', '');
+#out( 'ib114A-2_out5', '', '');
+
+# --- ib114B-1 idlinx module at .64
+linx::add( 'ib114B-1', {'ip'=>'192.168.1.64', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib114B-1_sns_a', 'pe114B-2', 'pe114B-2', {dir=>'rev',report=>'both'} );
+#in( 'ib114B-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib114B-1_sns_b', 'pe114B-1', 'pe114B-1', {dir=>'rev',report=>'both'} );
+#in( 'ib114B-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr114B-2', 'ib114B-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr114B-1', 'ib114B-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib114B-1_in1', '', '');
+#in( 'ib114B-1_in2', '', '');
+#in( 'ib114B-1_in3', '', '');
+#out( 'ib114B-1_out1', '', '');
+#out( 'ib114B-1_out2', '', '');
+#out( 'ib114B-1_out3', '', '');
+#out( 'ib114B-1_out4', '', '');
+#out( 'ib114B-1_out5', '', '');
+
+# --- ib114B-2 idlinx module at .65
+linx::add( 'ib114B-2', {'ip'=>'192.168.1.65', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib114B-2_sns_a', 'pe114B-4', 'pe114B-4', {dir=>'rev',report=>'both'} );
+#in( 'ib114B-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib114B-2_sns_b', 'pe114B-3', 'pe114B-3', {dir=>'rev',report=>'both'} );
+#in( 'ib114B-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr114B-4', 'ib114B-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr114B-3', 'ib114B-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib114B-2_in1', '', '');
+#in( 'ib114B-2_in2', '', '');
+#in( 'ib114B-2_in3', '', '');
+#out( 'ib114B-2_out1', '', '');
+#out( 'ib114B-2_out2', '', '');
+#out( 'ib114B-2_out3', '', '');
+#out( 'ib114B-2_out4', '', '');
+#out( 'ib114B-2_out5', '', '');
+
+# --- ib114C-1 idlinx module at .66
+linx::add( 'ib114C-1', {'ip'=>'192.168.1.66', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib114C-1_sns_a', 'pe114C-2', 'pe114C-2', {dir=>'rev',report=>'both'} );
+#in( 'ib114C-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib114C-1_sns_b', 'pe114C-1', 'pe114C-1', {dir=>'rev',report=>'both'} );
+#in( 'ib114C-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr114C-2', 'ib114C-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr114C-1', 'ib114C-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib114C-1_in1', '', '');
+#in( 'ib114C-1_in2', '', '');
+#in( 'ib114C-1_in3', '', '');
+#out( 'ib114C-1_out1', '', '');
+#out( 'ib114C-1_out2', '', '');
+out( 'ib114C-1_out3', 'scnint114C-1', 'side scanner scn114C-1');
+#out( 'ib114C-1_out4', '', '');
+#out( 'ib114C-1_out5', '', '');
+
+# --- ib114D-1 idlinx module at .67
+linx::add( 'ib114D-1', {'ip'=>'192.168.1.67', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib114D-1_sns_a', 'pe114D-1C', 'pe114D-1C', {dir=>'rev',report=>'both'} );
+#in( 'ib114D-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib114D-1_sns_b', 'pe114D-1A', 'pe114D-1A', {dir=>'rev',report=>'both'} );
+#in( 'ib114D-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr114D-1', 'ib114D-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr114D-2', 'ib114D-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib114D-1_in1', 'peg114E-1A', 'line full peg114E-1A', {dir=>'rev', edge=>'full'});
+in( 'ib114D-1_in2', 'peg114G-1A', 'line full peg114G-1A', {dir=>'rev', edge=>'full'});
+#in( 'ib114D-1_in3', '', '');
+out( 'ib114D-1_out1', 'liftint114D-1', 'lift main liftint114D-1');
+#out( 'ib114D-1_out2', '', '');
+#out( 'ib114D-1_out3', '', '');
+#out( 'ib114D-1_out4', '', '');
+#out( 'ib114D-1_out5', '', '');
+
+# --- ib114D-2 idlinx module at .68
+linx::add( 'ib114D-2', {'ip'=>'192.168.1.68', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib114D-2_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib114D-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib114D-2_sns_b', 'pe114D-1B', 'pe114D-1B', {dir=>'rev',report=>'both'} );
+#in( 'ib114D-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr114D-3', 'ib114D-2', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib114D-2', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib114D-2_in1', 'prx114D-4', 'lower wing 114D-4');
+in( 'ib114D-2_in2', 'prx114D-3', 'raise wing 114D-3');
+#in( 'ib114D-2_in3', '', '');
+#out( 'ib114D-2_out1', '', '');
+#out( 'ib114D-2_out2', '', '');
+#out( 'ib114D-2_out3', '', '');
+#out( 'ib114D-2_out4', '', '');
+#out( 'ib114D-2_out5', '', '');
+
+# --- ib114D-3 idlinx module at .69
+linx::add( 'ib114D-3', {'ip'=>'192.168.1.69', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib114D-3_sns_a', 'pe114D-1E', 'pe114D-1E', {dir=>'rev',report=>'both'} );
+#in( 'ib114D-3_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib114D-3_sns_b', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib114D-3_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr114D-4', 'ib114D-3', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib114D-3', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib114D-3_in1', 'prx114D-1', 'raise main prx114D-1');
+in( 'ib114D-3_in2', 'prx114D-2', 'lower main prx114D-2');
+in( 'ib114D-3_in3', 'pe114D-1F', 'pe114D-1F');
+out( 'ib114D-3_out1', 'liftint114D-2', 'lift wing liftint114D-2');
+#out( 'ib114D-3_out2', '', '');
+#out( 'ib114D-3_out3', '', '');
+#out( 'ib114D-3_out4', '', '');
+#out( 'ib114D-3_out5', '', '');
+
+# --- ib114H-1 idlinx module at .70
+linx::add( 'ib114H-1', {'ip'=>'192.168.1.70', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib114H-1_sns_a', 'pe114H-2', 'pe114H-2', {dir=>'rev',report=>'both'} );
+#in( 'ib114H-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib114H-1_sns_b', 'pe114H-1', 'pe114H-1', {dir=>'rev',report=>'both'} );
+#in( 'ib114H-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr114H-2', 'ib114H-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr114H-1', 'ib114H-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib114H-1_in1', '', '');
+#in( 'ib114H-1_in2', '', '');
+#in( 'ib114H-1_in3', '', '');
+#out( 'ib114H-1_out1', '', '');
+#out( 'ib114H-1_out2', '', '');
+#out( 'ib114H-1_out3', '', '');
+#out( 'ib114H-1_out4', '', '');
+#out( 'ib114H-1_out5', '', '');
+
+# --- ib114H-2 idlinx module at .71
+linx::add( 'ib114H-2', {'ip'=>'192.168.1.71', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib114H-2_sns_a', 'pe114H-4', 'pe114H-4', {dir=>'rev',report=>'both'} );
+#in( 'ib114H-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib114H-2_sns_b', 'pe114H-3', 'pe114H-3', {dir=>'rev',report=>'both'} );
+#in( 'ib114H-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr114H-4', 'ib114H-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr114H-3', 'ib114H-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib114H-2_in1', '', '');
+#in( 'ib114H-2_in2', '', '');
+#in( 'ib114H-2_in3', '', '');
+#out( 'ib114H-2_out1', '', '');
+#out( 'ib114H-2_out2', '', '');
+#out( 'ib114H-2_out3', '', '');
+#out( 'ib114H-2_out4', '', '');
+#out( 'ib114H-2_out5', '', '');
+
+# --- ib114J-1 idlinx module at .72
+linx::add( 'ib114J-1', {'ip'=>'192.168.1.72', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib114J-1_sns_a', 'pe114J-2', 'pe114J-2', {dir=>'rev',report=>'both'} );
+#in( 'ib114J-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib114J-1_sns_b', 'pe114J-1', 'pe114J-1', {dir=>'rev',report=>'both'} );
+#in( 'ib114J-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr114J-2', 'ib114J-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr114J-1', 'ib114J-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib114J-1_in1', 'ssw114J-1B', 'release ssw114J-1B');
+in( 'ib114J-1_in2', 'ssw114J-1A', 'hold ssw114J-1A');
+in( 'ib114J-1_in3', 'pb114J-1', 'reset pb114J-1');
+out( 'ib114J-1_out1', 'bcn114J-2', 'blue bcn114J-2');
+out( 'ib114J-1_out2', 'bcn114J-1', 'red bcn114J-1');
+#out( 'ib114J-1_out3', '', '');
+#out( 'ib114J-1_out4', '', '');
+#out( 'ib114J-1_out5', '', '');
+
+# --- ib114K-1 idlinx module at .73
+linx::add( 'ib114K-1', {'ip'=>'192.168.1.73', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib114K-1_sns_a', 'pe114K-2', 'pe114K-2', {dir=>'rev',report=>'both'} );
+#in( 'ib114K-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib114K-1_sns_b', 'pe114K-1', 'pe114K-1', {dir=>'rev',report=>'both'} );
+#in( 'ib114K-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr114K-2', 'ib114K-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr114K-1', 'ib114K-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib114K-1_in1', '', '');
+#in( 'ib114K-1_in2', '', '');
+#in( 'ib114K-1_in3', '', '');
+out( 'ib114K-1_out1', 'hrn114J-1', 'horn hrn114J-1');
+#out( 'ib114K-1_out2', '', '');
+#out( 'ib114K-1_out3', '', '');
+#out( 'ib114K-1_out4', '', '');
+#out( 'ib114K-1_out5', '', '');
+
+# --- ib116B-1 idlinx module at .74
+linx::add( 'ib116B-1', {'ip'=>'192.168.1.74', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib116B-1_sns_a', 'pe116B-2', 'pe116B-2', {dir=>'rev',report=>'both'} );
+#in( 'ib116B-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib116B-1_sns_b', 'pe116B-1', 'pe116B-1', {dir=>'rev',report=>'both'} );
+#in( 'ib116B-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr116B-2', 'ib116B-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr116B-1', 'ib116B-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib116B-1_in1', '', '');
+#in( 'ib116B-1_in2', '', '');
+#in( 'ib116B-1_in3', '', '');
+#out( 'ib116B-1_out1', '', '');
+#out( 'ib116B-1_out2', '', '');
+out( 'ib116B-1_out3', 'runint116A-1', 'runint116A-1');
+out( 'ib116B-1_out4', 'scnint116B-1', 'side scanner scn116B-1');
+#out( 'ib116B-1_out5', '', '');
+
+# --- ib116C-1 idlinx module at .75
+linx::add( 'ib116C-1', {'ip'=>'192.168.1.75', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib116C-1_sns_a', 'pe116C-1A', 'pe116C-1A', {dir=>'rev',report=>'both'} );
+in( 'ib116C-1_sns_a_flt', 'pe116C-1C', 'pe116C-1C', {dir=>'rev',report=>'both'} );
+in( 'ib116C-1_sns_b', 'pe116C-1B', 'pe116C-1B', {dir=>'rev',report=>'both'} );
+#in( 'ib116C-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr116C-1', 'ib116C-1', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr116C-2', 'ib116C-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib116C-1_in1', '', '');
+#in( 'ib116C-1_in2', '', '');
+#in( 'ib116C-1_in3', '', '');
+out( 'ib116C-1_out1', 'liftint116C-1', 'lift main liftint116C-1');
+#out( 'ib116C-1_out2', '', '');
+#out( 'ib116C-1_out3', '', '');
+#out( 'ib116C-1_out4', '', '');
+#out( 'ib116C-1_out5', '', '');
+
+# --- ib116C-2 idlinx module at .76
+linx::add( 'ib116C-2', {'ip'=>'192.168.1.76', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib116C-2_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib116C-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib116C-2_sns_b', 'prx116C-1', 'raise main prx116C-1', {report=>'both'} );
+in( 'ib116C-2_sns_b_flt', 'prx116C-2', 'lower main prx116C-2', {report=>'both'} );
+idlinx_motor( 'mdr116C-3', 'ib116C-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib116C-2', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib116C-2_in1', 'peg116E-1A', 'line full peg116E-1A', {dir=>'rev', edge=>'full'});
+#in( 'ib116C-2_in2', '', '');
+#in( 'ib116C-2_in3', '', '');
+#out( 'ib116C-2_out1', '', '');
+#out( 'ib116C-2_out2', '', '');
+out( 'ib116C-2_out3', 'runint116D-1', 'runint116D-1');
+#out( 'ib116C-2_out4', '', '');
+#out( 'ib116C-2_out5', '', '');
+
+# --- ib116G-1 idlinx module at .77
+linx::add( 'ib116G-1', {'ip'=>'192.168.1.77', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib116G-1_sns_a', 'pe116G-1A', 'pe116D-1A', {dir=>'rev',report=>'both'} );
+in( 'ib116G-1_sns_a_flt', 'pe116G-1C', 'pe116G-1C', {dir=>'rev',report=>'both'} );
+in( 'ib116G-1_sns_b', 'pe116G-1B', 'pe116G-1B', {dir=>'rev',report=>'both'} );
+#in( 'ib116G-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr116G-1', 'ib116G-1', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr116G-2', 'ib116G-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib116G-1_in1', '', '');
+#in( 'ib116G-1_in2', '', '');
+#in( 'ib116G-1_in3', '', '');
+out( 'ib116G-1_out1', 'liftint116G-1', 'lift main liftint116G-1');
+#out( 'ib116G-1_out2', '', '');
+#out( 'ib116G-1_out3', '', '');
+#out( 'ib116G-1_out4', '', '');
+#out( 'ib116G-1_out5', '', '');
+
+# --- ib116G-2 idlinx module at .78
+linx::add( 'ib116G-2', {'ip'=>'192.168.1.78', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib116G-2_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib116G-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib116G-2_sns_b', 'prx116G-1', 'raise main prx116G-1', {report=>'both'} );
+in( 'ib116G-2_sns_b_flt', 'prx116G-2', 'lower main prx116G-2', {report=>'both'} );
+idlinx_motor( 'mdr116G-3', 'ib116G-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib116G-2', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib116G-2_in1', 'peg116J-1A', 'line full peg116J-1A', {dir=>'rev', edge=>'full'});
+#in( 'ib116G-2_in2', '', '');
+#in( 'ib116G-2_in3', '', '');
+#out( 'ib116G-2_out1', '', '');
+#out( 'ib116G-2_out2', '', '');
+out( 'ib116G-2_out3', 'runint116H-1', 'runint116H-1');
+#out( 'ib116G-2_out4', '', '');
+#out( 'ib116G-2_out5', '', '');
+
+# --- ib116L-1 idlinx module at .79
+linx::add( 'ib116L-1', {'ip'=>'192.168.1.79', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib116L-1_sns_a', 'pe116L-2', 'pe116L-2', {dir=>'rev',report=>'both'} );
+#in( 'ib116L-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib116L-1_sns_b', 'pe116L-1', 'pe116L-1', {dir=>'rev',report=>'both'} );
+#in( 'ib116L-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr116L-2', 'ib116L-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr116L-1', 'ib116L-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib116L-1_in1', 'psint116L-1', 'power supply ok ps116L-1', {edge=>'fault'});
+#in( 'ib116L-1_in2', '', '');
+#in( 'ib116L-1_in3', '', '');
+#out( 'ib116L-1_out1', '', '');
+#out( 'ib116L-1_out2', '', '');
+#out( 'ib116L-1_out3', '', '');
+#out( 'ib116L-1_out4', '', '');
+#out( 'ib116L-1_out5', '', '');
+
+# --- ib116L-2 idlinx module at .80
+linx::add( 'ib116L-2', {'ip'=>'192.168.1.80', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib116L-2_sns_a', 'pe116L-4', 'pe116L-4', {dir=>'rev',report=>'both'} );
+#in( 'ib116L-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib116L-2_sns_b', 'pe116L-3', 'pe116L-3', {dir=>'rev',report=>'both'} );
+#in( 'ib116L-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr116L-4', 'ib116L-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr116L-3', 'ib116L-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib116L-2_in1', '', '');
+#in( 'ib116L-2_in2', '', '');
+#in( 'ib116L-2_in3', '', '');
+#out( 'ib116L-2_out1', '', '');
+#out( 'ib116L-2_out2', '', '');
+#out( 'ib116L-2_out3', '', '');
+#out( 'ib116L-2_out4', '', '');
+#out( 'ib116L-2_out5', '', '');
+
+# --- ib116M-1 idlinx module at .81
+linx::add( 'ib116M-1', {'ip'=>'192.168.1.81', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib116M-1_sns_a', 'pe116M-2', 'pe116M-2', {dir=>'rev',report=>'both'} );
+#in( 'ib116M-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib116M-1_sns_b', 'pe116M-1', 'pe116M-1', {dir=>'rev',report=>'both'} );
+#in( 'ib116M-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr116M-2', 'ib116M-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr116M-1', 'ib116M-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib116M-1_in1', '', '');
+#in( 'ib116M-1_in2', '', '');
+#in( 'ib116M-1_in3', '', '');
+#out( 'ib116M-1_out1', '', '');
+#out( 'ib116M-1_out2', '', '');
+out( 'ib116M-1_out3', 'scnint116M-1', 'side scanner scn116M-1');
+#out( 'ib116M-1_out4', '', '');
+#out( 'ib116M-1_out5', '', '');
+
+# --- ib116N-1 idlinx module at .82
+linx::add( 'ib116N-1', {'ip'=>'192.168.1.82', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib116N-1_sns_a', 'pe116N-1A', 'pe116N-1A', {dir=>'rev',report=>'both'} );
+in( 'ib116N-1_sns_a_flt', 'pe116N-1C', 'pe116N-1C', {dir=>'rev',report=>'both'} );
+in( 'ib116N-1_sns_b', 'pe116N-1B', 'pee116N-1B', {dir=>'rev',report=>'both'} );
+#in( 'ib116N-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr116N-1', 'ib116N-1', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr116N-2', 'ib116N-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib116N-1_in1', '', '');
+#in( 'ib116N-1_in2', '', '');
+#in( 'ib116N-1_in3', '', '');
+out( 'ib116N-1_out1', 'liftint116N-1', 'lift main liftint116N-1');
+#out( 'ib116N-1_out2', '', '');
+#out( 'ib116N-1_out3', '', '');
+#out( 'ib116N-1_out4', '', '');
+#out( 'ib116N-1_out5', '', '');
+
+# --- ib116N-2 idlinx module at .83
+linx::add( 'ib116N-2', {'ip'=>'192.168.1.83', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib116N-2_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib116N-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib116N-2_sns_b', 'prx116N-1', 'raise main prx116N-1', {report=>'both'} );
+in( 'ib116N-2_sns_b_flt', 'prx116N-2', 'lower main prx116N-2', {report=>'both'} );
+idlinx_motor( 'mdr116N-3', 'ib116N-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib116N-2', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib116N-2_in1', 'peg116Q-1A', 'line full peg116Q-1A', {dir=>'rev', edge=>'full'});
+#in( 'ib116N-2_in2', '', '');
+#in( 'ib116N-2_in3', '', '');
+#out( 'ib116N-2_out1', '', '');
+#out( 'ib116N-2_out2', '', '');
+out( 'ib116N-2_out3', 'runint116P-1', 'runint116P-1');
+#out( 'ib116N-2_out4', '', '');
+#out( 'ib116N-2_out5', '', '');
+
+# --- ib118A-1 idlinx module at .84
+linx::add( 'ib118A-1', {'ip'=>'192.168.1.84', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib118A-1_sns_a', 'pe118A-1A', 'pe118A-1A', {dir=>'rev',report=>'both'} );
+in( 'ib118A-1_sns_a_flt', 'pe118A-1C', 'pe118A-1C', {dir=>'rev',report=>'both'} );
+in( 'ib118A-1_sns_b', 'pe118A-1B', 'pe118A-1B', {dir=>'rev',report=>'both'} );
+#in( 'ib118A-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr118A-1', 'ib118A-1', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr118A-2', 'ib118A-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib118A-1_in1', '', '');
+#in( 'ib118A-1_in2', '', '');
+#in( 'ib118A-1_in3', '', '');
+out( 'ib118A-1_out1', 'liftint118A-1', 'lift main liftint118A-1');
+#out( 'ib118A-1_out2', '', '');
+#out( 'ib118A-1_out3', '', '');
+#out( 'ib118A-1_out4', '', '');
+#out( 'ib118A-1_out5', '', '');
+
+# --- ib118A-2 idlinx module at .85
+linx::add( 'ib118A-2', {'ip'=>'192.168.1.85', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib118A-2_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib118A-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib118A-2_sns_b', 'prx118A-1', 'raise main prx118A-1', {report=>'both'} );
+in( 'ib118A-2_sns_b_flt', 'prx118A-2', 'lower main prx118A-2', {report=>'both'} );
+idlinx_motor( 'mdr118A-3', 'ib118A-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib118A-2', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib118A-2_in1', 'peg118M-1A', 'line full peg118M-1A', {dir=>'rev', edge=>'full'});
+#in( 'ib118A-2_in2', '', '');
+#in( 'ib118A-2_in3', '', '');
+#out( 'ib118A-2_out1', '', '');
+#out( 'ib118A-2_out2', '', '');
+out( 'ib118A-2_out3', 'runint118B-1', 'runint118B-1');
+#out( 'ib118A-2_out4', '', '');
+#out( 'ib118A-2_out5', '', '');
+
+# --- ib118C-1 idlinx module at .86
+linx::add( 'ib118C-1', {'ip'=>'192.168.1.86', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib118C-1_sns_a', 'pe118C-2', 'pe118C-2', {dir=>'rev',report=>'both'} );
+#in( 'ib118C-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib118C-1_sns_b', 'pe118C-1', 'pe118C-1', {dir=>'rev',report=>'both'} );
+#in( 'ib118C-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr118C-2', 'ib118C-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr118C-1', 'ib118C-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib118C-1_in1', '', '');
+#in( 'ib118C-1_in2', '', '');
+#in( 'ib118C-1_in3', '', '');
+#out( 'ib118C-1_out1', '', '');
+#out( 'ib118C-1_out2', '', '');
+#out( 'ib118C-1_out3', '', '');
+#out( 'ib118C-1_out4', '', '');
+#out( 'ib118C-1_out5', '', '');
+
+# --- ib118D-1 idlinx module at .87
+linx::add( 'ib118D-1', {'ip'=>'192.168.1.87', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib118D-1_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib118D-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib118D-1_sns_b', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib118D-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr118D-2', 'ib118D-1', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr118D-1', 'ib118D-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib118D-1_in1', 'pe118D-1', 'pe118D-1', {dir=>'rev'});
+in( 'ib118D-1_in2', 'pe118D-2', 'pe118D-2', {dir=>'rev'});
+in( 'ib118D-1_in3', 'psint118D-1', 'power supply ok ps118D-1', {edge=>'fault'});
+#out( 'ib118D-1_out1', '', '');
+#out( 'ib118D-1_out2', '', '');
+#out( 'ib118D-1_out3', '', '');
+#out( 'ib118D-1_out4', '', '');
+#out( 'ib118D-1_out5', '', '');
+
+# --- ib118D-2 idlinx module at .88
+linx::add( 'ib118D-2', {'ip'=>'192.168.1.88', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib118D-2_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib118D-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib118D-2_sns_b', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib118D-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr118D-4', 'ib118D-2', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr118D-3', 'ib118D-2', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib118D-2_in1', 'pb118D-1', 'pb118D-1');
+#in( 'ib118D-2_in2', '', '');
+#in( 'ib118D-2_in3', '', '');
+#out( 'ib118D-2_out1', '', '');
+#out( 'ib118D-2_out2', '', '');
+#out( 'ib118D-2_out3', '', '');
+#out( 'ib118D-2_out4', '', '');
+#out( 'ib118D-2_out5', '', '');
+
+# --- ib118E-1 idlinx module at .89
+linx::add( 'ib118E-1', {'ip'=>'192.168.1.89', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib118E-1_sns_a', 'pe118E-2', 'pe118E-2', {dir=>'rev',report=>'both'} );
+#in( 'ib118E-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib118E-1_sns_b', 'pe118E-1', 'pe118E-1', {dir=>'rev',report=>'both'} );
+#in( 'ib118E-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr118E-2', 'ib118E-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr118E-1', 'ib118E-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib118E-1_in1', '', '');
+#in( 'ib118E-1_in2', '', '');
+#in( 'ib118E-1_in3', '', '');
+#out( 'ib118E-1_out1', '', '');
+#out( 'ib118E-1_out2', '', '');
+out( 'ib118E-1_out3', 'scnint118E-1', 'side scanner scn188E-1');
+#out( 'ib118E-1_out4', '', '');
+#out( 'ib118E-1_out5', '', '');
+
+# --- ib118J-1 idlinx module at .90
+linx::add( 'ib118J-1', {'ip'=>'192.168.1.90', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib118J-1_sns_a', 'pe118J-1', 'pe118J-1', {dir=>'rev',report=>'both'} ); # switch with B
+#in( 'ib118J-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib118J-1_sns_b', 'pe118J-2', 'pe118J-2', {dir=>'rev',report=>'both'} ); # switch with A
+#in( 'ib118J-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr118J-1', 'ib118J-1', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} ); # switch with B 
+idlinx_motor( 'mdr118J-2', 'ib118J-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} ); # switch with A
+#in( 'ib118J-1_in1', '', '');
+#in( 'ib118J-1_in2', '', '');
+#in( 'ib118J-1_in3', '', '');
+#out( 'ib118J-1_out1', '', '');
+#out( 'ib118J-1_out2', '', '');
+#out( 'ib118J-1_out3', '', '');
+#out( 'ib118J-1_out4', '', '');
+#out( 'ib118J-1_out5', '', '');
+
+# --- ib118F-1 idlinx module at .91
+linx::add( 'ib118F-1', {'ip'=>'192.168.1.91', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib118F-1_sns_a', 'pe118F-1A', 'pe118F-1A', {dir=>'rev',report=>'both'} );
+in( 'ib118F-1_sns_a_flt', 'pe118F-1C', 'pe118F-1C', {dir=>'rev',report=>'both'} );
+in( 'ib118F-1_sns_b', 'pe118F-1B', 'pe118F-1B', {dir=>'rev',report=>'both'} );
+in( 'ib118F-1_sns_b_flt', 'pe118F-1D', 'pe118F-1D', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr118F-1', 'ib118F-1', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr118F-2', 'ib118F-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib118F-1_in1', '', '');
+#in( 'ib118F-1_in2', '', '');
+#in( 'ib118F-1_in3', '', '');
+out( 'ib118F-1_out1', 'liftint118F-1', 'lift main liftint118F-1');
+#out( 'ib118F-1_out2', '', '');
+#out( 'ib118F-1_out3', '', '');
+#out( 'ib118F-1_out4', '', '');
+#out( 'ib118F-1_out5', '', '');
+
+# --- ib118F-2 idlinx module at .92
+linx::add( 'ib118F-2', {'ip'=>'192.168.1.92', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib118F-2_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib118F-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib118F-2_sns_b', 'prx118F-1', 'prx118F-1', {report=>'both'} );
+in( 'ib118F-2_sns_b_flt', 'prx118F-2', 'prx118F-2', {report=>'both'} );
+idlinx_motor( 'mdr118F-3', 'ib118F-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib118F-2', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib118F-2_in1', 'peg118K-1A', 'line full peg118K-1A', {dir=>'rev', edge=>'full'});
+#in( 'ib118F-2_in2', '', '');
+#in( 'ib118F-2_in3', '', '');
+#out( 'ib118F-2_out1', '', '');
+#out( 'ib118F-2_out2', '', '');
+out( 'ib118F-2_out3', 'runint118G-1', 'runint118G-1');
+#out( 'ib118F-2_out4', '', '');
+#out( 'ib118F-2_out5', '', '');
+
+# --- ib120A-1 idlinx module at .93
+linx::add( 'ib120A-1', {'ip'=>'192.168.1.93', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib120A-1_sns_a', 'pe120A-1A', 'pe120A-1A', {dir=>'rev',report=>'both'} );
+in( 'ib120A-1_sns_a_flt', 'pe120A-1C', 'pe120A-1C', {dir=>'rev',report=>'both'} );
+in( 'ib120A-1_sns_b', 'pe120A-1B', 'pe120A-1B', {dir=>'rev',report=>'both'} );
+in( 'ib120A-1_sns_b_flt', 'pe120A-1D', 'pe120A-1D', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr120A-1', 'ib120A-1', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr120A-2', 'ib120A-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib120A-1_in1', '', '');
+#in( 'ib120A-1_in2', '', '');
+#in( 'ib120A-1_in3', '', '');
+out( 'ib120A-1_out1', 'liftint120A-1', 'lift main liftint120A-1');
+#out( 'ib120A-1_out2', '', '');
+#out( 'ib120A-1_out3', '', '');
+#out( 'ib120A-1_out4', '', '');
+#out( 'ib120A-1_out5', '', '');
+
+# --- ib120A-2 idlinx module at .94
+linx::add( 'ib120A-2', {'ip'=>'192.168.1.94', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib120A-2_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib120A-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib120A-2_sns_b', 'prx120A-1', 'raise main prx120A-1', {report=>'both'} );
+in( 'ib120A-2_sns_b_flt', 'prx120A-2', 'lower main prx120A-2', {report=>'both'} );
+idlinx_motor( 'mdr120A-3', 'ib120A-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib120A-2', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib120A-2_in1', 'peg120L-1A', 'line full peg120L-1A', {dir=>'rev', edge=>'full'});
+#in( 'ib120A-2_in2', '', '');
+#in( 'ib120A-2_in3', '', '');
+#out( 'ib120A-2_out1', '', '');
+#out( 'ib120A-2_out2', '', '');
+out( 'ib120A-2_out3', 'runint120B-1', 'runint120B-1');
+#out( 'ib120A-2_out4', '', '');
+#out( 'ib120A-2_out5', '', '');
+
+# --- ib120C-1 idlinx module at .95
+linx::add( 'ib120C-1', {'ip'=>'192.168.1.95', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib120C-1_sns_a', 'pe120C-2', 'pe120C-2', {dir=>'rev',report=>'both'} );
+#in( 'ib120C-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib120C-1_sns_b', 'pe120C-1', 'pe120C-1', {dir=>'rev',report=>'both'} );
+#in( 'ib120C-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr120C-2', 'ib120C-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr120C-1', 'ib120C-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib120C-1_in1', '', '');
+#in( 'ib120C-1_in2', '', '');
+#in( 'ib120C-1_in3', '', '');
+#out( 'ib120C-1_out1', '', '');
+#out( 'ib120C-1_out2', '', '');
+#out( 'ib120C-1_out3', '', '');
+#out( 'ib120C-1_out4', '', '');
+#out( 'ib120C-1_out5', '', '');
+
+# --- ib120C-2 idlinx module at .96
+linx::add( 'ib120C-2', {'ip'=>'192.168.1.96', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib120C-2_sns_a', 'pe120C-4', 'pe120C-4', {dir=>'rev',report=>'both'} );
+#in( 'ib120C-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib120C-2_sns_b', 'pe120C-3', 'pe120C-3', {dir=>'rev',report=>'both'} );
+#in( 'ib120C-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr120C-4', 'ib120C-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr120C-3', 'ib120C-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib120C-2_in1', '', '');
+#in( 'ib120C-2_in2', '', '');
+#in( 'ib120C-2_in3', '', '');
+#out( 'ib120C-2_out1', '', '');
+#out( 'ib120C-2_out2', '', '');
+#out( 'ib120C-2_out3', '', '');
+#out( 'ib120C-2_out4', '', '');
+#out( 'ib120C-2_out5', '', '');
+
+# --- ib120D-1 idlinx module at .97
+linx::add( 'ib120D-1', {'ip'=>'192.168.1.97', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib120D-1_sns_a', 'pe120D-2', 'pe120D-2', {dir=>'rev',report=>'both'} );
+#in( 'ib120D-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib120D-1_sns_b', 'pe120D-1', 'pe120D-1', {dir=>'rev',report=>'both'} );
+#in( 'ib120D-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr120D-2', 'ib120D-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr120D-1', 'ib120D-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib120D-1_in1', 'psint120D-1', 'power supply ok ps120D-1', {edge=>'fault'});
+#in( 'ib120D-1_in2', '', '');
+#in( 'ib120D-1_in3', '', '');
+#out( 'ib120D-1_out1', '', '');
+#out( 'ib120D-1_out2', '', '');
+out( 'ib120D-1_out3', 'scnint120D-1', 'side scanner scn120D-1');
+#out( 'ib120D-1_out4', '', '');
+#out( 'ib120D-1_out5', '', '');
+
+# --- ib120E-1 idlinx module at .98
+linx::add( 'ib120E-1', {'ip'=>'192.168.1.98', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib120E-1_sns_a', 'pe120E-1A', 'pe120E-1A', {dir=>'rev',report=>'both'} );
+in( 'ib120E-1_sns_a_flt', 'pe120E-1C', 'pe120E-1C', {dir=>'rev',report=>'both'} );
+in( 'ib120E-1_sns_b', 'pe120E-1B', 'pe120E-1B', {dir=>'rev',report=>'both'} );
+#in( 'ib120E-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr120E-1', 'ib120E-1', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr120E-2', 'ib120E-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib120E-1_in1', '', '');
+#in( 'ib120E-1_in2', '', '');
+#in( 'ib120E-1_in3', '', '');
+out( 'ib120E-1_out1', 'liftint120E-1', 'lift main liftint120E-1');
+#out( 'ib120E-1_out2', '', '');
+#out( 'ib120E-1_out3', '', '');
+#out( 'ib120E-1_out4', '', '');
+#out( 'ib120E-1_out5', '', '');
+
+# --- ib120E-2 idlinx module at .99
+linx::add( 'ib120E-2', {'ip'=>'192.168.1.99', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib120E-2_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib120E-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib120E-2_sns_b', 'prx120E-1', 'raise main prx120E-1', {report=>'both'} );
+in( 'ib120E-2_sns_b_flt', 'prx120E-2', 'lower main prx120E-2', {report=>'both'} );
+idlinx_motor( 'mdr120E-3', 'ib120E-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib120E-2', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib120E-2_in1', 'peg120G-1A', 'line full peg120G-1A', {dir=>'rev', edge=>'full'});
+#in( 'ib120E-2_in2', '', '');
+#in( 'ib120E-2_in3', '', '');
+#out( 'ib120E-2_out1', '', '');
+#out( 'ib120E-2_out2', '', '');
+out( 'ib120E-2_out3', 'runint120F-1', 'runint120F-1');
+#out( 'ib120E-2_out4', '', '');
+#out( 'ib120E-2_out5', '', '');
+
+# --- ib120J-1 idlinx module at .100
+linx::add( 'ib120J-1', {'ip'=>'192.168.1.129', run=>'cp1_run', reset=>'cp1_reset'} ); # IP CHANGED
+in( 'ib120J-1_sns_a', 'pe120J-1', 'pe120J-1', {dir=>'rev',report=>'both'} );
+#in( 'ib120J-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib120J-1_sns_b', 'pe120J-2', 'pe120J-2', {dir=>'rev',report=>'both'} ); # FIELD CHANGE to card ib120J-2
+#in( 'ib120J-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr120J-1', 'ib120J-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( 'mdr120J-2', 'ib120J-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} ); # FIELD CHANGE to card 120J-2
+#in( 'ib120J-1_in1', '', '');
+#in( 'ib120J-1_in2', '', '');
+#in( 'ib120J-1_in3', '', '');
+#out( 'ib120J-1_out1', '', '');
+#out( 'ib120J-1_out2', '', '');
+#out( 'ib120J-1_out3', '', '');
+#out( 'ib120J-1_out4', '', '');
+#out( 'ib120J-1_out5', '', '');
+
+# --- ib120J-2 idlinx module at .101
+linx::add( 'ib120J-2', {'ip'=>'192.168.1.101', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib120J-2_sns_a', 'pe120J-3', 'pe120J-3', {dir=>'rev',report=>'both'} );
+#in( 'ib120J-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib120J-2_sns_b', 'pe120J-2', 'pe120J-2', {dir=>'rev',report=>'both'} ); # FIELD CHANGE from card 120J-1
+#in( 'ib120J-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr120J-3', 'ib120J-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr120J-2', 'ib120J-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} ); # FIELD CHANGE from card 120J-1
+in( 'ib120J-2_in1', 'peint120K-1', 'zone status peint120k-1', {dir=>'rev'});
+#in( 'ib120J-2_in2', '', '');
+#in( 'ib120J-2_in3', '', '');
+#out( 'ib120J-2_out1', '', '');
+#out( 'ib120J-2_out2', '', '');
+out( 'ib120J-2_out3', 'runint120K-1', 'runint120K-1');
+out( 'ib120J-2_out4', 'stopint120K-1', 'stopint120K-1');
+#out( 'ib120J-2_out5', '', '');
+
+# --- ib122C-1 idlinx module at .102
+linx::add( 'ib122C-1', {'ip'=>'192.168.1.102', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib122C-1_sns_a', 'pe122C-2', 'pe122C-2', {dir=>'rev',report=>'both'} );
+#in( 'ib122C-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib122C-1_sns_b', 'pe122C-1', 'pe122C-1', {dir=>'rev',report=>'both'} );
+#in( 'ib122C-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr122C-2', 'ib122C-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr122C-1', 'ib122C-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib122C-1_in1', 'peint122B-4', 'zone status peint122B-4');
+#in( 'ib122C-1_in2', '', '');
+#in( 'ib122C-1_in3', '', '');
+#out( 'ib122C-1_out1', '', '');
+#out( 'ib122C-1_out2', '', '');
+out( 'ib122C-1_out3', 'relint112B-4', 'release relint112B-4');
+#out( 'ib122C-1_out4', '', '');
+#out( 'ib122C-1_out5', '', '');
+
+# --- ib122C-2 idlinx module at .103
+linx::add( 'ib122C-2', {'ip'=>'192.168.1.103', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib122C-2_sns_a', 'pe122C-4', 'pe122C-4', {dir=>'rev',report=>'both'} );
+#in( 'ib122C-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib122C-2_sns_b', 'pe122C-3', 'pe122C-3', {dir=>'rev',report=>'both'} );
+#in( 'ib122C-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr122C-4', 'ib122C-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr122C-3', 'ib122C-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib122C-2_in1', 'pb122C-1', 'reset pb122C-1');
+in( 'ib122C-2_in2', 'psint122E-1', 'power supply ok psint122E-1', {edge});
+#in( 'ib122C-2_in3', '', '');
+#out( 'ib122C-2_out1', '', '');
+#out( 'ib122C-2_out2', '', '');
+#out( 'ib122C-2_out3', '', '');
+#out( 'ib122C-2_out4', '', '');
+#out( 'ib122C-2_out5', '', '');
+
+# --- ib122D-1 idlinx module at .104
+linx::add( 'ib122D-1', {'ip'=>'192.168.1.104', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib122D-1_sns_a', 'pe122D-1A', 'pe122D-1A', {dir=>'rev',report=>'both'} );
+in( 'ib122D-1_sns_a_flt', 'pe122D-1C', 'pe122D-1C', {dir=>'rev',report=>'both'} );
+in( 'ib122D-1_sns_b', 'pe122D-1B', 'pe122D-1B', {dir=>'rev',report=>'both'} );
+in( 'ib122D-1_sns_b_flt', 'pe122D-1D', 'pe122D-1D', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr122D-1', 'ib122D-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr122D-2', 'ib122D-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib122D-1_in1', '', '');
+#in( 'ib122D-1_in2', '', '');
+#in( 'ib122D-1_in3', '', '');
+out( 'ib122D-1_out1', 'liftint122D-1', 'lift main liftint122D-1');
+#out( 'ib122D-1_out2', '', '');
+#out( 'ib122D-1_out3', '', '');
+#out( 'ib122D-1_out4', '', '');
+#out( 'ib122D-1_out5', '', '');
+
+# --- ib122D-2 idlinx module at .105
+linx::add( 'ib122D-2', {'ip'=>'192.168.1.105', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib122D-2_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib122D-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib122D-2_sns_b', 'prx122D-1', 'raise main prx122D-1', {report=>'both'} );
+in( 'ib122D-2_sns_b_flt', 'prx122D-2', 'lower main prx122D-2', {report=>'both'} );
+idlinx_motor( 'mdr122D-3', 'ib122D-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib122D-2', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib122D-2_in1', '', '');
+#in( 'ib122D-2_in2', '', '');
+#in( 'ib122D-2_in3', '', '');
+#out( 'ib122D-2_out1', '', '');
+#out( 'ib122D-2_out2', '', '');
+#out( 'ib122D-2_out3', '', '');
+#out( 'ib122D-2_out4', '', '');
+#out( 'ib122D-2_out5', '', '');
+
+# --- ib122E-1 idlinx module at .106
+linx::add( 'ib122E-1', {'ip'=>'192.168.1.106', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib122E-1_sns_a', 'pe122E-2', 'pe122E-2', {dir=>'rev',report=>'both'} );
+#in( 'ib122E-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib122E-1_sns_b', 'pe122E-1', 'pe122E-1', {dir=>'rev',report=>'both'} );
+#in( 'ib122E-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr122E-2', 'ib122E-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr122E-1', 'ib122E-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib122E-1_in1', 'pe122G-1A', 'start pe122G-1A');
+# in( 'ib122E-1_in2', 'psint122E-1', 'power supply ok psint122E-1', {edge=>'fault'}); FIELD CHANGE
+in( 'ib122E-1_in3', 'peint122F-4', 'zone status peint122F-4');
+#out( 'ib122E-1_out1', '', '');
+#out( 'ib122E-1_out2', '', '');
+out( 'ib122E-1_out3', 'relint122F-4', 'relint122F-4');
+out( 'ib122E-1_out4', 'stopint122F-4', 'stopint122F-4');
+#out( 'ib122E-1_out5', '', '');
+
+# --- ib122E-2 idlinx module at .107
+linx::add( 'ib122E-2', {'ip'=>'192.168.1.107', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib122E-2_sns_a', 'pe122E-4', 'pe122E-4', {dir=>'rev',report=>'both'} );
+#in( 'ib122E-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib122E-2_sns_b', 'pe122E-3', 'pe122E-3', {dir=>'rev',report=>'both'} );
+#in( 'ib122E-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr122E-4', 'ib122E-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr122E-3', 'ib122E-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib122E-2_in1', '', '');
+#in( 'ib122E-2_in2', '', '');
+#in( 'ib122E-2_in3', '', '');
+#out( 'ib122E-2_out1', '', '');
+#out( 'ib122E-2_out2', '', '');
+#out( 'ib122E-2_out3', '', '');
+#out( 'ib122E-2_out4', '', '');
+#out( 'ib122E-2_out5', '', '');
+
+# --- ib124A-1 idlinx module at .108
+linx::add( 'ib124A-1', {'ip'=>'192.168.1.108', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib124A-1_sns_a', 'pe124A-2', 'pe124A-2', {dir=>'rev',report=>'both'} );
+#in( 'ib124A-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib124A-1_sns_b', 'pe124A-1', 'pe124A-1', {dir=>'rev',report=>'both'} );
+#in( 'ib124A-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr124A-2', 'ib124A-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr124A-1', 'ib124A-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib124A-1_in1', '', '');
+#in( 'ib124A-1_in2', '', '');
+#in( 'ib124A-1_in3', '', '');
+#out( 'ib124A-1_out1', '', '');
+#out( 'ib124A-1_out2', '', '');
+#out( 'ib124A-1_out3', '', '');
+#out( 'ib124A-1_out4', '', '');
+#out( 'ib124A-1_out5', '', '');
+
+# --- ib124A-2 idlinx module at .109
+linx::add( 'ib124A-2', {'ip'=>'192.168.1.109', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib124A-2_sns_a', 'pe124A-4', 'pe124A-4', {dir=>'rev',report=>'both'} );
+#in( 'ib124A-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib124A-2_sns_b', 'pe124A-3', 'pe124A-3', {dir=>'rev',report=>'both'} );
+#in( 'ib124A-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr124A-4', 'ib124A-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr124A-3', 'ib124A-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib124A-2_in1', 'peint124B-1', 'zone status peint124B-1', {dir=>'rev'});
+#in( 'ib124A-2_in2', '', '');
+#in( 'ib124A-2_in3', '', '');
+#out( 'ib124A-2_out1', '', '');
+#out( 'ib124A-2_out2', '', '');
+out( 'ib124A-2_out3', 'runint124B-1', 'runint124B-1');
+out( 'ib124A-2_out4', 'stopint124B-1', 'stopint124B-1');
+#out( 'ib124A-2_out5', '', '');
+
+# --- ib124E-1 idlinx module at .110
+linx::add( 'ib124E-1', {'ip'=>'192.168.1.110', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib124E-1_sns_a', 'pe124E-2', 'pe124E-2', {dir=>'rev',report=>'both'} );
+#in( 'ib124E-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib124E-1_sns_b', 'pe124E-1', 'pe124E-1', {dir=>'rev',report=>'both'} );
+#in( 'ib124E-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr124E-2', 'ib124E-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr124E-1', 'ib124E-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib124E-1_in1', 'peint124D-4', 'zone status peint124D-4');
+in( 'ib124E-1_in2', 'psint124E-1', 'power supply ok ps124E-1', {edge=>'fault'});
+#in( 'ib124E-1_in3', '', '');
+#out( 'ib124E-1_out1', '', '');
+#out( 'ib124E-1_out2', '', '');
+out( 'ib124E-1_out3', 'relint124D-4', 'release relint124D-4');
+#out( 'ib124E-1_out4', '', '');
+#out( 'ib124E-1_out5', '', '');
+
+# FIX AFTER THIS
+
+# --- ib124E-2 idlinx module at .111
+linx::add( 'ib124E-2', {'ip'=>'192.168.1.111', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib124E-2_sns_a', 'pe124E-4', 'pe124E-4', {dir=>'rev',report=>'both'} );
+#in( 'ib124E-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib124E-2_sns_b', 'pe124E-3', 'pe124E-3', {dir=>'rev',report=>'both'} );
+#in( 'ib124E-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr124E-4', 'ib124E-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr124E-3', 'ib124E-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib124E-2_in1', '', ''');
+#in( 'ib124E-2_in2', '', '');
+#in( 'ib124E-2_in3', '', '');
+#out( 'ib124E-2_out1', ''', '');
+#out( 'ib124E-2_out2', '', '');
+out( 'ib124E-2_out3', 'scnint124E-1', 'side scanner scn124E-1');
+#out( 'ib124E-2_out4', '', '');
+#out( 'ib124E-2_out5', '', '');
+
+# --- ib124F-1 idlinx module at .112
+linx::add( 'ib124F-1', {'ip'=>'192.168.1.112', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib124F-1_sns_a', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib124F-1_sns_a_flt', 'prx124F-1', 'lower row 1 & 2 prx124F-1', {report=>'both'} );
+#in( 'ib124F-1_sns_b', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib124F-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr124F-1A', 'ib124F-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr124F-1B', 'ib124F-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib124F-1_in1', 'prx124F-2', 'raise row 1 & 2 prx124F-2');
+in( 'ib124F-1_in2', 'prx124F-3', 'lower row 3 & 4 prx124F-3');
+in( 'ib124F-1_in3', 'prx124F-4', 'raise row 3 & 4 prx124F-4');
+out( 'ib124F-1_out1', 'liftint124F-1', 'lift row 1 & 2 liftint124F-1');
+out( 'ib124F-1_out2', 'liftint124F-2', 'lift row 3 & 4 liftint124F-2');
+#out( 'ib124F-1_out3', '', '');
+#out( 'ib124F-1_out4', '', '');
+#out( 'ib124F-1_out5', '', '');
+
+# --- ib124F-2 idlinx module at .113
+linx::add( 'ib124F-2', {'ip'=>'192.168.1.113', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib124F-2_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib124F-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib124F-2_sns_b', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib124F-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr124F-2', 'ib124F-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib124F-2', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib124F-2_in1', 'pe124F-1', 'pe124F-1', {dir=>'rev'});
+in( 'ib124F-2_in2', 'pe124F-2', 'pe124F-2', {dir=>'rev'});
+#in( 'ib124F-2_in3', '', '');
+#out( 'ib124F-2_out1', '', '');
+#out( 'ib124F-2_out2', '', '');
+#out( 'ib124F-2_out3', '', '');
+#out( 'ib124F-2_out4', '', '');
+#out( 'ib124F-2_out5', '', '');
+
+# --- ib124F-3 idlinx module at .114
+linx::add( 'ib124F-3', {'ip'=>'192.168.1.114', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib124F-3_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib124F-3_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib124F-3_sns_b', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib124F-3_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr124F-4', 'ib124F-3', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr124F-3', 'ib124F-3', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib124F-3_in1', 'pe124F-4', 'pe124F-4', {dir=>'rev'});
+#in( 'ib124F-3_in2', '', '');
+#in( 'ib124F-3_in3', '', '');
+#out( 'ib124F-3_out1', '', '');
+#out( 'ib124F-3_out2', '', '');
+#out( 'ib124F-3_out3', '', '');
+#out( 'ib124F-3_out4', '', '');
+#out( 'ib124F-3_out5', '', '');
+
+# --- ib128A-1 idlinx module at .115
+linx::add( 'ib128A-1', {'ip'=>'192.168.1.115', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib128A-1_sns_a', 'pe128A-1', 'pe128A-1', {dir=>'rev',report=>'both'} );
+#in( 'ib128A-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib128A-1_sns_b', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib128A-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr128A-1', 'ib128A-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib128A-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib128A-1_in1', 'psint128F-1', 'power supply ok ps128F-1', {edge=>'fault'});
+#in( 'ib128A-1_in2', '', '');
+#in( 'ib128A-1_in3', '', '');
+#out( 'ib128A-1_out1', '', '');
+#out( 'ib128A-1_out2', '', '');
+#out( 'ib128A-1_out3', '', '');
+#out( 'ib128A-1_out4', '', '');
+#out( 'ib128A-1_out5', '', '');
+
+# --- ib128C-1 idlinx module at .116
+linx::add( 'ib128C-1', {'ip'=>'192.168.1.116', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib128C-1_sns_a', 'pe128C-1', 'pe128C-1', {dir=>'rev',report=>'both'} );
+#in( 'ib128C-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib128C-1_sns_b', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib128C-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr128C-1', 'ib128C-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib128C-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib128C-1_in1', 'pb128D-1', 'pause pb128D-1');
+in( 'ib128C-1_in2', 'pb128D-2', 'pause pb128D-1');
+in( 'ib128C-1_in3', 'glsw128D-1', 'gate close glsw128D-1');
+out( 'ib128C-1_out1', 'runint128D-1', 'runint128D-1');
+out( 'ib128C-1_out2', 'runint128B-1', 'runint128B-1');
+#out( 'ib128C-1_out3', '', '');
+#out( 'ib128C-1_out4', '', '');
+#out( 'ib128C-1_out5', '', '');
+
+# --- ib128E-1 idlinx module at .117
+linx::add( 'ib128E-1', {'ip'=>'192.168.1.117', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib128E-1_sns_a', 'pe128E-2', 'pe128E-2', {dir=>'rev',report=>'both'} );
+#in( 'ib128E-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib128E-1_sns_b', 'pe128E-1', 'pe128E-1', {dir=>'rev',report=>'both'} );
+#in( 'ib128E-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr128E-2', 'ib128E-1', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr128E-1', 'ib128E-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib128E-1_in1', 'peint128F-1', 'zone status peint128F-1', {dir=>'rev'});
+in( 'ib128E-1_in2', 'peint128G-4', 'zone status peint128G-4');
+in( 'ib128E-1_in3', 'peg128H-1A', 'line full peg128H-1A', {dir=>'rev', edge=>'full'});
+#out( 'ib128E-1_out1', '', '');
+#out( 'ib128E-1_out2', '', '');
+out( 'ib128E-1_out3', 'runint128F-1', 'runint128F-1');
+out( 'ib128E-1_out4', 'stopint128F-1', 'stopint128F-1');
+out( 'ib128E-1_out5', 'relint128G-4', 'release relint128G-4');
+
+# --- ib126A-1 idlinx module at .118
+linx::add( 'ib126A-1', {'ip'=>'192.168.1.118', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib126A-1_sns_a', 'pe126A-2', 'pe126A-2', {dir=>'rev',report=>'both'} );
+#in( 'ib126A-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib126A-1_sns_b', 'pe126A-1', 'pe126A-1', {dir=>'rev',report=>'both'} );
+#in( 'ib126A-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr126A-2', 'ib126A-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr126A-1', 'ib126A-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib126A-1_in1', 'psint126A-1', 'power supply ok psint126A-1', {edge=>'fault'});
+#in( 'ib126A-1_in2', '', '');
+#in( 'ib126A-1_in3', '', '');
+#out( 'ib126A-1_out1', '', '');
+#out( 'ib126A-1_out2', '', '');
+#out( 'ib126A-1_out3', '', '');
+#out( 'ib126A-1_out4', '', '');
+#out( 'ib126A-1_out5', '', '');
+
+# --- ib126B-1 idlinx module at .119
+linx::add( 'ib126B-1', {'ip'=>'192.168.1.119', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib126B-1_sns_a', 'pe126B-2', 'pe126B-2', {dir=>'rev',report=>'both'} );
+#in( 'ib126B-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib126B-1_sns_b', 'pe126B-1', 'pe126B-1', {dir=>'rev',report=>'both'} );
+#in( 'ib126B-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr126B-2', 'ib126B-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr126B-1', 'ib126B-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib126B-1_in1', '', '');
+#in( 'ib126B-1_in2', '', '');
+#in( 'ib126B-1_in3', '', '');
+#out( 'ib126B-1_out1', '', '');
+#out( 'ib126B-1_out2', '', '');
+#out( 'ib126B-1_out3', '', '');
+#out( 'ib126B-1_out4', '', '');
+#out( 'ib126B-1_out5', '', '');
+
+# --- ib126C-1 idlinx module at .120
+linx::add( 'ib126C-1', {'ip'=>'192.168.1.120', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib126C-1_sns_a', 'pe126C-2', 'pe126C-2', {dir=>'rev',report=>'both'} );
+#in( 'ib126C-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib126C-1_sns_b', 'pe126C-1', 'pe126C-1', {dir=>'rev',report=>'both'} );
+#in( 'ib126C-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr126C-2', 'ib126C-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr126C-1', 'ib126C-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib126C-1_in1', '', '');
+#in( 'ib126C-1_in2', '', '');
+#in( 'ib126C-1_in3', '', '');
+#out( 'ib126C-1_out1', '', '');
+#out( 'ib126C-1_out2', '', '');
+out( 'ib126C-1_out3', 'scnint126C-1', 'side scanner scn126C-1');
+#out( 'ib126C-1_out4', '', '');
+#out( 'ib126C-1_out5', '', '');
+
+# --- ib126D-1 idlinx module at .121
+linx::add( 'ib126D-1', {'ip'=>'192.168.1.121', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib126D-1_sns_a', 'pe126D-1C', 'pe126D-1C', {dir=>'rev',report=>'both'} );
+#in( 'ib126D-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib126D-1_sns_b', 'pe126D-1A', 'pe126D-1A', {dir=>'rev',report=>'both'} );
+#in( 'ib126D-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr126D-1', 'ib126D-1', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr126D-2', 'ib126D-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib126D-1_in1', 'peg126J-1A', 'line full peg126J-1A', {dir=>'rev', edge=>'full'});
+in( 'ib126D-1_in2', 'peg126L-1A', 'line full peg126L-1A', {dir=>'rev', edge=>'full'});
+#in( 'ib126D-1_in3', '', '');
+out( 'ib126D-1_out1', 'liftint126D-1', 'lift main liftint126D-1');
+#out( 'ib126D-1_out2', '', '');
+#out( 'ib126D-1_out3', '', '');
+#out( 'ib126D-1_out4', '', '');
+#out( 'ib126D-1_out5', '', '');
+
+# --- ib126D-2 idlinx module at .122
+linx::add( 'ib126D-2', {'ip'=>'192.168.1.122', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib126D-2_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib126D-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib126D-2_sns_b', 'pe126D-1B', 'pe126D-1B', {dir=>'rev',report=>'both'} );
+#in( 'ib126D-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr126D-3', 'ib126D-2', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib126D-2', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib126D-2_in1', 'prx126D-4', 'lower wing prx126D-4');
+in( 'ib126D-2_in2', 'prx126D-3', 'raise wing prx126D-3');
+#in( 'ib126D-2_in3', '', '');
+#out( 'ib126D-2_out1', '', '');
+#out( 'ib126D-2_out2', '', '');
+#out( 'ib126D-2_out3', '', '');
+#out( 'ib126D-2_out4', '', '');
+#out( 'ib126D-2_out5', '', '');
+
+# --- ib126D-3 idlinx module at .123
+linx::add( 'ib126D-3', {'ip'=>'192.168.1.123', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib126D-3_sns_a', 'pe126D-1E', 'pe126D-1E', {dir=>'rev',report=>'both'} );
+#in( 'ib126D-3_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib126D-3_sns_b', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib126D-3_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr126D-4', 'ib126D-3', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib126D-3', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib126D-3_in1', 'prx126D-1', 'raise main prx126D-1');
+in( 'ib126D-3_in2', 'prx126D-2', 'lower main prx126D-2');
+in( 'ib126D-3_in3', 'pe126D-1F', 'pe126D-1F');
+out( 'ib126D-3_out1', 'liftint126D-2', 'lift wing liftint126D-2');
+#out( 'ib126D-3_out2', '', '');
+#out( 'ib126D-3_out3', '', '');
+#out( 'ib126D-3_out4', '', '');
+#out( 'ib126D-3_out5', '', '');
+
+# --- ib126F-1 idlinx module at .124
+linx::add( 'ib126F-1', {'ip'=>'192.168.1.124', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib126F-1_sns_a', 'pe126F-1', 'pe126F-1', {dir=>'rev',report=>'both'} );
+#in( 'ib126F-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib126F-1_sns_b', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib126F-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr126F-1', 'ib126F-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib126F-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib126F-1_in1', '', '');
+#in( 'ib126F-1_in2', '', '');
+#in( 'ib126F-1_in3', '', '');
+#out( 'ib126F-1_out1', '', '');
+#out( 'ib126F-1_out2', '', '');
+out( 'ib126F-1_out3', 'runint126E-1', 'runint126E-1');
+#out( 'ib126F-1_out4', '', '');
+#out( 'ib126F-1_out5', '', '');
+
+# --- ib126G-1 idlinx module at .125
+linx::add( 'ib126G-1', {'ip'=>'192.168.1.125', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib126G-1_sns_a', 'pe126G-2', 'pe126G-2', {dir=>'rev',report=>'both'} );
+#in( 'ib126G-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib126G-1_sns_b', 'pe126G-1', 'pe126G-1', {dir=>'rev',report=>'both'} );
+#in( 'ib126G-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr126G-2', 'ib126G-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr126G-1', 'ib126G-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib126G-1_in1', '', '');
+#in( 'ib126G-1_in2', '', '');
+#in( 'ib126G-1_in3', '', '');
+#out( 'ib126G-1_out1', '', '');
+#out( 'ib126G-1_out2', '', '');
+#out( 'ib126G-1_out3', '', '');
+#out( 'ib126G-1_out4', '', '');
+#out( 'ib126G-1_out5', '', '');
+
+# --- ib126G-2 idlinx module at .126
+linx::add( 'ib126G-2', {'ip'=>'192.168.1.126', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib126G-2_sns_a', 'pe126G-4', 'pe126G-4', {dir=>'rev',report=>'both'} );
+#in( 'ib126G-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib126G-2_sns_b', 'pe126G-3', 'pe126G-3', {dir=>'rev',report=>'both'} );
+#in( 'ib126G-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr126G-4', 'ib126G-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr126G-3', 'ib126G-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib126G-2_in1', '', '');
+#in( 'ib126G-2_in2', '', '');
+#in( 'ib126G-2_in3', '', '');
+#out( 'ib126G-2_out1', '', '');
+#out( 'ib126G-2_out2', '', '');
+#out( 'ib126G-2_out3', '', '');
+#out( 'ib126G-2_out4', '', '');
+#out( 'ib126G-2_out5', '', '');
+
+# --- ib126H-1 idlinx module at .127
+linx::add( 'ib126H-1', {'ip'=>'192.168.1.127', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib126H-1_sns_a', 'pe126H-2', 'pe126H-2', {dir=>'rev',report=>'both'} );
+#in( 'ib126H-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib126H-1_sns_b', 'pe126H-1', 'pe126H-1', {dir=>'rev',report=>'both'} );
+#in( 'ib126H-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr126H-2', 'ib126H-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr126H-1', 'ib126H-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib126H-1_in1', '', '');
+#in( 'ib126H-1_in2', '', '');
+#in( 'ib126H-1_in3', '', '');
+#out( 'ib126H-1_out1', '', '');
+#out( 'ib126H-1_out2', '', '');
+#out( 'ib126H-1_out3', '', '');
+#out( 'ib126H-1_out4', '', '');
+#out( 'ib126H-1_out5', '', '');
+
+# --- ib126H-2 idlinx module at .128
+linx::add( 'ib126H-2', {'ip'=>'192.168.1.128', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib126H-2_sns_a', 'pe126H-4', 'pe126H-4', {dir=>'rev',report=>'both'} );
+#in( 'ib126H-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib126H-2_sns_b', 'pe126H-3', 'pe126H-3', {dir=>'rev',report=>'both'} );
+#in( 'ib126H-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr126H-4', 'ib126H-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr126H-3', 'ib126H-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib126H-2_in1', '', '');
+#in( 'ib126H-2_in2', '', '');
+#in( 'ib126H-2_in3', '', '');
+#out( 'ib126H-2_out1', '', '');
+#out( 'ib126H-2_out2', '', '');
+#out( 'ib126H-2_out3', '', '');
+#out( 'ib126H-2_out4', '', '');
+#out( 'ib126H-2_out5', '', '');
+
+# --- ib96D-1 idlinx module at .130
+linx::add( 'ib96D-1', {'ip'=>'192.168.1.130', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib96D-1_sns_a', 'pe96D-1', 'pe96D-1', {dir=>'rev',report=>'both'} );
+#in( 'ib96D-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib96D-1_sns_b', 'pe96D-2', 'pe96D-2', {dir=>'rev',report=>'both'} );
+#in( 'ib96D-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr96D-2', 'ib96D-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr96D-1', 'ib96D-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib96D-1_in1', 'peint96C-2', 'zone status peint96C-2');
+in( 'ib96D-1_in2', 'pb96D-1', 'reset pb96D-1');
+#in( 'ib96D-1_in3', '', '');
+
+out( 'ib96D-1_out1', 'hrn96D-1', 'hrn96D-1');
+out( 'ib96D-1_out2', 'bcn96D-1', 'red bcn96D-1');
+out( 'ib96D-1_out3', 'relint96C-2', 'release relint96C-2');
+out( 'ib96D-1_out4', 'stopint96C-2', 'stopint96C-2');
+#out( 'ib96D-1_out5', '', '');
+
+# --- ib96D-2 idlinx module at .131
+linx::add( 'ib96D-2', {'ip'=>'192.168.1.131', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib96D-2_sns_a', 'pe96D-3', 'pe96D-3', {dir=>'rev',report=>'both'} );
+#in( 'ib96D-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib96D-2_sns_b', 'pe96D-2', 'pe96D-2', {dir=>'rev',report=>'both'} );
+#in( 'ib96D-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr96D-3', 'ib96D-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+# idlinx_motor( '', 'ib96D-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib96D-2_in1', 'pe96E-1', 'pe96E-1', {report=>'both'});
+#in( 'ib96D-2_in2', '', '');
+#in( 'ib96D-2_in3', '', '');
+#out( 'ib96D-2_out1', '', '');
+#out( 'ib96D-2_out2', '', '');
+#out( 'ib96D-2_out3', '', '');
+#out( 'ib96D-2_out4', '', '');
+#out( 'ib96D-2_out5', '', '');
+
+# --- ib111A-1 idlinx module at .132
+linx::add( 'ib111A-1', {'ip'=>'192.168.1.132', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib111A-1_sns_a', 'pe111A-1', 'pe111A-1', {dir=>'rev',report=>'both'} );
+#in( 'ib111A-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+# in( 'ib111A-1_sns_b', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib111A-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr111A-1', 'ib111A-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+# idlinx_motor( '', 'ib111A-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib111A-1_in1', 'pb111A-1', 'reset pb111A-1');
+#in( 'ib111A-1_in2', '', '');
+#in( 'ib111A-1_in3', '', '');
+#out( 'ib111A-1_out1', '', '');
+#out( 'ib111A-1_out2', '', '');
+#out( 'ib111A-1_out3', '', '');
+#out( 'ib111A-1_out4', '', '');
+#out( 'ib111A-1_out5', '', '');
+
+# --- ib111B-1 idlinx module at .133
+linx::add( 'ib111B-1', {'ip'=>'192.168.1.133', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib111B-1_sns_a', 'pe111B-1A', 'pe100H-1A', {dir=>'rev',report=>'both'} );
+in( 'ib111B-1_sns_a_flt', 'pe111B-1C', 'pe111B-1C', {dir=>'rev',report=>'both'} );
+in( 'ib111B-1_sns_b', 'pe111B-1B', 'pe100H-1B', {dir=>'rev',report=>'both'} );
+#in( 'ib111B-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr111B-1', 'ib111B-1', 'a', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr111B-2', 'ib111B-1', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib111B-1_in1', '', '');
+#in( 'ib111B-1_in2', '', '');
+#in( 'ib111B-1_in3', '', '');
+out( 'ib111B-1_out1', 'liftint111B-1', 'lift main liftint111B-1');
+#out( 'ib111B-1_out2', '', '');
+#out( 'ib111B-1_out3', '', '');
+#out( 'ib111B-1_out4', '', '');
+#out( 'ib111B-1_out5', '', '');
+
+# --- ib111B-2 idlinx module at .134
+linx::add( 'ib111B-2', {'ip'=>'192.168.1.134', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib111B-2_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib111B-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib111B-2_sns_b', 'prx111B-1', 'raise main prx111B-1', {report=>'both'} );
+in( 'ib111B-2_sns_b_flt', 'prx111B-2', 'lower main prx111B-2', {report=>'both'} );
+idlinx_motor( 'mdr111B-3', 'ib111B-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#idlinx_motor( '', 'ib111B-2', 'b', { dir=>'ccw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib111B-2_in1', '', '');
+#in( 'ib111B-2_in2', '', '');
+#in( 'ib111B-2_in3', '', '');
+#out( 'ib111B-2_out1', '', '');
+#out( 'ib111B-2_out2', '', '');
+#out( 'ib111B-2_out3', '', '');
+#out( 'ib111B-2_out4', '', '');
+#out( 'ib111B-2_out5', '', '');
+
+# --- ib111K-1 idlinx module at .135
+linx::add( 'ib111K-1', {'ip'=>'192.168.1.135', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib111K-1_sns_a', 'pe111K-2', 'pe111K-2', {dir=>'rev',report=>'both'} );
+#in( 'ib111K-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib111K-1_sns_b', 'pe111K-1', 'pe111K-1', {dir=>'rev',report=>'both'} );
+#in( 'ib111K-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr111K-2', 'ib111K-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr111K-1', 'ib111K-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib111K-1_in1', 'pe111M-1A', 'start pe111M-1A', {dir=>'rev', edge=>'full'});
+in( 'ib111K-1_in2', 'peint111L-4', 'zone status peint111L-4');
+#in( 'ib111K-1_in3', '', '');
+#out( 'ib111K-1_out1', '', '');
+#out( 'ib111K-1_out2', '', '');
+out( 'ib111K-1_out3', 'relint111L-4', 'release relint111L-4');
+out( 'ib111K-1_out4', 'stopint111L-4', 'stopint111L-4');
+#out( 'ib111K-1_out5', '', '');
+
+# --- ib111K-2 idlinx module at .136
+linx::add( 'ib111K-2', {'ip'=>'192.168.1.136', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib111K-2_sns_a', 'pe111K-4', 'pe111K-4', {dir=>'rev',report=>'both'} );
+#in( 'ib111K-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib111K-2_sns_b', 'pe111K-3', 'pe111K-3', {dir=>'rev',report=>'both'} );
+#in( 'ib111K-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr111K-4', 'ib111K-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr111K-3', 'ib111K-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib111K-2_in1', '', '');
+#in( 'ib111K-2_in2', '', '');
+#in( 'ib111K-2_in3', '', '');
+#out( 'ib111K-2_out1', '', '');
+#out( 'ib111K-2_out2', '', '');
+out( 'ib111K-2_out3', 'scnint111K-1', 'side scanner scn111K-1');
+#out( 'ib111K-2_out4', '', '');
+#out( 'ib111K-2_out5', '', '');
+
+# --- ib111C-1 idlinx module at .137
+linx::add( 'ib111C-1', {'ip'=>'192.168.1.137', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib111C-1_sns_a', 'pe111C-1', 'pe111C-1', {dir=>'rev',report=>'both'} );
+#in( 'ib111C-1_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+# in( 'ib111C-1_sns_b', 'pe111C-2', 'pe111C-2', {dir=>'rev',report=>'both'} );
+#in( 'ib111C-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr111C-1', 'ib111C-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+# idlinx_motor( 'mdr111C-2', 'ib111C-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib111C-1_in1', '', '');
+#in( 'ib111C-1_in2', '', '');
+#in( 'ib111C-1_in3', '', '');
+#out( 'ib111C-1_out1', '', '');
+#out( 'ib111C-1_out2', '', '');
+#out( 'ib111C-1_out3', '', '');
+#out( 'ib111C-1_out4', '', '');
+#out( 'ib111C-1_out5', '', '');
+
+# --- ib111C-2 idlinx module at .138
+linx::add( 'ib111C-2', {'ip'=>'192.168.1.138', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib111C-2_sns_a', 'pe111C-3', 'pe111C-3', {dir=>'rev',report=>'both'} );
+#in( 'ib111C-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib111C-2_sns_b', 'pe111C-2', 'pe111C-2', {dir=>'rev',report=>'both'} );
+#in( 'ib111C-2_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr111C-3', 'ib111C-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr111C-2', 'ib111C-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+#in( 'ib111C-2_in1', '', '');
+#in( 'ib111C-2_in2', '', '');
+#in( 'ib111C-2_in3', '', '');
+#out( 'ib111C-2_out1', '', '');
+#out( 'ib111C-2_out2', '', '');
+out( 'ib111C-2_out3', 'scnint111C-1', 'side scanner scn111C-1');
+#out( 'ib111C-2_out4', '', '');
+#out( 'ib111C-2_out5', '', '');
+
+# --- ib111D-1 idlinx module at .139
+linx::add( 'ib111D-1', {'ip'=>'192.168.1.139', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib111D-1_sns_a', 'pe111D-1C', 'pe111D-1A', {dir=>'rev',report=>'both'} );
+in( 'ib111D-1_sns_a_flt', 'pe111D-1A', 'pe111D-1C', {dir=>'rev',report=>'both'} );
+in( 'ib111D-1_sns_b', 'pe111D-1B', 'pe111D-1B', {dir=>'rev',report=>'both'} );
+#in( 'ib111D-1_sns_b_flt', '', '', {dir=>'rev',report=>'both'} );
+idlinx_motor( 'mdr111D-1', 'ib111D-1', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+idlinx_motor( 'mdr111D-2', 'ib111D-1', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+in( 'ib111D-1_in1', 'peg111G-1A', 'line full peg111G-1A', {dir=>'rev', edge=>'full'});
+#in( 'ib111D-1_in2', '', '');
+#in( 'ib111D-1_in3', '', '');
+out( 'ib111D-1_out1', 'liftint111D-1', 'lift main liftint111D-1');
+#out( 'ib111D-1_out2', '', '');
+out( 'ib111D-1_out3', 'runint111F-1', 'runint111F-1');
+#out( 'ib111D-1_out4', '', '');
+#out( 'ib111D-1_out5', '', '');
+
+# --- ib111D-2 idlinx module at .140
+linx::add( 'ib111D-2', {'ip'=>'192.168.1.140', run=>'cp1_run', reset=>'cp1_reset'} );
+# in( 'ib111D-2_sns_a', '', '', {dir=>'rev',report=>'both'} );
+#in( 'ib111D-2_sns_a_flt', '', '', {dir=>'rev',report=>'both'} );
+in( 'ib111D-2_sns_b', 'prx111D-1', 'raise main prx111D-1', {report=>'both'} );
+in( 'ib111D-2_sns_b_flt', 'prx111D-2', 'lower main prx111D-2', {report=>'both'} );
+idlinx_motor( 'mdr111D-3', 'ib111D-2', 'a', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+# idlinx_motor( '', 'ib111D-2', 'b', { dir=>'cw', run=>'cp1_run', reset=>'cp1_reset'} );
+# in( 'ib111D-2_in1', 'peg108K-1A', 'start peg108K-1A', {dir=>'rev', edge=>'full'});
+in( 'ib111D-2_in1', 'peint111E-1', 'zone status peint111E-1');
+in( 'ib111D-2_in2', 'psint111E-1', 'power supply ok psint111E-1', {edge=>'fault'});
+#in( 'ib111D-2_in3', '', '');
+#out( 'ib111D-2_out1', '', '');
+#out( 'ib111D-2_out2', '', '');
+out( 'ib111D-2_out4', 'runint111E-1', 'runint111E-1');
+out( 'ib111D-2_out3', 'stopint111E-1', 'stopint111E-1');
+#out( 'ib111D-2_out5', '', '');
+
+1;
