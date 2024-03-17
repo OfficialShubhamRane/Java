@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/../.." vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../../Eclipse1/School-Management-System-JavaFX" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../../IntelliJ/IO_generator_from_excel" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../../IntelliJ/IO_generator_from_excel/aicard_io_generator" vcs="Git" />
+  </component>
+</project>
